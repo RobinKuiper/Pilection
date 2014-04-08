@@ -40,7 +40,7 @@ class SystemsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = $this->system->all();
+		$input = Input::all();
 
 		if( ! $this->system->fill($input)->isValid())
 		{

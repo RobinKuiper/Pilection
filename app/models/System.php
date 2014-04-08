@@ -7,8 +7,8 @@ class System extends Eloquent{
 
 	public $errors;
 	public static $rules = [
-		'title' 	=> 'required|alpha|min:2',
-		'body' 		=> 'required|alpha|min:10'
+		'title' 	=> 'required|regex:/^[a-zA-Z0-9_\-&@$ ]+$/|min:4',
+		'body' 		=> 'required|regex:/^[a-zA-Z0-9_\-&@$%(),.:+\r\n ]+$/|min:10'
 	];
 
 	public function isValid()

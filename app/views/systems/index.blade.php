@@ -3,7 +3,15 @@
 @section('content')
 	<h2>All Systems</h2>
 
-	@foreach($systems as $system)
-		<li>{{ link_to("systems/$system->id", $system->title) }}</li>
-	@endforeach
+	<table class="table table-striped table-hover">
+		<tbody>
+			@foreach($systems as $system)
+				<tr>
+					<td>
+						{{ link_to("systems/$system->id", $system->title) }}
+					</td>
+				</tr>
+			@endforeach
+		</tbody>
+	</table>
 @stop

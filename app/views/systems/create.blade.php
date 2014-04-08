@@ -1,22 +1,21 @@
 @extends('layouts.master')
 
 @section('content')
-	<h2>Add system</h2>
+	{{ Form::open(['route' => 'systems.store', 'class' => 'form-signup', 'role' => 'form']) }}
 
-	{{ Form::open(['route' => 'systems.store']) }}
-		<div>
-			{{ Form::label('title', 'Name:') }}
-				{{ Form::text('title') }}
-		</div>
+    	<h2 class="form-signin-heading">Add new system</h2>
 
-		<div>
-			{{ Form::label('body', 'Body:') }}
-				{{ Form::textarea('body') }}
-		</div>
+	    <div class="form-group">
+	    	{{ Form::text('title', null, array('class'=>'form-control', 'placeholder'=>'System name')) }}
+	    	{{ $errors->first('title') }}
+	    </div>
 
-		<div>
-			{{ Form::submit('Add system') }}
-		</div>
+	    <div class="form-group">
+	    	{{ Form::textarea('body', null, array('class'=>'form-control', 'placeholder'=>'System info')) }}
+	    	{{ $errors->first('body') }}
+	    </div>
 
+		{{ Form::submit('Add system', array('class'=>'btn btn-large btn-primary btn-block'))}}
+			
 	{{ Form::close() }}
 @stop

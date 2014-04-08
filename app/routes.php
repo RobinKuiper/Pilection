@@ -20,3 +20,6 @@ Route::get('systems/create', 'SystemsController@create')->before('auth');
 Route::resource('sessions', 'SessionsController');
 Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
+
+Route::resource('users', 'UsersController');
+Route::get('register', 'UsersController@create');

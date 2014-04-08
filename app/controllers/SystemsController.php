@@ -35,7 +35,9 @@ class SystemsController extends \BaseController {
 
 		System::create($input);
 
-		return Redirect::route('systems.index');
+		return Redirect::to('/')
+				->with('message', 'New system created!')
+				->with('alert_class', 'alert-success');
 	}
 
 	/**

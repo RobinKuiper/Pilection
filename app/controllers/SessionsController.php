@@ -21,12 +21,17 @@ class SessionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		if(Auth::attempt(Input::only('username', 'password')))
+		if(Auth::attempt(Input::only('email', 'password')))
 		{
-			return Redirect::back();
+			return Redirect::to('/')
+				->with('message', 'You are now logged in!')
+				->with('alert_class', 'alert-success');
 		}
 
-		return Redirect::back()->withInput();
+		return Redirect::to('login')
+			->with('message', 'Your email/password combination was incorrect')
+			->with('alert_class', 'alert-danger')
+			->withInput();
 	}
 
 	/**
@@ -39,7 +44,9 @@ class SessionsController extends \BaseController {
 	{
 		Auth::logout();
 
-		return Redirect::to('/');
+		return Redirect::to('/')
+			->with('message', 'Your are now logged out!')
+			->with('alert_class', 'alert-info');
 	}
 
 }

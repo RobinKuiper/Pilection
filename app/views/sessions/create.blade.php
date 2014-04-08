@@ -1,22 +1,20 @@
 @extends('layouts.master')
 
 @section('content')
-	<h2>Login</h2>
+	{{ Form::open(['route' => 'sessions.store', 'class' => 'form-signup', 'role' => 'form']) }}
+	    <h2 class="form-signin-heading">Please Login</h2>
+	 
+	 	<div class="input-group form-group">
+	    	{{ Form::text('email', null, array('class'=>'form-control', 'placeholder'=>'Email Address')) }}
+	    	<span class="input-group-addon">@</span>
+	    	{{ $errors->first('email') }}
+	    </div>
 
-	{{ Form::open(['route' => 'sessions.store']) }}
-		<div>
-			{{ Form::label('username', 'Username:') }}
-				{{ Form::text('username') }}
-		</div>
+	    <div class="form-group">	
+	    	{{ Form::password('password', array('class'=>'form-control', 'placeholder'=>'Password')) }}
+	 		{{ $errors->first('password') }}
+	 	</div>
 
-		<div>
-			{{ Form::label('password', 'Password:') }}
-				{{ Form::password('password') }}
-		</div>
-
-		<div>
-			{{ Form::submit('Login') }}
-		</div>
-
+	    {{ Form::submit('Login', array('class'=>'btn btn-large btn-primary btn-block'))}}
 	{{ Form::close() }}
 @stop

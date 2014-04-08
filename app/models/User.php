@@ -5,7 +5,16 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	protected $fillable = ['username', 'email', 'password'];
+	protected $fillable = ['firstname', 'lastname','email', 'password'];
+
+	public $errors;
+	public static $rules = [
+		'firstname' 	=> 'required|alpha|min:2',
+		'lastname' 		=> 'required|alpha|min:2',
+		'email' 		=> 'required|email|unique:users',
+		'password'		=> 'required|alpha_num|between:6,12',
+		'password_confirmation' => 'same:password'
+	];
 
 	/**
 	 * The database table used by the model.
@@ -49,6 +58,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getReminderEmail()
 	{
 		return $this->email;
+	}
+
+	public function isValid()
+	{
+		$validation = Validator::make($this->attributes, static::$rules);
+
+		if($validation->passes()) return true;
+
+		$this->errors = $validation->messages();
+		return false;
 	}
 
 }

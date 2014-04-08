@@ -36,7 +36,12 @@ class UsersController extends \BaseController {
 			return Redirect::back()->withInput()->withErrors($this->user->errors);
 		}
 
-		$this->user->create($input);
+		$this->user->create([
+			'email' 		=> $input['email'],
+			'firstname'		=> $input['firstname'],
+			'lastname'		=> $input['lastname'],
+			'password'		=> Hash::make($input['password'])
+		]);
 		
 		return Redirect::to('login')
 			->with('message', 'Thanks for registering!')

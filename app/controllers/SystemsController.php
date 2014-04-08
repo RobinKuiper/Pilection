@@ -2,6 +2,15 @@
 
 class SystemsController extends \BaseController {
 
+	protected $system;
+
+	public function __construct(System $system)
+	{
+		$this->beforeFilter('csrf', ['on' => 'post']);
+		$this->system = $system;
+	}
+
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,7 +18,7 @@ class SystemsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$systems = System::all();
+		$systems = $this->system->all();
 
 		return View::make('systems.index', compact('systems'));
 	}
@@ -31,9 +40,14 @@ class SystemsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
+		$input = $this->system->all();
 
-		System::create($input);
+		if( ! $this->system->fill($input)->isValid())
+		{
+			return Redirect::back()->withInput()->withErrors($this->system->errors);
+		}
+
+		$this->system->create($input);
 
 		return Redirect::to('/')
 				->with('message', 'New system created!')
@@ -48,7 +62,7 @@ class SystemsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$system = System::findOrFail($id);
+		$system = $this->system->findOrFail($id);
 
 		return View::make('systems.show', compact('system'));
 	}

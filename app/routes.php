@@ -11,7 +11,12 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::resource('systems', 'SystemsController');
+Route::get('/', 'SystemsController@index');
+Route::get('systems/{id}', 'SystemsController@show')->where('id', '\d+');
+Route::get('create', 'SystemsController@create')->before('auth');
+Route::get('systems/create', 'SystemsController@create')->before('auth');
+
+Route::resource('sessions', 'SessionsController');
+Route::get('login', 'SessionsController@create');
+Route::get('logout', 'SessionsController@destroy');

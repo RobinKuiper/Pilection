@@ -3,7 +3,7 @@
 @section('content')
 <div class='row bottom-margin'>
     <div class='col-md-1'>
-        <span>{{ HTML::image("upload/systems/images/$system->image", $system->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
+        <span>{{ HTML::image($system->path.$system->image, $system->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
     </div>
     <div class='col-md-4'>
         <h2>{{ $system->title }}</h2>

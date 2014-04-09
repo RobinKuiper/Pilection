@@ -79,3 +79,16 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Make variables in Blade possible
+|--------------------------------------------------------------------------
+|
+| {? $old_section = "whatever" ?}
+| 
+*/
+
+Blade::extend(function($value) {
+    return preg_replace('/\{\?(.+)\?\}/', '<?php ${1} ?>', $value);
+});

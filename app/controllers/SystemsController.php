@@ -70,6 +70,11 @@ class SystemsController extends \BaseController {
 	public function show($id)
 	{
 		$system = $this->system->findOrFail($id);
+                
+                if($system->image == null){
+                    $system->path = 'images/';
+                    $system->image = 'system_default.png';
+                }else $system->path = 'upload/systems/images/';
 
 		return View::make('systems.show', compact('system'));
 	}

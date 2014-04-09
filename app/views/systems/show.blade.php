@@ -5,9 +5,15 @@
     <div class='col-md-1'>
         <span>{{ HTML::image("upload/systems/images/$system->image", $system->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
     </div>
-    <div class='col-md-1'>
+    <div class='col-md-4'>
         <h2>{{ $system->title }}</h2>
     </div>
+    
+    @if( Auth::check() )
+    <div class='col-md-1'>
+        {{ link_to("systems/$system->id/edit", 'Edit', ['class' => 'btn btn-primary']) }}
+    </div>
+    @endif
 </div>
 
 <div class='row bottom-margin'>
@@ -20,12 +26,17 @@
 </div>
 
 <div class='row bottom-margin'>
+    @if( !empty($system->download) )
     <div class='col-md-1'>
         {{ link_to($system->download, 'Download', ['class' => 'btn btn-success']) }}
     </div>
+    @endif
+    
+    @if( !empty($system->website) )
     <div class='col-md-1'>
         {{ link_to($system->website, 'Website', ['class' => 'btn btn-primary']) }}
     </div>
+    @endif
 </div>
 
 <div class="row bottom-margin">

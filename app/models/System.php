@@ -4,6 +4,7 @@ class System extends Eloquent{
 
 	protected $fillable = ['title', 'body', 'image', 'download', 'website'];
 	protected $table = 'systems';
+        protected $softDelete = true;
 
 	public $errors;
 	public static $rules = [

@@ -47,9 +47,11 @@ class SystemsController extends \BaseController {
 			return Redirect::back()->withInput()->withErrors($this->system->errors);
 		}
                 
-                if( ! $input['image'] = $this->system->saveImage($input['image']))
-                {
-                    return Redirect::back()->withInput()->withErrors(['image' => 'Something went wrong with the image, try again or contact the administrator.']);
+                if( !empty($input['image'])){
+                    if( ! $input['image'] = $this->system->saveImage($input['image']))
+                    {
+                        return Redirect::back()->withInput()->withErrors(['image' => 'Something went wrong with the image, try again or contact the administrator.']);
+                    }
                 }
                 
 		$this->system->create($input);
@@ -80,7 +82,9 @@ class SystemsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+                $system = $this->system->findOrFail($id);
+                
+		return View::make('systems.edit', compact('system'));
 	}
 
 	/**
@@ -91,7 +95,34 @@ class SystemsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = Input::all();
+
+		if( ! $this->system->fill($input)->isValid())
+		{
+			return Redirect::back()->withInput()->withErrors($this->system->errors);
+		}
+                
+                $update_fields = [
+                    'title'     => $input['title'],
+                    'body'      => $input['body'],
+                    'website'   => $input['website'],
+                    'download'  => $input['download'],
+                ];
+                
+                if( !empty($input['image'])){
+                    if( ! $input['image'] = $this->system->saveImage($input['image']))
+                    {
+                        return Redirect::back()->withInput()->withErrors(['image' => 'Something went wrong with the image, try again or contact the administrator.']);
+                    }
+                    
+                    $update_fields = ['image' => $input['image']];
+                }
+              
+		$this->system->where('id', '=', $id)->update($update_fields);
+
+		return Redirect::to('systems/'.$id)
+				->with('message', 'System updated!')
+				->with('alert_class', 'alert-success');
 	}
 
 	/**
@@ -102,7 +133,11 @@ class SystemsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+            $this->system->find($id)->delete();
+            
+            return Redirect::to('/')
+				->with('message', 'System removed!')
+				->with('alert_class', 'alert-success');
 	}
 
 }

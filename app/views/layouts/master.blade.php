@@ -55,7 +55,10 @@
 			@if(Session::has('message'))
 				<p class="alert alert-dismissable {{ Session::get('alert_class') }}">{{ Session::get('message') }}</p>
 			@endif
-
-			@yield('content')
+                        <div class='container'>
+                            @yield('content')
+                        </div>
+                        
+                        @yield('footer')
 	</body>
 </html>

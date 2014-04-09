@@ -46,7 +46,12 @@ class SystemsController extends \BaseController {
 		{
 			return Redirect::back()->withInput()->withErrors($this->system->errors);
 		}
-
+                
+                if( ! $input['image'] = $this->system->saveImage($input['image']))
+                {
+                    return Redirect::back()->withInput()->withErrors(['image' => 'Something went wrong with the image, try again or contact the administrator.']);
+                }
+                
 		$this->system->create($input);
 
 		return Redirect::to('/')

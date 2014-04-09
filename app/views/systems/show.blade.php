@@ -13,6 +13,11 @@
     <div class='col-md-1'>
         {{ link_to("systems/$system->id/edit", 'Edit', ['class' => 'btn btn-primary']) }}
     </div>
+    <div class='col-md-1'>
+        {{ Form::open(['route' => ['systems.destroy', $system->id], 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
+            {{ Form::submit('Remove', array('class'=>'btn btn-danger'))}}
+        {{ Form::close() }}
+    </div>
     @endif
 </div>
 
@@ -20,9 +25,6 @@
     <div class='col-md-8'>
         <article>{{ $system->body }}</article>
     </div>
-    <!--<div class='col-md-2'>
-        {{ link_to($system->url, 'Website') }}
-    </div>-->
 </div>
 
 <div class='row bottom-margin'>

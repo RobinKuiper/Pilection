@@ -1,21 +1,10 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+Route::pattern('id', '[0-9]+');
 
-Route::resource('systems', 'SystemsController');
 Route::get('/', 'SystemsController@index');
-Route::get('systems/{id}', 'SystemsController@show')->where('id', '\d+');
-Route::get('create', 'SystemsController@create')->before('auth');
-Route::get('systems/create', 'SystemsController@create')->before('auth');
+Route::resource('systems', 'SystemsController');
+Route::get('create', 'SystemsController@create');
 
 Route::resource('sessions', 'SessionsController');
 Route::get('login', 'SessionsController@create');
@@ -25,3 +14,5 @@ Route::resource('users', 'UsersController');
 Route::get('register', 'UsersController@create');
 
 Route::get('about', 'PagesController@about');
+
+//Route::resource('club', 'ClubController', ['only' => ['create', 'store', 'show']]);

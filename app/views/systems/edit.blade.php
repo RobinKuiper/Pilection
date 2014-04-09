@@ -5,14 +5,6 @@
         <div class='col-md-2'>
             <h2 class="form-signin-heading">Edit system</h2>
         </div>
-        
-        @if( Auth::check() )
-        <div class='col-md-2'>
-            {{ Form::open(['route' => ['systems.destroy', $system->id], 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
-            {{ Form::submit('Remove', array('class'=>'btn btn-danger'))}}
-            {{ Form::close() }}
-        </div>
-        @endif
     </div>
 
     {{ Form::open(['route' => ['systems.update', $system->id], 'files' => true, 'class' => '', 'role' => 'form', 'method' => 'put']) }}

@@ -6,7 +6,8 @@ class SystemsController extends \BaseController {
 
 	public function __construct(System $system)
 	{
-		$this->beforeFilter('csrf', ['on' => 'post']);
+                $this->beforeFilter('auth', ['only' => ['create', 'edit']]);
+		$this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
 		$this->system = $system;
 	}
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class='row'>
-        <div class='col-md-2'>
+        <div class='col-md-12'>
             <h2 class="form-signin-heading">Edit system</h2>
         </div>
     </div>

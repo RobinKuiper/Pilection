@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('register') }}
+@stop
+
 @section('content')
 	
 	{{ Form::open(['route' => 'users.store', 'class' => 'form-signup', 'role' => 'form']) }}

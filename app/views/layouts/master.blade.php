@@ -55,6 +55,9 @@
 			@if(Session::has('message'))
 				<p class="alert alert-dismissable {{ Session::get('alert_class') }}">{{ Session::get('message') }}</p>
 			@endif
+                        
+                        @yield('breadcrumbs')
+                        
                         <div class='container'>
                             @yield('content')
                         </div>

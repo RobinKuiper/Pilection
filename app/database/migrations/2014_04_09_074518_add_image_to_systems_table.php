@@ -14,7 +14,7 @@ class AddImageToSystemsTable extends Migration {
 	{
 		Schema::table('systems', function(Blueprint $table)
 		{
-			$table->string('image')->after('body');
+			$table->string('image')->after('body')->nullable(true);
 		});
 	}
 

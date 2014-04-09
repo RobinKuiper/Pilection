@@ -27,7 +27,7 @@ class AddSoftDeleteToSystemsTable extends Migration {
 	{
 		Schema::table('systems', function(Blueprint $table)
 		{
-                    
+                    $table->dropColumn('deleted_at');
 		});
 	}
 

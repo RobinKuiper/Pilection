@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('login') }}
+@stop
+
 @section('content')
 	{{ Form::open(['route' => 'sessions.store', 'class' => 'form-signup', 'role' => 'form']) }}
 	    <h2 class="form-signin-heading">Please Login</h2>

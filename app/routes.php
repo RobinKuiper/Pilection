@@ -23,3 +23,5 @@ Route::get('logout', 'SessionsController@destroy');
 
 Route::resource('users', 'UsersController');
 Route::get('register', 'UsersController@create');
+
+Route::get('about', 'PagesController@about');

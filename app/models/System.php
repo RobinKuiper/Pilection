@@ -2,12 +2,14 @@
 
 class System extends Eloquent{
 
-	protected $fillable = ['title', 'body', 'image'];
+	protected $fillable = ['title', 'body', 'image', 'download', 'website'];
 	protected $table = 'systems';
 
 	public $errors;
 	public static $rules = [
 		'title' 	=> 'required|regex:/^[a-zA-Z0-9_\-&@$ ]+$/|min:4',
+                'website'       => 'url',
+                'download'      => 'url',
 		//'body' 		=> 'required|regex:/^[a-zA-Z0-9_\-&@$%(),.:+\r\n ]+$/|min:10'
 	];
 

@@ -5,14 +5,15 @@ class SystemsController extends \BaseController {
 	protected $item;
         protected $views;
 
-	public function __construct(System $item, Views $views)
+	public function __construct(Item $item, Views $views)
 	{
                 $this->beforeFilter('auth', ['only' => ['create', 'edit']]);
 		$this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
 		$this->item = $item;
                 $this->views = $views;
+                
+                $this->item->type = 'system';
 	}
-
 
 	/**
 	 * Display a listing of the resource.
@@ -21,7 +22,7 @@ class SystemsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$items = $this->item->all();
+		$items = $this->item->where('type', '=', $this->item->type)->get();
 
 		return View::make('systems.index', compact('items'));
 	}
@@ -75,10 +76,10 @@ class SystemsController extends \BaseController {
 		$item = $this->item->findOrFail($id);
                 
                 // Update viewcount
-                $this->views->updateViews($id, 'system');
+                $this->views->updateViews($id);
                 
                 // Get viewcount
-                $item->viewcount = $this->views->getViews($id, 'system');
+                $item->viewcount = $this->views->getViews($id);
                 
                 if($item->image == null){
                     $item->path = 'images/';

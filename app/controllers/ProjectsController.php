@@ -5,12 +5,14 @@ class ProjectsController extends \BaseController {
 	protected $item;
         protected $views;
 
-	public function __construct(Project $item, Views $views)
+	public function __construct(Item $item, Views $views)
 	{
                 $this->beforeFilter('auth', ['only' => ['create', 'edit']]);
 		$this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
 		$this->item = $item;
                 $this->views = $views;
+                
+                $this->item->type = 'project';
 	}
 
 
@@ -21,7 +23,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$items = $this->item->all();
+		$items = $this->item->where('type', '=', $this->item->type)->get();
 
 		return View::make('projects.index', compact('items'));
 	}
@@ -68,10 +70,10 @@ class ProjectsController extends \BaseController {
 		$item = $this->item->findOrFail($id);
                 
                 // Update viewcount
-                $this->views->updateViews($id, 'project');
+                $this->views->updateViews($id);
                 
                 // Get viewcount
-                $item->viewcount = $this->views->getViews($id, 'project');
+                $item->viewcount = $this->views->getViews($id);
 
 		return View::make('projects.show', compact('item'));
 	}

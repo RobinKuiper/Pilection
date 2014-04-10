@@ -1,9 +1,9 @@
 <?php
 
-class System extends Eloquent{
+class Item extends Eloquent{
 
 	protected $fillable = ['title', 'body', 'image', 'download', 'website'];
-	protected $table = 'systems';
+	protected $table = 'items';
         protected $softDelete = true;
 
 	public $errors;
@@ -26,7 +26,7 @@ class System extends Eloquent{
         
         public function saveImage($image)
         {
-            $save_path = 'public/upload/systems/images';
+            $save_path = 'public/upload/items/images';
             $filename = $image->getClientOriginalName();
             if( $image->move($save_path, $filename) ) return $filename;
             

@@ -12,7 +12,7 @@ class SystemsController extends \BaseController {
 		$this->item = $item;
                 $this->views = $views;
                 
-                $this->item->type = 'system';
+                $this->item->type = 'systems';
 	}
 
 	/**
@@ -45,6 +45,7 @@ class SystemsController extends \BaseController {
 	public function store()
 	{
 		$input = Input::all();
+                $input['type'] = $this->item->type;
 
 		if( ! $this->item->fill($input)->isValid())
 		{
@@ -60,7 +61,7 @@ class SystemsController extends \BaseController {
                 
 		$this->item->create($input);
 
-		return Redirect::to('/')
+		return Redirect::to('systems')
 				->with('message', 'New system created!')
 				->with('alert_class', 'alert-success');
 	}

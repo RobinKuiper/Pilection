@@ -12,7 +12,7 @@ class ProjectsController extends \BaseController {
 		$this->item = $item;
                 $this->views = $views;
                 
-                $this->item->type = 'project';
+                $this->item->type = 'projects';
 	}
 
 
@@ -25,7 +25,7 @@ class ProjectsController extends \BaseController {
 	{
 		$items = $this->item->where('type', '=', $this->item->type)->get();
 
-		return View::make('projects.index', ['items' => $items, 'system_active' => 1]);
+		return View::make('projects.index', ['items' => $items, 'project_active' => 1]);
 	}
 
 	/**
@@ -35,7 +35,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('projects.create', ['system_active' => 1]);
+		return View::make('projects.create', ['project_active' => 1]);
 	}
 
 	/**
@@ -46,6 +46,7 @@ class ProjectsController extends \BaseController {
 	public function store()
 	{
 		$input = Input::all();
+                $input['type'] = $this->item->type;
 
 		if( ! $this->item->fill($input)->isValid())
 		{
@@ -75,7 +76,7 @@ class ProjectsController extends \BaseController {
                 // Get viewcount
                 $item->viewcount = $this->views->getViews($id);
 
-		return View::make('projects.show', ['item' => $item, 'system_active' => 1]);
+		return View::make('projects.show', ['item' => $item, 'project_active' => 1]);
 	}
 
 	/**
@@ -88,7 +89,7 @@ class ProjectsController extends \BaseController {
 	{
                 $item = $this->item->findOrFail($id);
                 
-		return View::make('projects.edit', ['item' => $item, 'system_active' => 1]);
+		return View::make('projects.edit', ['item' => $item, 'project_active' => 1]);
 	}
 
 	/**

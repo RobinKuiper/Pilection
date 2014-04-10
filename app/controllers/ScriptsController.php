@@ -12,7 +12,7 @@ class ScriptsController extends \BaseController {
 		$this->item = $item;
                 $this->views = $views;
                 
-                $this->item->type = 'script';
+                $this->item->type = 'scripts';
 	}
 
 	/**
@@ -24,7 +24,7 @@ class ScriptsController extends \BaseController {
 	{
 		$items = $this->item->where('type', '=', $this->item->type)->get();
 
-		return View::make('scripts.index', ['items' => $items, 'system_active' => 1]);
+		return View::make('scripts.index', ['items' => $items, 'script_active' => 1]);
 	}
 
 	/**
@@ -34,7 +34,7 @@ class ScriptsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('scripts.create', ['system_active' => 1]);
+		return View::make('scripts.create', ['script_active' => 1]);
 	}
 
 	/**
@@ -45,6 +45,7 @@ class ScriptsController extends \BaseController {
 	public function store()
 	{
 		$input = Input::all();
+                $input['type'] = $this->item->type;
 
 		if( ! $this->item->fill($input)->isValid())
 		{
@@ -74,7 +75,7 @@ class ScriptsController extends \BaseController {
                 // Get viewcount
                 $item->viewcount = $this->views->getViews($id);
 
-		return View::make('scripts.show', ['item' => $item, 'system_active' => 1]);
+		return View::make('scripts.show', ['item' => $item, 'script_active' => 1]);
 	}
 
 	/**
@@ -87,7 +88,7 @@ class ScriptsController extends \BaseController {
 	{
                 $item = $this->item->findOrFail($id);
                 
-		return View::make('scripts.edit', ['item' => $item, 'system_active' => 1]);
+		return View::make('scripts.edit', ['item' => $item, 'script_active' => 1]);
 	}
 
 	/**

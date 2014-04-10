@@ -8,7 +8,7 @@
 			@foreach($results as $result)
 				<tr>
                                     <td>
-                                        <h3> {{ link_to("projects/$result->id", $result->title) }} </h3>
+                                        <h3> {{ link_to($result->type."/".$result->id, $result->title) }} </h3>
                                         <p> {{ Str::words($result->body, 50, $end = '...') }} </p>
                                     </td>
                                     <!--<td>Views: {{ Views::getViews($result->id, 'system') }}</td>-->

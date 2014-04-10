@@ -28,14 +28,8 @@ class SearchController extends \BaseController {
 	public function store()
 	{
             $q = Input::get('q');
-            
-            $query = "(SELECT id, title, body FROM systems WHERE title LIKE '%".$q."%')
-                        union
-                      (SELECT id, title, body FROM scripts WHERE title LIKE '%".$q."%')
-                        union
-                      (SELECT id, title, body FROM projects WHERE title LIKE '%".$q."%')";
-            
-            $results = DB::select( DB::raw($query) );
+           
+            $results = Item::where('title', 'LIKE', '%'.$q.'%')->get();
             
             return View::make('search.store', ['results' => $results]);
 	}

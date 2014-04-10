@@ -5,7 +5,7 @@ Breadcrumbs::register('home', function($breadcrumbs) {
 });
 
 /*Breadcrumbs::register('about', function($breadcrumbs) {
-    $breadcrumbs->push('About', 'about');
+    $breadcrumbs->push('About', route('about'));
 });*/
 
 Breadcrumbs::register('login', function($breadcrumbs) {

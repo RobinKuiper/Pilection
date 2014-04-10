@@ -5,14 +5,15 @@ class ScriptsController extends \BaseController {
 	protected $item;
         protected $views;
 
-	public function __construct(Script $item, Views $views)
+	public function __construct(Item $item, Views $views)
 	{
                 $this->beforeFilter('auth', ['only' => ['create', 'edit']]);
 		$this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
 		$this->item = $item;
                 $this->views = $views;
+                
+                $this->item->type = 'scripts';
 	}
-
 
 	/**
 	 * Display a listing of the resource.
@@ -21,7 +22,7 @@ class ScriptsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$items = $this->item->all();
+		$items = $this->item->where('type', '=', $this->item->type)->get();
 
 		return View::make('scripts.index', ['items' => $items, 'script_active' => 1]);
 	}
@@ -44,6 +45,7 @@ class ScriptsController extends \BaseController {
 	public function store()
 	{
 		$input = Input::all();
+                $input['type'] = $this->item->type;
 
 		if( ! $this->item->fill($input)->isValid())
 		{
@@ -68,10 +70,10 @@ class ScriptsController extends \BaseController {
 		$item = $this->item->findOrFail($id);
                 
                 // Update viewcount
-                $this->views->updateViews($id, 'script');
+                $this->views->updateViews($id);
                 
                 // Get viewcount
-                $item->viewcount = $this->views->getViews($id, 'script');
+                $item->viewcount = $this->views->getViews($id);
 
 		return View::make('scripts.show', ['item' => $item, 'script_active' => 1]);
 	}
@@ -107,7 +109,6 @@ class ScriptsController extends \BaseController {
                 $update_fields = [
                     'title'     => $input['title'],
                     'body'      => $input['body'],
-                    'script'    => $input['script']
                 ];
               
 		$this->item->where('id', '=', $id)->update($update_fields);

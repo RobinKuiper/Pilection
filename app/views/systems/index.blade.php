@@ -23,7 +23,7 @@
                                         <h3> {{ link_to("systems/$item->id", $item->title) }} </h3>
                                         <p> {{ Str::words($item->body, 50, $end = '...') }} </p>
                                     </td>
-                                    <td>Views: {{ Views::getViews($item->id, 'system') }}</td>
+                                    <td><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, 'system') }}</td>
                                     <td>{{ link_to("systems/$item->id#disqus_thread", '0 comments') }}</td>
 				</tr>
 			@endforeach

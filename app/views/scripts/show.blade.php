@@ -12,11 +12,18 @@
     
     @if( Auth::check() )
     <div class='col-md-1'>
-        {{ link_to("scripts/$item->id/edit", 'Edit', ['class' => 'btn btn-primary']) }}
+        <a href="scripts/$item->id/edit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-edit"></span>
+            Edit
+        </a>
+        
     </div>
     <div class='col-md-1'>
         {{ Form::open(['route' => ['scripts.destroy', $item->id], 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
-            {{ Form::submit('Remove', array('class'=>'btn btn-danger'))}}
+            <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove"></span>
+                Remove
+            </button>
         {{ Form::close() }}
     </div>
     @endif

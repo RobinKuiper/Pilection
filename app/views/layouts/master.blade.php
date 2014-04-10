@@ -64,6 +64,7 @@
                             @yield('content')
                         </div>
                         
+                        {{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
                         @yield('footer')
 	</body>
 </html>

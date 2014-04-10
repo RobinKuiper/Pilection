@@ -2,7 +2,7 @@
 
 Route::pattern('id', '[0-9]+');
 
-Route::get('/', 'SystemsController@index');
+Route::get('/', 'PagesController@home');
 
 Route::resource('systems', 'SystemsController');
 Route::get('create', 'SystemsController@create');

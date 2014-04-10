@@ -2,13 +2,15 @@
 
 class SystemsController extends \BaseController {
 
-	protected $system;
+	protected $item;
+        protected $views;
 
-	public function __construct(System $system)
+	public function __construct(System $item, Views $views)
 	{
                 $this->beforeFilter('auth', ['only' => ['create', 'edit']]);
 		$this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
-		$this->system = $system;
+		$this->item = $item;
+                $this->views = $views;
 	}
 
 
@@ -19,9 +21,9 @@ class SystemsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$systems = $this->system->all();
+		$items = $this->item->all();
 
-		return View::make('systems.index', compact('systems'));
+		return View::make('systems.index', compact('items'));
 	}
 
 	/**
@@ -43,19 +45,19 @@ class SystemsController extends \BaseController {
 	{
 		$input = Input::all();
 
-		if( ! $this->system->fill($input)->isValid())
+		if( ! $this->item->fill($input)->isValid())
 		{
-			return Redirect::back()->withInput()->withErrors($this->system->errors);
+			return Redirect::back()->withInput()->withErrors($this->item->errors);
 		}
                 
                 if( !empty($input['image'])){
-                    if( ! $input['image'] = $this->system->saveImage($input['image']))
+                    if( ! $input['image'] = $this->item->saveImage($input['image']))
                     {
                         return Redirect::back()->withInput()->withErrors(['image' => 'Something went wrong with the image, try again or contact the administrator.']);
                     }
                 }
                 
-		$this->system->create($input);
+		$this->item->create($input);
 
 		return Redirect::to('/')
 				->with('message', 'New system created!')
@@ -70,14 +72,20 @@ class SystemsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$system = $this->system->findOrFail($id);
+		$item = $this->item->findOrFail($id);
                 
-                if($system->image == null){
-                    $system->path = 'images/';
-                    $system->image = 'system_default.png';
-                }else $system->path = 'upload/systems/images/';
+                // Update viewcount
+                $this->views->updateViews($id, 'system');
+                
+                // Get viewcount
+                $item->viewcount = $this->views->getViews($id, 'system');
+                
+                if($item->image == null){
+                    $item->path = 'images/';
+                    $item->image = 'system_default.png';
+                }else $item->path = 'upload/systems/images/';
 
-		return View::make('systems.show', compact('system'));
+		return View::make('systems.show', compact('item'));
 	}
 
 	/**
@@ -88,9 +96,9 @@ class SystemsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-                $system = $this->system->findOrFail($id);
+                $item = $this->item->findOrFail($id);
                 
-		return View::make('systems.edit', compact('system'));
+		return View::make('systems.edit', compact('item'));
 	}
 
 	/**
@@ -103,9 +111,9 @@ class SystemsController extends \BaseController {
 	{
 		$input = Input::all();
 
-		if( ! $this->system->fill($input)->isValid())
+		if( ! $this->item->fill($input)->isValid())
 		{
-			return Redirect::back()->withInput()->withErrors($this->system->errors);
+			return Redirect::back()->withInput()->withErrors($this->item->errors);
 		}
                 
                 $update_fields = [
@@ -116,7 +124,7 @@ class SystemsController extends \BaseController {
                 ];
                 
                 if( !empty($input['image'])){
-                    if( ! $input['image'] = $this->system->saveImage($input['image']))
+                    if( ! $input['image'] = $this->item->saveImage($input['image']))
                     {
                         return Redirect::back()->withInput()->withErrors(['image' => 'Something went wrong with the image, try again or contact the administrator.']);
                     }
@@ -124,7 +132,7 @@ class SystemsController extends \BaseController {
                     $update_fields = ['image' => $input['image']];
                 }
               
-		$this->system->where('id', '=', $id)->update($update_fields);
+		$this->item->where('id', '=', $id)->update($update_fields);
 
 		return Redirect::to('systems/'.$id)
 				->with('message', 'System updated!')
@@ -139,7 +147,7 @@ class SystemsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-            $this->system->find($id)->delete();
+            $this->item->find($id)->delete();
             
             return Redirect::to('/')
 				->with('message', 'System removed!')

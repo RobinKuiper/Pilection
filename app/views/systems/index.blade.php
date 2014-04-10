@@ -9,21 +9,22 @@
 
 	<table class="table table-striped table-hover">
 		<tbody>
-			@foreach($systems as $system)
-                                @if ($system->image == null) 
+			@foreach($items as $item)
+                                @if ($item->image == null) 
                                     {? $path = 'images/' ?}
-                                    {? $system->image = 'system_default.png' ?}
+                                    {? $item->image = 'system_default.png' ?}
                                 @else {? $path = 'upload/systems/images/' ?}
                                 @endif
 				<tr>
                                     <td>
-                                        <a href='systems/{{ $system->id }}' title='{{ $system->title }}'>{{ HTML::image($path . $system->image, $system->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
+                                        <a href='systems/{{ $item->id }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
                                     </td>
                                     <td>
-                                        <h3> {{ link_to("systems/$system->id", $system->title) }} </h3>
-                                        <p> {{ Str::words($system->body, 50, $end = '...') }} </p>
+                                        <h3> {{ link_to("systems/$item->id", $item->title) }} </h3>
+                                        <p> {{ Str::words($item->body, 50, $end = '...') }} </p>
                                     </td>
-                                    <td>{{ link_to("systems/$system->id#disqus_thread", '0 comments') }}</td>
+                                    <td>Views: {{ Views::getViews($item->id, 'system') }}</td>
+                                    <td>{{ link_to("systems/$item->id#disqus_thread", '0 comments') }}</td>
 				</tr>
 			@endforeach
 		</tbody>

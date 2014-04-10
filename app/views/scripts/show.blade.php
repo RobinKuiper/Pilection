@@ -1,21 +1,21 @@
 @extends('layouts.master')
 
 @section('breadcrumbs')
-{{ Breadcrumbs::render('script', $script) }}
+{{ Breadcrumbs::render('script', $item) }}
 @stop
 
 @section('content')
 <div class='row bottom-margin'>
     <div class='col-md-4'>
-        <h2>{{ $script->title }}</h2>
+        <h2>{{ $item->title }}</h2>
     </div>
     
     @if( Auth::check() )
     <div class='col-md-1'>
-        {{ link_to("scripts/$script->id/edit", 'Edit', ['class' => 'btn btn-primary']) }}
+        {{ link_to("scripts/$item->id/edit", 'Edit', ['class' => 'btn btn-primary']) }}
     </div>
     <div class='col-md-1'>
-        {{ Form::open(['route' => ['scripts.destroy', $script->id], 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
+        {{ Form::open(['route' => ['scripts.destroy', $item->id], 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
             {{ Form::submit('Remove', array('class'=>'btn btn-danger'))}}
         {{ Form::close() }}
     </div>
@@ -23,14 +23,20 @@
 </div>
 
 <div class='row bottom-margin'>
-    <div class='col-md-8'>
-        <article>{{ $script->body }}</article>
+    <div class='col-md-4'>
+        <p>Views: {{ $item->viewcount }}</p>
     </div>
 </div>
 
 <div class='row bottom-margin'>
     <div class='col-md-8'>
-        <article>{{ $script->script }}</article>
+        <article>{{ $item->body }}</article>
+    </div>
+</div>
+
+<div class='row bottom-margin'>
+    <div class='col-md-8'>
+        <article>{{ $item->script }}</article>
     </div>
 </div>
 

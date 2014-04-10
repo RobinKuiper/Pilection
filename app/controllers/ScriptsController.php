@@ -2,13 +2,15 @@
 
 class ScriptsController extends \BaseController {
 
-	protected $script;
+	protected $item;
+        protected $views;
 
-	public function __construct(Script $script)
+	public function __construct(Script $item, Views $views)
 	{
                 $this->beforeFilter('auth', ['only' => ['create', 'edit']]);
 		$this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
-		$this->script = $script;
+		$this->item = $item;
+                $this->views = $views;
 	}
 
 
@@ -19,9 +21,9 @@ class ScriptsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$scripts = $this->script->all();
+		$items = $this->item->all();
 
-		return View::make('scripts.index', compact('scripts'));
+		return View::make('scripts.index', compact('items'));
 	}
 
 	/**
@@ -43,12 +45,12 @@ class ScriptsController extends \BaseController {
 	{
 		$input = Input::all();
 
-		if( ! $this->script->fill($input)->isValid())
+		if( ! $this->item->fill($input)->isValid())
 		{
-			return Redirect::back()->withInput()->withErrors($this->script->errors);
+			return Redirect::back()->withInput()->withErrors($this->item->errors);
 		}
                 
-		$this->script->create($input);
+		$this->item->create($input);
 
 		return Redirect::to('scripts')
 				->with('message', 'New script created!')
@@ -63,9 +65,15 @@ class ScriptsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$script = $this->script->findOrFail($id);
+		$item = $this->item->findOrFail($id);
+                
+                // Update viewcount
+                $this->views->updateViews($id, 'script');
+                
+                // Get viewcount
+                $item->viewcount = $this->views->getViews($id, 'script');
 
-		return View::make('scripts.show', compact('script'));
+		return View::make('scripts.show', compact('item'));
 	}
 
 	/**
@@ -76,9 +84,9 @@ class ScriptsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-                $script = $this->script->findOrFail($id);
+                $item = $this->item->findOrFail($id);
                 
-		return View::make('scripts.edit', compact('script'));
+		return View::make('scripts.edit', compact('item'));
 	}
 
 	/**
@@ -91,9 +99,9 @@ class ScriptsController extends \BaseController {
 	{
 		$input = Input::all();
 
-		if( ! $this->script->fill($input)->isValid())
+		if( ! $this->item->fill($input)->isValid())
 		{
-			return Redirect::back()->withInput()->withErrors($this->script->errors);
+			return Redirect::back()->withInput()->withErrors($this->item->errors);
 		}
                 
                 $update_fields = [
@@ -102,7 +110,7 @@ class ScriptsController extends \BaseController {
                     'script'    => $input['script']
                 ];
               
-		$this->script->where('id', '=', $id)->update($update_fields);
+		$this->item->where('id', '=', $id)->update($update_fields);
 
 		return Redirect::to('scripts/'.$id)
 				->with('message', 'System updated!')
@@ -117,7 +125,7 @@ class ScriptsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-            $this->script->find($id)->delete();
+            $this->item->find($id)->delete();
             
             return Redirect::to('scripts')
 				->with('message', 'Script removed!')

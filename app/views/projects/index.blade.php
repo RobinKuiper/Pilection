@@ -9,13 +9,13 @@
 
 	<table class="table table-striped table-hover">
 		<tbody>
-			@foreach($projects as $project)
+			@foreach($items as $item)
 				<tr>
                                     <td>
-                                        <h3> {{ link_to("projects/$project->id", $project->title) }} </h3>
-                                        <p> {{ Str::words($project->body, 50, $end = '...') }} </p>
+                                        <h3> {{ link_to("projects/$item->id", $item->title) }} </h3>
+                                        <p> {{ Str::words($item->body, 50, $end = '...') }} </p>
                                     </td>
-                                    <td>{{ link_to("projects/$project->id#disqus_thread", '0 comments') }}</td>
+                                    <td>{{ link_to("projects/$item->id#disqus_thread", '0 comments') }}</td>
 				</tr>
 			@endforeach
 		</tbody>

@@ -1,24 +1,24 @@
 @extends('layouts.master')
 
 @section('breadcrumbs')
-{{ Breadcrumbs::render('system', $system) }}
+{{ Breadcrumbs::render('system', $item) }}
 @stop
 
 @section('content')
 <div class='row bottom-margin'>
     <div class='col-md-1'>
-        <span>{{ HTML::image($system->path.$system->image, $system->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
+        <span>{{ HTML::image($item->path.$item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
     </div>
     <div class='col-md-4'>
-        <h2>{{ $system->title }}</h2>
+        <h2>{{ $item->title }}</h2>
     </div>
     
     @if( Auth::check() )
     <div class='col-md-1'>
-        {{ link_to("systems/$system->id/edit", 'Edit', ['class' => 'btn btn-primary']) }}
+        {{ link_to("systems/$item->id/edit", 'Edit', ['class' => 'btn btn-primary']) }}
     </div>
     <div class='col-md-1'>
-        {{ Form::open(['route' => ['systems.destroy', $system->id], 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
+        {{ Form::open(['route' => ['systems.destroy', $item->id], 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
             {{ Form::submit('Remove', array('class'=>'btn btn-danger'))}}
         {{ Form::close() }}
     </div>
@@ -26,21 +26,27 @@
 </div>
 
 <div class='row bottom-margin'>
-    <div class='col-md-8'>
-        <article>{{ $system->body }}</article>
+    <div class='col-md-4'>
+        <p>Views: {{ $item->viewcount }}</p>
     </div>
 </div>
 
 <div class='row bottom-margin'>
-    @if( !empty($system->download) )
+    <div class='col-md-8'>
+        <article>{{ $item->body }}</article>
+    </div>
+</div>
+
+<div class='row bottom-margin'>
+    @if( !empty($item->download) )
     <div class='col-md-1'>
-        {{ link_to($system->download, 'Download', ['class' => 'btn btn-success']) }}
+        {{ link_to($item->download, 'Download', ['class' => 'btn btn-success']) }}
     </div>
     @endif
     
-    @if( !empty($system->website) )
+    @if( !empty($item->website) )
     <div class='col-md-1'>
-        {{ link_to($system->website, 'Website', ['class' => 'btn btn-primary']) }}
+        {{ link_to($item->website, 'Website', ['class' => 'btn btn-primary']) }}
     </div>
     @endif
 </div>

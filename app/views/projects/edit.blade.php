@@ -7,12 +7,12 @@
         </div>
     </div>
 
-    {{ Form::open(['route' => ['projects.update', $project->id], 'files' => true, 'class' => '', 'role' => 'form', 'method' => 'put']) }}
+    {{ Form::open(['route' => ['projects.update', $item->id], 'files' => true, 'class' => '', 'role' => 'form', 'method' => 'put']) }}
   
     <div class='row'>
         <div class='col-md-12'>
             <div class="form-group">
-                {{ Form::text('title', $project->title, array('class'=>'form-control', 'placeholder'=>'Project name')) }}
+                {{ Form::text('title', $item->title, array('class'=>'form-control', 'placeholder'=>'Project name')) }}
                 {{ $errors->first('title') }}
             </div>
         </div>
@@ -21,7 +21,7 @@
     <div class='row'>
         <div class='col-md-12'>
             <div class="form-group">
-                {{ Form::textarea('body', $project->body, array('class'=>'form-control', 'placeholder'=>'Project info')) }}
+                {{ Form::textarea('body', $item->body, array('class'=>'form-control', 'placeholder'=>'Project info')) }}
                 {{ $errors->first('body') }}
             </div>
         </div>

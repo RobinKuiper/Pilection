@@ -7,12 +7,12 @@
         </div>
     </div>
 
-    {{ Form::open(['route' => ['systems.update', $system->id], 'files' => true, 'class' => '', 'role' => 'form', 'method' => 'put']) }}
+    {{ Form::open(['route' => ['systems.update', $item->id], 'files' => true, 'class' => '', 'role' => 'form', 'method' => 'put']) }}
   
     <div class='row'>
         <div class='col-md-12'>
             <div class="form-group">
-                {{ Form::text('title', $system->title, array('class'=>'form-control', 'placeholder'=>'System name')) }}
+                {{ Form::text('title', $item->title, array('class'=>'form-control', 'placeholder'=>'System name')) }}
                 {{ $errors->first('title') }}
             </div>
         </div>
@@ -21,7 +21,7 @@
     <div class='row'>
         <div class='col-md-12'>
             <div class="form-group">
-                {{ Form::textarea('body', $system->body, array('class'=>'form-control', 'placeholder'=>'System info')) }}
+                {{ Form::textarea('body', $item->body, array('class'=>'form-control', 'placeholder'=>'System info')) }}
                 {{ $errors->first('body') }}
             </div>
         </div>
@@ -32,13 +32,13 @@
             <div class='row'>
                 <div class="form-group input-group">
                     <span class="input-group-addon">http://</span>
-                    {{ Form::text('download', $system->download, array('class'=>'form-control', 'placeholder'=>'Download link')) }}
+                    {{ Form::text('download', $item->download, array('class'=>'form-control', 'placeholder'=>'Download link')) }}
                     {{ $errors->first('download') }}
                 </div>
        
                 <div class="form-group input-group">
                     <span class="input-group-addon">http://</span>
-                    {{ Form::text('website', $system->website, array('class'=>'form-control', 'placeholder'=>'Website link')) }}
+                    {{ Form::text('website', $item->website, array('class'=>'form-control', 'placeholder'=>'Website link')) }}
                     {{ $errors->first('website') }}
                 </div>
             </div>

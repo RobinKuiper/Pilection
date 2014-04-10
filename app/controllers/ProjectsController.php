@@ -2,13 +2,15 @@
 
 class ProjectsController extends \BaseController {
 
-	protected $project;
+	protected $item;
+        protected $views;
 
-	public function __construct(Project $project)
+	public function __construct(Project $item, Views $views)
 	{
                 $this->beforeFilter('auth', ['only' => ['create', 'edit']]);
 		$this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
-		$this->project = $project;
+		$this->item = $item;
+                $this->views = $views;
 	}
 
 
@@ -19,9 +21,9 @@ class ProjectsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$projects = $this->project->all();
+		$items = $this->item->all();
 
-		return View::make('projects.index', compact('projects'));
+		return View::make('projects.index', compact('items'));
 	}
 
 	/**
@@ -43,12 +45,12 @@ class ProjectsController extends \BaseController {
 	{
 		$input = Input::all();
 
-		if( ! $this->project->fill($input)->isValid())
+		if( ! $this->item->fill($input)->isValid())
 		{
-			return Redirect::back()->withInput()->withErrors($this->project->errors);
+			return Redirect::back()->withInput()->withErrors($this->item->errors);
 		}
                 
-		$this->project->create($input);
+		$this->item->create($input);
 
 		return Redirect::to('projects')
 				->with('message', 'New project created!')
@@ -63,9 +65,15 @@ class ProjectsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$project = $this->project->findOrFail($id);
+		$item = $this->item->findOrFail($id);
+                
+                // Update viewcount
+                $this->views->updateViews($id, 'project');
+                
+                // Get viewcount
+                $item->viewcount = $this->views->getViews($id, 'project');
 
-		return View::make('projects.show', compact('project'));
+		return View::make('projects.show', compact('item'));
 	}
 
 	/**
@@ -76,9 +84,9 @@ class ProjectsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-                $project = $this->project->findOrFail($id);
+                $item = $this->item->findOrFail($id);
                 
-		return View::make('projects.edit', compact('project'));
+		return View::make('projects.edit', compact('item'));
 	}
 
 	/**
@@ -91,9 +99,9 @@ class ProjectsController extends \BaseController {
 	{
 		$input = Input::all();
 
-		if( ! $this->project->fill($input)->isValid())
+		if( ! $this->item->fill($input)->isValid())
 		{
-			return Redirect::back()->withInput()->withErrors($this->project->errors);
+			return Redirect::back()->withInput()->withErrors($this->item->errors);
 		}
                 
                 $update_fields = [
@@ -101,7 +109,7 @@ class ProjectsController extends \BaseController {
                     'body'      => $input['body'],
                 ];
               
-		$this->project->where('id', '=', $id)->update($update_fields);
+		$this->item->where('id', '=', $id)->update($update_fields);
 
 		return Redirect::to('projects/'.$id)
 				->with('message', 'System updated!')
@@ -116,7 +124,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-            $this->project->find($id)->delete();
+            $this->item->find($id)->delete();
             
             return Redirect::to('projects')
 				->with('message', 'Project removed!')

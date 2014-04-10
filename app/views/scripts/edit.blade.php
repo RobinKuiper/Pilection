@@ -7,12 +7,12 @@
         </div>
     </div>
 
-    {{ Form::open(['route' => ['scripts.update', $script->id], 'files' => true, 'class' => '', 'role' => 'form', 'method' => 'put']) }}
+    {{ Form::open(['route' => ['scripts.update', $item->id], 'files' => true, 'class' => '', 'role' => 'form', 'method' => 'put']) }}
   
     <div class='row'>
         <div class='col-md-12'>
             <div class="form-group">
-                {{ Form::text('title', $script->title, array('class'=>'form-control', 'placeholder'=>'Script name')) }}
+                {{ Form::text('title', $item->title, array('class'=>'form-control', 'placeholder'=>'Script name')) }}
                 {{ $errors->first('title') }}
             </div>
         </div>
@@ -21,7 +21,7 @@
     <div class='row'>
         <div class='col-md-12'>
             <div class="form-group">
-                {{ Form::textarea('body', $script->body, array('class'=>'form-control', 'placeholder'=>'Script info')) }}
+                {{ Form::textarea('body', $item->body, array('class'=>'form-control', 'placeholder'=>'Script info')) }}
                 {{ $errors->first('body') }}
             </div>
         </div>
@@ -30,7 +30,7 @@
     <div class='row'>
         <div class='col-md-12'>
             <div class="form-group">
-                {{ Form::textarea('script', $script->script, array('class'=>'form-control', 'placeholder'=>'Script')) }}
+                {{ Form::textarea('script', $item->script, array('class'=>'form-control', 'placeholder'=>'Script')) }}
                 {{ $errors->first('script') }}
             </div>
         </div>

@@ -29,10 +29,10 @@
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
-			        <li class='{{{ ($active == 'systems') ? 'active' : '' }}}'>{{ Link_to('systems', 'Systems') }}</li>
-                                <li class='{{{ ($active == 'scripts') ? 'active' : '' }}}'>{{ Link_to('scripts', 'Scripts') }}</li>
-                                <li class='{{{ ($active == 'projects') ? 'active' : '' }}}'>{{ Link_to('projects', 'Projects') }}</li>
-			        <li class='{{{ ($active == 'about') ? 'active' : '' }}}'>{{ Link_to('about', 'About') }}</li>
+			        <li class='{{{ (isset($active) && $active == 'systems') ? 'active' : '' }}}'>{{ Link_to('systems', 'Systems') }}</li>
+                                <li class='{{{ (isset($active) && $active == 'scripts') ? 'active' : '' }}}'>{{ Link_to('scripts', 'Scripts') }}</li>
+                                <li class='{{{ (isset($active) && $active == 'projects') ? 'active' : '' }}}'>{{ Link_to('projects', 'Projects') }}</li>
+			        <li class='{{{ (isset($active) && $active == 'about') ? 'active' : '' }}}'>{{ Link_to('about', 'About') }}</li>
 			      </ul>
                                 {{ Form::open(['route' => 'search.store', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}
                                     <div class="form-group">
@@ -48,8 +48,8 @@
                                     <li>{{ Link_to('create', 'Add System') }}</li>
                                     <li>{{ Link_to('logout', 'Logout') }}</li>
 			      	@else
-                                    <li class='{{{ ($active == 'register') ? 'active' : '' }}}'>{{ Link_to('register', 'Register') }}</li>
-                                    <li class='{{{ ($active == 'login') ? 'active' : '' }}}'>{{ Link_to('login', 'Login') }}</li>
+                                    <li class='{{{ (isset($active) && $active == 'register') ? 'active' : '' }}}'>{{ Link_to('register', 'Register') }}</li>
+                                    <li class='{{{ (isset($active) && $active == 'login') ? 'active' : '' }}}'>{{ Link_to('login', 'Login') }}</li>
 				@endif
 			      </ul>
 			    </div><!-- /.navbar-collapse -->

@@ -39,3 +39,14 @@ Breadcrumbs::register('script', function($breadcrumbs, $script) {
 
     $breadcrumbs->push($script->title, route('scripts.show', $script->id));
 });
+
+Breadcrumbs::register('projects', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Projects', route('projects.index'));
+});
+
+Breadcrumbs::register('project', function($breadcrumbs, $project) {
+    $breadcrumbs->parent('projects');
+
+    $breadcrumbs->push($project->title, route('projects.show', $project->id));
+});

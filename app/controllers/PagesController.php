@@ -13,7 +13,7 @@ class PagesController extends BaseController {
 
 	public function about()
 	{
-            return View::make('pages/about');
+            return View::make('pages/about', ['about_active' => 1]);
 	}
 
 }

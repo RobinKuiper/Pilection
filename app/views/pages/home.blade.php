@@ -4,7 +4,7 @@
 <div class="jumbotron">
   <h1>Welcome, Geeks! ;)</h1>
   <p>On this website you will find a collection of Raspberry Pi resources.</p>
-  <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+  <p><a href="about" class="btn btn-primary btn-lg" role="button">Learn more</a></p>
 </div>
 
 <div class="row">

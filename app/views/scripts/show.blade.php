@@ -12,7 +12,7 @@
     
     @if( Auth::check() )
     <div class='col-md-1'>
-        <a href="scripts/$item->id/edit" class="btn btn-primary">
+        <a href="scripts/{{ $item->id }}/edit" class="btn btn-primary">
             <span class="glyphicon glyphicon-edit"></span>
             Edit
         </a>

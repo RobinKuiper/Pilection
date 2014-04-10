@@ -19,7 +19,7 @@ class SessionsController extends \BaseController {
 	{
 		if(Auth::check()) return Redirect::to('/');
 
-		return View::make('sessions.create');
+		return View::make('sessions.create', ['login_active' => 1]);
 	}
 
 	/**

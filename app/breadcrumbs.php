@@ -1,12 +1,12 @@
 <?php
 
 Breadcrumbs::register('home', function($breadcrumbs) {
-    $breadcrumbs->push('Home', route('systems.index'));
+    $breadcrumbs->push('Home', '/');
 });
 
-Breadcrumbs::register('about', function($breadcrumbs) {
-    $breadcrumbs->push('About', route('about'));
-});
+/*Breadcrumbs::register('about', function($breadcrumbs) {
+    $breadcrumbs->push('About', 'about');
+});*/
 
 Breadcrumbs::register('login', function($breadcrumbs) {
     $breadcrumbs->parent('home');

@@ -10,6 +10,8 @@ Route::get('create', 'SystemsController@create');
 Route::resource('scripts', 'ScriptsController');
 Route::resource('projects', 'ProjectsController');
 
+Route::resource('search', 'SearchController');
+
 Route::resource('sessions', 'SessionsController');
 Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');

@@ -23,7 +23,7 @@ class ScriptsController extends \BaseController {
 	{
 		$items = $this->item->all();
 
-		return View::make('scripts.index', compact('items'));
+		return View::make('scripts.index', ['items' => $items, 'script_active' => 1]);
 	}
 
 	/**
@@ -33,7 +33,7 @@ class ScriptsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('scripts.create');
+		return View::make('scripts.create', ['script_active' => 1]);
 	}
 
 	/**
@@ -73,7 +73,7 @@ class ScriptsController extends \BaseController {
                 // Get viewcount
                 $item->viewcount = $this->views->getViews($id, 'script');
 
-		return View::make('scripts.show', compact('item'));
+		return View::make('scripts.show', ['item' => $item, 'script_active' => 1]);
 	}
 
 	/**
@@ -86,7 +86,7 @@ class ScriptsController extends \BaseController {
 	{
                 $item = $this->item->findOrFail($id);
                 
-		return View::make('scripts.edit', compact('item'));
+		return View::make('scripts.edit', ['item' => $item, 'script_active' => 1]);
 	}
 
 	/**

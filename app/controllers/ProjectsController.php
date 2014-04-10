@@ -23,7 +23,7 @@ class ProjectsController extends \BaseController {
 	{
 		$items = $this->item->all();
 
-		return View::make('projects.index', compact('items'));
+		return View::make('projects.index', ['items' => $items, 'project_active' => 1]);
 	}
 
 	/**
@@ -33,7 +33,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('projects.create');
+		return View::make('projects.create', ['project_active' => 1]);
 	}
 
 	/**
@@ -73,7 +73,7 @@ class ProjectsController extends \BaseController {
                 // Get viewcount
                 $item->viewcount = $this->views->getViews($id, 'project');
 
-		return View::make('projects.show', compact('item'));
+		return View::make('projects.show', ['item' => $item, 'project_active' => 1]);
 	}
 
 	/**
@@ -86,7 +86,7 @@ class ProjectsController extends \BaseController {
 	{
                 $item = $this->item->findOrFail($id);
                 
-		return View::make('projects.edit', compact('item'));
+		return View::make('projects.edit', ['item' => $item, 'project_active' => 1]);
 	}
 
 	/**

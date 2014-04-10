@@ -3,8 +3,11 @@
 Route::pattern('id', '[0-9]+');
 
 Route::get('/', 'SystemsController@index');
+
 Route::resource('systems', 'SystemsController');
 Route::get('create', 'SystemsController@create');
+
+Route::resource('scripts', 'ScriptsController');
 
 Route::resource('sessions', 'SessionsController');
 Route::get('login', 'SessionsController@create');

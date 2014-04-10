@@ -30,6 +30,8 @@
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
 			        <li class="active">{{ Link_to('/', 'Systems') }}</li>
+                                <li>{{ Link_to('scripts', 'Scripts') }}</li>
+                                <li>{{ Link_to('projects', 'Projects') }}</li>
 			        <li>{{ Link_to('about', 'About') }}</li>
 			      </ul>
 			      <form class="navbar-form navbar-left" role="search">
@@ -40,12 +42,12 @@
 			      </form>
 			      <ul class="nav navbar-nav navbar-right">
 			      	@if (Auth::check())
-			      		<li>{{ Link_to('create', 'Add System') }}</li>
-			      		<li>{{ Link_to('logout', 'Logout') }}</li>
+                                    <li>{{ Link_to('create', 'Add System') }}</li>
+                                    <li>{{ Link_to('logout', 'Logout') }}</li>
 			      	@else
-				        <li>{{ Link_to('register', 'Register') }}</li>
-				        <li>{{ Link_to('login', 'Login') }}</li>
-				    @endif
+                                    <li>{{ Link_to('register', 'Register') }}</li>
+                                    <li>{{ Link_to('login', 'Login') }}</li>
+				@endif
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->

@@ -28,3 +28,14 @@ Breadcrumbs::register('system', function($breadcrumbs, $system) {
 
     $breadcrumbs->push($system->title, route('systems.show', $system->id));
 });
+
+Breadcrumbs::register('scripts', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Scripts', route('scripts.index'));
+});
+
+Breadcrumbs::register('script', function($breadcrumbs, $script) {
+    $breadcrumbs->parent('scripts');
+
+    $breadcrumbs->push($script->title, route('scripts.show', $script->id));
+});

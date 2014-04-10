@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"twitter/bootstrap": "*",
-		"davejamesmiller/laravel-breadcrumbs": "~2.2.0"
+		"davejamesmiller/laravel-breadcrumbs": "~2.2.0",
+                "way/generators": "2.*"
 	},
 	"autoload": {
 		"classmap": [

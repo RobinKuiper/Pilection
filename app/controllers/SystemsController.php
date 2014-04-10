@@ -24,7 +24,7 @@ class SystemsController extends \BaseController {
 	{
 		$items = $this->item->where('type', '=', $this->item->type)->get();
 
-		return View::make('systems.index', compact('items'));
+		return View::make('systems.index', ['items' => $items, 'system_active' => 1]);
 	}
 
 	/**
@@ -34,7 +34,7 @@ class SystemsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('systems.create');
+		return View::make('systems.create', ['system_active' => 1]);
 	}
 
 	/**
@@ -86,7 +86,7 @@ class SystemsController extends \BaseController {
                     $item->image = 'system_default.png';
                 }else $item->path = 'upload/systems/images/';
 
-		return View::make('systems.show', compact('item'));
+		return View::make('systems.show', ['item' => $item, 'system_active' => 1]);
 	}
 
 	/**
@@ -99,7 +99,7 @@ class SystemsController extends \BaseController {
 	{
                 $item = $this->item->findOrFail($id);
                 
-		return View::make('systems.edit', compact('item'));
+		return View::make('systems.edit', ['item' => $item, 'system_active' => 1]);
 	}
 
 	/**

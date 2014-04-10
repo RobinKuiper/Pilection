@@ -25,7 +25,7 @@ class ProjectsController extends \BaseController {
 	{
 		$items = $this->item->where('type', '=', $this->item->type)->get();
 
-		return View::make('projects.index', compact('items'));
+		return View::make('projects.index', ['items' => $items, 'system_active' => 1]);
 	}
 
 	/**
@@ -35,7 +35,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('projects.create');
+		return View::make('projects.create', ['system_active' => 1]);
 	}
 
 	/**
@@ -75,7 +75,7 @@ class ProjectsController extends \BaseController {
                 // Get viewcount
                 $item->viewcount = $this->views->getViews($id);
 
-		return View::make('projects.show', compact('item'));
+		return View::make('projects.show', ['item' => $item, 'system_active' => 1]);
 	}
 
 	/**
@@ -88,7 +88,7 @@ class ProjectsController extends \BaseController {
 	{
                 $item = $this->item->findOrFail($id);
                 
-		return View::make('projects.edit', compact('item'));
+		return View::make('projects.edit', ['item' => $item, 'system_active' => 1]);
 	}
 
 	/**

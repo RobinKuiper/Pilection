@@ -1,18 +1,16 @@
 <?php
 
-class SystemsController extends \BaseController {
-
-	protected $item;
+class ItemsController extends \BaseController {
+    
+        protected $item;
         protected $views;
-
-	public function __construct(Item $item, Views $views)
+        
+        public function __construct(Item $item, Views $views)
 	{
                 $this->beforeFilter('auth', ['only' => ['create', 'edit']]);
 		$this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
 		$this->item = $item;
                 $this->views = $views;
-                
-                $this->item->type = 'systems';
 	}
 
 	/**
@@ -20,11 +18,11 @@ class SystemsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($type)
 	{
-		$items = $this->item->where('type', '=', $this->item->type)->get();
+            $items = $this->item->where('type', '=', $type)->get();
 
-		return View::make('systems.index', ['items' => $items, 'system_active' => 1]);
+            return View::make('items.index', ['items' => $items, 'active' => $type]);
 	}
 
 	/**
@@ -32,9 +30,9 @@ class SystemsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($type)
 	{
-		return View::make('systems.create', ['system_active' => 1]);
+            return View::make('items.create', ['type' => $type, 'active' => $type]);
 	}
 
 	/**
@@ -42,10 +40,10 @@ class SystemsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($type)
 	{
-		$input = Input::all();
-                $input['type'] = $this->item->type;
+            $input = Input::all();
+                $input['type'] = $type;
 
 		if( ! $this->item->fill($input)->isValid())
 		{
@@ -61,7 +59,7 @@ class SystemsController extends \BaseController {
                 
 		$this->item->create($input);
 
-		return Redirect::to('systems')
+		return Redirect::to($type)
 				->with('message', 'New system created!')
 				->with('alert_class', 'alert-success');
 	}
@@ -72,22 +70,22 @@ class SystemsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($type, $id)
 	{
-		$item = $this->item->findOrFail($id);
+            $item = $this->item->findOrFail($id);
                 
-                // Update viewcount
-                $this->views->updateViews($id);
-                
-                // Get viewcount
-                $item->viewcount = $this->views->getViews($id);
-                
-                if($item->image == null){
-                    $item->path = 'images/';
-                    $item->image = 'system_default.png';
-                }else $item->path = 'upload/systems/images/';
+            // Update viewcount
+            $this->views->updateViews($id);
 
-		return View::make('systems.show', ['item' => $item, 'system_active' => 1]);
+            // Get viewcount
+            $item->viewcount = $this->views->getViews($id);
+
+            if($item->image == null){
+                $item->path = 'images/';
+                $item->image = 'system_default.png';
+            }else $item->path = 'upload/items/images/';
+
+            return View::make('items.show', ['type' => $type, 'item' => $item, 'active' => $type]);
 	}
 
 	/**
@@ -96,11 +94,11 @@ class SystemsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($type, $id)
 	{
-                $item = $this->item->findOrFail($id);
+            $item = $this->item->findOrFail($id);
                 
-		return View::make('systems.edit', ['item' => $item, 'system_active' => 1]);
+            return View::make('items.edit', ['type' => $type, 'item' => $item, 'active' => $type]);
 	}
 
 	/**
@@ -109,9 +107,9 @@ class SystemsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($type, $id)
 	{
-		$input = Input::all();
+                $input = Input::all();
 
 		if( ! $this->item->fill($input)->isValid())
 		{
@@ -121,8 +119,8 @@ class SystemsController extends \BaseController {
                 $update_fields = [
                     'title'     => $input['title'],
                     'body'      => $input['body'],
-                    'website'   => $input['website'],
-                    'download'  => $input['download'],
+                    'website_url'   => $input['website'],
+                    'download_url'  => $input['download'],
                 ];
                 
                 if( !empty($input['image'])){
@@ -136,7 +134,7 @@ class SystemsController extends \BaseController {
               
 		$this->item->where('id', '=', $id)->update($update_fields);
 
-		return Redirect::to('systems/'.$id)
+		return Redirect::to($type.'/'.$id)
 				->with('message', 'System updated!')
 				->with('alert_class', 'alert-success');
 	}
@@ -147,11 +145,11 @@ class SystemsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($type, $id)
 	{
             $this->item->find($id)->delete();
             
-            return Redirect::to('/')
+            return Redirect::to($type)
 				->with('message', 'System removed!')
 				->with('alert_class', 'alert-success');
 	}

@@ -17,7 +17,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('users.create', ['register_active' => 1]);
+		return View::make('users.create', ['active' => 'register']);
 	}
 
 	/**

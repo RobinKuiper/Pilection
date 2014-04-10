@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    {{ Form::open(['route' => ['systems.update', $item->id], 'files' => true, 'class' => '', 'role' => 'form', 'method' => 'put']) }}
+    {{ Form::open(['url' => $type.'/'.$item->id.'/update', 'files' => true, 'class' => '', 'role' => 'form', 'method' => 'put']) }}
   
     <div class='row'>
         <div class='col-md-12'>

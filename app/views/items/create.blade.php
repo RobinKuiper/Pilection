@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    {{ Form::open(['route' => 'systems.store', 'files' => true, 'class' => '', 'role' => 'form']) }}
+    {{ Form::open(['url' => $type.'/store', 'files' => true, 'class' => '', 'role' => 'form']) }}
 
     <div class='row'>
         <div class='col-md-12'>

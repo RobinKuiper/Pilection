@@ -1,11 +1,14 @@
 @extends('layouts.master')
 
 @section('breadcrumbs')
-{{ Breadcrumbs::render('script', $item) }}
+{{ Breadcrumbs::render('items', $item) }}
 @stop
 
 @section('content')
 <div class='row bottom-margin'>
+    <div class='col-md-1'>
+        <span>{{ HTML::image($item->path.$item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
+    </div>
     <div class='col-md-4'>
         <h2>{{ $item->title }}</h2>
     </div>
@@ -19,7 +22,7 @@
         
     </div>
     <div class='col-md-1'>
-        {{ Form::open(['route' => ['scripts.destroy', $item->id], 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
+        {{ Form::open(['url' => $type.'/'.$item->id.'/destroy', 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
             <button type="submit" class="btn btn-danger">
                 <span class="glyphicon glyphicon-remove"></span>
                 Remove
@@ -42,9 +45,17 @@
 </div>
 
 <div class='row bottom-margin'>
-    <div class='col-md-8'>
-        <article>{{ $item->script }}</article>
+    @if( !empty($item->download) )
+    <div class='col-md-1'>
+        {{ link_to($item->download, 'Download', ['class' => 'btn btn-success']) }}
     </div>
+    @endif
+    
+    @if( !empty($item->website) )
+    <div class='col-md-1'>
+        {{ link_to($item->website, 'Website', ['class' => 'btn btn-primary']) }}
+    </div>
+    @endif
 </div>
 
 <div id="disqus_thread"></div>

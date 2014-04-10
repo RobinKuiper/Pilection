@@ -2,6 +2,14 @@
 
 class SessionsController extends \BaseController {
 
+        protected $user;
+
+	public function __construct(User $user)
+	{
+		$this->beforeFilter('csrf', ['only' => 'edit']);
+		$this->user = $user;
+	}
+        
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -23,6 +31,8 @@ class SessionsController extends \BaseController {
 	{
 		if(Auth::attempt(Input::only('email', 'password')))
 		{
+                        $this->user->where('email', '=', Input::get('email'))->update(['lastlogin' => date('Y-m-d H:m:s')]);
+                        
 			return Redirect::to('/')
 				->with('message', 'You are now logged in!')
 				->with('alert_class', 'alert-success');

@@ -11,6 +11,18 @@ class UsersController extends \BaseController {
 	}
         
         /**
+	 * Show the authenticated users profile
+	 *
+	 * @return View: Profile
+	 */
+	public function index()
+	{
+                $user = $this->user->find(Auth::user()->id);
+                
+		return View::make('users.show', ['user' => $user]);
+	}
+        
+        /**
 	 * Show the users profile
 	 *
 	 * @return View: Profile

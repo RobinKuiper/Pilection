@@ -12,6 +12,9 @@ Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
 
 Route::resource('users', 'UsersController');
+Route::get('profile', 'UsersController@index');
+Route::get('profile/{id}', 'UsersController@show');
+
 Route::get('register', 'UsersController@create');
 
 Route::get('tags/{tag}', ['as' => 'tags.index', 'uses' => 'TagsController@index']);

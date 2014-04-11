@@ -53,7 +53,7 @@
 			      {{ Form::close() }}
 			      <ul class="nav navbar-nav navbar-right">
 			      	@if (Auth::check())
-                                    <li>{{ link_to('users/'.Auth::user()->id, Auth::user()->username) }}
+                                    <li>{{ link_to('profile', Auth::user()->username) }}
                                     <li>{{ Link_to('logout', 'Logout') }}</li>
 			      	@else
                                     <li class='{{{ (isset($active) && $active == 'register') ? 'active' : '' }}}'>{{ Link_to('register', 'Register') }}</li>

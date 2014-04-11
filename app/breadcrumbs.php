@@ -16,7 +16,7 @@ Breadcrumbs::register('register', function($breadcrumbs) {
 
 Breadcrumbs::register('items', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('$type', route('items.index'));
+    $breadcrumbs->push('type', route('items.index'));
 });
 
 Breadcrumbs::register('item', function($breadcrumbs, $item) {

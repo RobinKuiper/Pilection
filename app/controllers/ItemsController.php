@@ -4,13 +4,15 @@ class ItemsController extends \BaseController {
     
         protected $item;
         protected $views;
+        protected $tag;
         
-        public function __construct(Item $item, Views $views)
+        public function __construct(Item $item, Views $views, Tag $tag)
 	{
                 $this->beforeFilter('auth', ['only' => ['create', 'edit']]);
 		$this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
 		$this->item = $item;
                 $this->views = $views;
+                $this->tag = $tag;
 	}
 
 	/**
@@ -22,7 +24,7 @@ class ItemsController extends \BaseController {
 	{
             $items = $this->item->where('type', '=', $type)->get();
 
-            return View::make('items.index', ['items' => $items, 'active' => $type]);
+            return View::make('items.index', ['type' => $type, 'items' => $items, 'active' => $type]);
 	}
 
 	/**
@@ -57,7 +59,10 @@ class ItemsController extends \BaseController {
                     }
                 }
                 
-		$this->item->create($input);
+		$item = $this->item->create($input);
+                
+                $this->tag->set($input['tags'], $item->id);
+                $this->tag->saveTags();
 
 		return Redirect::to($type)
 				->with('message', 'New system created!')
@@ -84,6 +89,8 @@ class ItemsController extends \BaseController {
                 $item->path = 'images/';
                 $item->image = 'system_default.png';
             }else $item->path = 'upload/items/images/';
+            
+            $item->tags = $this->tag->getTagsByItem($id);
 
             return View::make('items.show', ['type' => $type, 'item' => $item, 'active' => $type]);
 	}
@@ -148,6 +155,7 @@ class ItemsController extends \BaseController {
 	public function destroy($type, $id)
 	{
             $this->item->find($id)->delete();
+            DB::table('items-tags')->where('item_id', '=', $id)->delete();
             
             return Redirect::to($type)
 				->with('message', 'System removed!')

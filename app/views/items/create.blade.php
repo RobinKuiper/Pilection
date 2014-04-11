@@ -52,6 +52,14 @@
             </div>
         </div>
     </div>
+    
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class="form-group">
+                {{ Form::text('tags', null, ['class' => 'form-control', 'placeholder' => 'Tags, comma seperated']) }}
+            </div>
+        </div>
+    </div>
 
     <div class='row'>
         <div class='col-md-12'>

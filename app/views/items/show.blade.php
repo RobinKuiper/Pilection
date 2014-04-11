@@ -33,16 +33,28 @@
 </div>
 
 <div class='row bottom-margin'>
-    <div class='col-md-4'>
+    <div class='col-md-12'>
         <p>Views: {{ $item->viewcount }}</p>
     </div>
 </div>
 
 <div class='row bottom-margin'>
-    <div class='col-md-8'>
+    <div class='col-md-12'>
         <article>{{ $item->body }}</article>
     </div>
 </div>
+
+<div class='row bottom-margin'>
+    <div class='col-md-12'>
+        <p>
+            Tags: 
+            @foreach($item->tags as $tag)
+                {{ link_to('tags/'.$tag->tag, $tag->tag) }}, 
+            @endforeach
+        </p>
+    </div>
+</div>
+
 
 <div class='row bottom-margin'>
     @if( !empty($item->download) )

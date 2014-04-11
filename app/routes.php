@@ -14,6 +14,8 @@ Route::get('logout', 'SessionsController@destroy');
 Route::resource('users', 'UsersController');
 Route::get('register', 'UsersController@create');
 
+Route::get('tags/{tag}', ['as' => 'tags.index', 'uses' => 'TagsController@index']);
+
 Route::get('{type}', ['before' => 'type', 'as' => 'items.index', 'uses' => 'ItemsController@index']);
 Route::get('{type}/create', ['before' => 'type', 'as' => 'items.create', 'uses' => 'ItemsController@create']);
 Route::post('{type}/store', ['before' => 'type', 'as' => 'items.store', 'uses' => 'ItemsController@store']);

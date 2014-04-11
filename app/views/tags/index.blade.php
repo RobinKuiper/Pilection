@@ -5,26 +5,26 @@
 @stop
 
 @section('content')
-	<h2>All {{ Str::title($type) }}</h2>
+	<h2>Tag - {{ Str::title($tag) }}</h2>
 
 	<table class="table table-striped table-hover">
 		<tbody>
 			@foreach($items as $item)
-                                @if ($item->image == null) 
+                                @if ($item['image'] == null) 
                                     {? $path = 'images/' ?}
-                                    {? $item->image = 'system_default.png' ?}
+                                    {? $item['image'] = 'system_default.png' ?}
                                 @else {? $path = 'upload/items/images/' ?}
                                 @endif
 				<tr>
                                     <td>
-                                        <a href='{{ $item->type }}/{{ $item->id }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
+                                        <a href='{{ $item['type'] }}/{{ $item['id'] }}' title='{{ $item['title'] }}'>{{ HTML::image($path . $item['image'], $item['title'], ['width' => '100px', 'max-height' => '100px']) }}</a>
                                     </td>
                                     <td>
-                                        <h3> {{ link_to("$item->type/$item->id", $item->title) }} </h3>
-                                        <p> {{ Str::words($item->body, 50, $end = '...') }} </p>
+                                        <h3> {{ link_to($item['type'].'/'.$item['id'], $item['title']) }} </h3>
+                                        <p> {{ Str::words($item['body'], 50, $end = '...') }} </p>
                                     </td>
-                                    <td><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, 'system') }}</td>
-                                    <td>{{ link_to("systems/$item->id#disqus_thread", '0 comments') }}</td>
+                                    <td><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item['id'], 'system') }}</td>
+                                    <td>{{ link_to("systems/".$item['id']."#disqus_thread", '0 comments') }}</td>
 				</tr>
 			@endforeach
 		</tbody>

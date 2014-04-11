@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('breadcrumbs')
-{{ Breadcrumbs::render('items', $item) }}
+{{ Breadcrumbs::render('item', $item, $type) }}
 @stop
 
 @section('content')

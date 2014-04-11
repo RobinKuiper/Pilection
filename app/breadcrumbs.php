@@ -14,13 +14,18 @@ Breadcrumbs::register('register', function($breadcrumbs) {
     $breadcrumbs->push('Register', route('users.create'));
 });
 
-Breadcrumbs::register('items', function($breadcrumbs) {
+Breadcrumbs::register('items', function($breadcrumbs, $type) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('type', route('items.index'));
+    $breadcrumbs->push($type, route('items.index'));
 });
 
-Breadcrumbs::register('item', function($breadcrumbs, $item) {
-    $breadcrumbs->parent('items');
+Breadcrumbs::register('item', function($breadcrumbs, $item, $type) {
+    $breadcrumbs->parent('items', $type);
 
     $breadcrumbs->push($item->title, route('items.show', $item->id));
+});
+
+Breadcrumbs::register('tags', function($breadcrumbs, $tag) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Tag: '.$tag, route('tags.index'));
 });

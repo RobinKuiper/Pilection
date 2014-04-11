@@ -28,12 +28,20 @@
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			      <ul class="nav navbar-nav">
-			        <li class='{{{ (isset($active) && $active == 'systems') ? 'active' : '' }}}'>{{ Link_to('systems', 'Systems') }}</li>
-                                <li class='{{{ (isset($active) && $active == 'scripts') ? 'active' : '' }}}'>{{ Link_to('scripts', 'Scripts') }}</li>
-                                <li class='{{{ (isset($active) && $active == 'projects') ? 'active' : '' }}}'>{{ Link_to('projects', 'Projects') }}</li>
-			        <li class='{{{ (isset($active) && $active == 'about') ? 'active' : '' }}}'>{{ Link_to('about', 'About') }}</li>
-			      </ul>
+                                <ul class="nav navbar-nav">
+                                    <li class='{{{ (isset($active) && $active == 'systems') ? 'active' : '' }}}'>{{ Link_to('systems', 'Systems') }}</li>
+                                    <li class='{{{ (isset($active) && $active == 'scripts') ? 'active' : '' }}}'>{{ Link_to('scripts', 'Scripts') }}</li>
+                                    <li class='{{{ (isset($active) && $active == 'projects') ? 'active' : '' }}}'>{{ Link_to('projects', 'Projects') }}</li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            @foreach(Tag::all() as $tag)
+                                            <li>{{ link_to('tags/'.$tag->tag, $tag->tag) }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                    <li class='{{{ (isset($active) && $active == 'about') ? 'active' : '' }}}'>{{ Link_to('about', 'About') }}</li>
+                                </ul>
                                 {{ Form::open(['route' => 'search.store', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}
                                     <div class="form-group">
                                         {{ Form::text('q', null, ['class' => 'form-control', 'placeholder' => 'Search']) }}
@@ -57,17 +65,18 @@
 			</nav>
 		</header>
 
-			@if(Session::has('message'))
-				<p class="alert alert-dismissable {{ Session::get('alert_class') }}">{{ Session::get('message') }}</p>
-			@endif
-                        
-                        @yield('breadcrumbs')
-                        
-                        <div class='container'>
-                            @yield('content')
-                        </div>
-                        
-                        {{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
-                        @yield('footer')
+                @if(Session::has('message'))
+                        <p class="alert alert-dismissable {{ Session::get('alert_class') }}">{{ Session::get('message') }}</p>
+                @endif
+
+                @yield('breadcrumbs')
+
+                <div class='container'>
+                    @yield('content')
+                </div>
+
+                {{ HTML::script('http://code.jquery.com/jquery-latest.min.js') }}
+                {{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
+                @yield('footer')
 	</body>
 </html>

@@ -30,7 +30,7 @@ class SearchController extends \BaseController {
             $q = Input::get('q');
            
             $items = Item::where('title', 'LIKE', '%'.$q.'%')->get();
-            
+
             return View::make('search.store', ['items' => $items]);
 	}
 }

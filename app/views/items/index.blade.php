@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('items') }}
+    {{ Breadcrumbs::render('items', Str::title($type)) }}
 @stop
 
 @section('content')
@@ -9,6 +9,7 @@
 
 	<table class="table table-striped table-hover">
 		<tbody>
+                    @if(count($items) > 0)
 			@foreach($items as $item)
                                 @if ($item->image == null) 
                                     {? $path = 'images/' ?}
@@ -27,6 +28,9 @@
                                     <td>{{ link_to("systems/$item->id#disqus_thread", '0 comments') }}</td>
 				</tr>
 			@endforeach
+                    @else
+                        <tr><td>There aren't any {{ $type }} currently. {{ link_to($type.'/create', 'Create') }} one!</td></tr>
+                    @endif
 		</tbody>
 	</table>
 @stop

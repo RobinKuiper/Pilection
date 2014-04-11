@@ -18,6 +18,11 @@
 			{{ Form::text('lastname', null, ['class'=>'form-control', 'placeholder'=>'Last Name']) }}
 			{{ $errors->first('lastname') }}
 		</div>
+                
+                <div class="form-group">
+			{{ Form::text('username', null, ['class'=>'form-control', 'placeholder'=>'User Name']) }}
+			{{ $errors->first('username') }}
+		</div>
 
 		<div class="input-group form-group">
 			{{ Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'Email']) }}

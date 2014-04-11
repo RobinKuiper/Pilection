@@ -29,3 +29,14 @@ Breadcrumbs::register('tags', function($breadcrumbs, $tag) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Tag: '.$tag, route('tags.index'));
 });
+
+Breadcrumbs::register('users', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Users', route('users.index'));
+});
+
+Breadcrumbs::register('user', function($breadcrumbs, $user) {
+    $breadcrumbs->parent('users');
+
+    $breadcrumbs->push($user->username, route('users.show', $user->id));
+});

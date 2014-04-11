@@ -29,7 +29,8 @@ class SessionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		if(Auth::attempt(Input::only('email', 'password')))
+		if(Auth::attempt(['email' => Input::get('login'), 'password' => Input::get('password')]) || 
+                   Auth::attempt(['username' => Input::get('login'), 'password' => Input::get('password')]))
 		{
                         $this->user->where('email', '=', Input::get('email'))->update(['lastlogin' => date('Y-m-d H:m:s')]);
                         
@@ -39,7 +40,7 @@ class SessionsController extends \BaseController {
 		}
 
 		return Redirect::to('login')
-			->with('message', 'Your email/password combination was incorrect')
+			->with('message', 'Your credentials are incorrect')
 			->with('alert_class', 'alert-danger')
 			->withInput();
 	}

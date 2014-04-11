@@ -9,11 +9,45 @@ class UsersController extends \BaseController {
 		$this->beforeFilter('csrf', ['only' => 'edit']);
 		$this->user = $user;
 	}
+        
+        /**
+	 * Show the users profile
+	 *
+	 * @return View: Profile
+	 */
+	public function show($id)
+	{
+                $user = $this->user->find($id);
+                
+		return View::make('users.show', ['user' => $user]);
+	}
+        
+        /**
+	 * Show users edit profile page
+	 *
+	 * @return View: edit profile
+	 */
+        public function edit($id)
+	{
+                $user = $this->user->find($id);
+                
+		return View::make('users.edit', ['user' => $user]);
+	}
+        
+        /**
+	 * Store a updated user info in database.
+	 *
+	 * @return Redirect
+	 */
+        public function update($id)
+	{
+                return 'edit';
+	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for registering a new user.
 	 *
-	 * @return Response
+	 * @return View: Register form
 	 */
 	public function create()
 	{
@@ -21,9 +55,9 @@ class UsersController extends \BaseController {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created user in database.
 	 *
-	 * @return Response
+	 * @return Redirect
 	 */
 	public function store()
 	{
@@ -33,10 +67,12 @@ class UsersController extends \BaseController {
 
 		if( ! $this->user->fill($input)->isValid())
 		{
+                    return $this->user->errors;
 			return Redirect::back()->withInput()->withErrors($this->user->errors);
 		}
 
 		$this->user->create([
+                        'username'              => $input['username'],
 			'email' 		=> $input['email'],
 			'firstname'		=> $input['firstname'],
 			'lastname'		=> $input['lastname'],

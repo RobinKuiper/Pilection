@@ -6,6 +6,14 @@
 
 @section('content')
 	<h2>All {{ Str::title($type) }}</h2>
+        
+        @if(Auth::check())
+        <div class='row'>
+            <div class='col-md-12 text-right bottom-margin'>
+                {{ link_to($type.'/create', 'Post new', ['class' => 'btn btn-success']) }}
+            </div>
+        </div>
+        @endif
 
 	<table class="table table-striped table-hover">
 		<tbody>

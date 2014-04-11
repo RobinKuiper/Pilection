@@ -8,7 +8,7 @@ class PagesController extends BaseController {
             $items['scripts']['latest'] = Item::where('type', '=', 'scripts')->latest()->take(5)->get();
             $items['projects']['latest'] = Item::where('type', '=', 'projects')->latest()->take(5)->get();
             
-            return View::make('pages/home', compact('items'));
+            return View::make('pages/home', ['active' => 'home', 'items' => $items]);
         }
 
 	public function about()

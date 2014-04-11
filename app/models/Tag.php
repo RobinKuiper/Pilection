@@ -56,4 +56,14 @@ class Tag extends Eloquent{
             
             return $items;
         }
+        
+        public function removeEmpty() 
+        {
+            $tags = $this->all();
+            
+            foreach($tags as $tag):
+                if(DB::table('items-tags')->where('tag_id', '=', $tag->id)->count() == 0)
+                        $this->find($tag->id)->delete();
+            endforeach;
+        }
 }

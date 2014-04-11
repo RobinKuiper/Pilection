@@ -23,6 +23,6 @@ Route::get('{type}', ['before' => 'type', 'as' => 'items.index', 'uses' => 'Item
 Route::get('{type}/create', ['before' => 'type', 'as' => 'items.create', 'uses' => 'ItemsController@create']);
 Route::post('{type}/store', ['before' => 'type', 'as' => 'items.store', 'uses' => 'ItemsController@store']);
 Route::get('{type}/{id}', ['before' => 'type', 'as' => 'items.show', 'uses' => 'ItemsController@show']);
-Route::delete('{type}/{id}/destroy', ['before' => 'type', 'as' => 'items.destroy', 'uses' => 'ItemsController@destroy']);
-Route::get('{type}/{id}/edit', ['before' => 'type', 'as' => 'items.edit', 'uses' => 'ItemsController@edit']);
-Route::put('{type}/{id}/update', ['before' => 'type', 'as' => 'items.update', 'uses' => 'ItemsController@update']);
+Route::delete('{type}/{id}/destroy', ['before' => 'usercheck|type', 'as' => 'items.destroy', 'uses' => 'ItemsController@destroy']);
+Route::get('{type}/{id}/edit', ['before' => 'usercheck|type', 'as' => 'items.edit', 'uses' => 'ItemsController@edit']);
+Route::put('{type}/{id}/update', ['before' => 'usercheck|type', 'as' => 'items.update', 'uses' => 'ItemsController@update']);

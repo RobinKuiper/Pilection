@@ -46,6 +46,7 @@ class ItemsController extends \BaseController {
 	{
             $input = Input::all();
                 $input['type'] = $type;
+                $input['user_id'] = Auth::user()->id;
 
 		if( ! $this->item->fill($input)->isValid())
 		{
@@ -156,6 +157,7 @@ class ItemsController extends \BaseController {
 	{
             $this->item->find($id)->delete();
             DB::table('items-tags')->where('item_id', '=', $id)->delete();
+            $this->tag->removeEmpty();
             
             return Redirect::to($type)
 				->with('message', 'System removed!')

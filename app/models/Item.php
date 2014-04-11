@@ -2,7 +2,7 @@
 
 class Item extends Eloquent{
 
-	protected $fillable = ['title', 'body', 'image', 'download', 'website', 'type'];
+	protected $fillable = ['user_id', 'title', 'body', 'image', 'download', 'website', 'type'];
 	protected $table = 'items';
         protected $softDelete = true;
 
@@ -35,9 +35,19 @@ class Item extends Eloquent{
         
         public static function checkType()
         {
-            if(Input::segment(1) != 'systems' && Input::segment(1) != 'scripts' && Input::segment(1) != 'projects') return 'false';
+            if(Input::segment(1) != 'systems' && Input::segment(1) != 'scripts' && Input::segment(1) != 'projects') return false;
             
-            return 'true';
+            return true;
+        }
+        
+        public static function checkUser()
+        {
+            $item_id = Input::segment(2);
+            $user_id = Auth::user()->id;
+            
+            if(Item::where('id', '=', $item_id)->where('user_id', '=', $user_id)->count() == 0) return false;
+            
+            return true;
         }
 
 }

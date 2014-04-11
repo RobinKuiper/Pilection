@@ -60,11 +60,6 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
-Route::filter('type', function($route)
-{
-	if (Item::checkType() == 'false') App::abort(404);
-});
-
 /*
 |--------------------------------------------------------------------------
 | CSRF Protection Filter
@@ -82,4 +77,19 @@ Route::filter('csrf', function()
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
+});
+
+
+
+Route::filter('type', function()
+{
+    if (Item::checkType() == false) App::abort(404);
+});
+
+Route::filter('usercheck', function()
+{
+    if (Item::checkUser() == false) 
+        return Redirect::to(Input::segment(1).'/'.Input::segment(2))
+                ->with('message', 'You are not authorized for that action.')
+                ->with('alert_class', 'alert-danger');;
 });

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="jumbotron">
-  <h1>Welcome, Geeks! ;)</h1>
+  <h1>Welcome, {{ (isset(Auth::user()->username)) ? Auth::user()->username : 'Geeks' }}! ;)</h1>
   <p>On this website you will find a collection of Raspberry Pi resources.</p>
   <p><a href="about" class="btn btn-primary btn-lg" role="button">Learn more</a></p>
 </div>

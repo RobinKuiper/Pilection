@@ -13,7 +13,7 @@
         <h2>{{ $item->title }}</h2>
     </div>
     
-    @if( Auth::check() )
+    @if( Auth::check() && Auth::user()->id == $item->user_id )
     <div class='col-md-1'>
         <a href="{{ $item->id }}/edit" class="btn btn-primary">
             <span class="glyphicon glyphicon-edit"></span>

@@ -14,10 +14,10 @@ Route::get('logout', 'SessionsController@destroy');
 Route::resource('users', 'UsersController');
 Route::get('register', 'UsersController@create');
 
-Route::get('{type}', ['as' => 'items.index', 'uses' => 'ItemsController@index']);
-Route::get('{type}/create', 'ItemsController@create');
-Route::post('{type}/store', 'ItemsController@store');
-Route::get('{type}/{id}', ['as' => 'items.show', 'uses' => 'ItemsController@show']);
-Route::delete('{type}/{id}/destroy', ['as' => 'items.destroy', 'uses' => 'ItemsController@destroy']);
-Route::get('{type}/{id}/edit', ['as' => 'items.edit', 'uses' => 'ItemsController@edit']);
-Route::put('{type}/{id}/update', ['as' => 'items.update', 'uses' => 'ItemsController@update']);
+Route::get('{type}', ['before' => 'type', 'as' => 'items.index', 'uses' => 'ItemsController@index']);
+Route::get('{type}/create', ['before' => 'type', 'as' => 'items.create', 'uses' => 'ItemsController@create']);
+Route::post('{type}/store', ['before' => 'type', 'as' => 'items.store', 'uses' => 'ItemsController@store']);
+Route::get('{type}/{id}', ['before' => 'type', 'as' => 'items.show', 'uses' => 'ItemsController@show']);
+Route::delete('{type}/{id}/destroy', ['before' => 'type', 'as' => 'items.destroy', 'uses' => 'ItemsController@destroy']);
+Route::get('{type}/{id}/edit', ['before' => 'type', 'as' => 'items.edit', 'uses' => 'ItemsController@edit']);
+Route::put('{type}/{id}/update', ['before' => 'type', 'as' => 'items.update', 'uses' => 'ItemsController@update']);

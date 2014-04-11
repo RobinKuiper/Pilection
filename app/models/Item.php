@@ -32,5 +32,12 @@ class Item extends Eloquent{
             
             return false;
         }
+        
+        public static function checkType()
+        {
+            if(Input::segment(1) != 'systems' && Input::segment(1) != 'scripts' && Input::segment(1) != 'projects') return 'false';
+            
+            return 'true';
+        }
 
 }

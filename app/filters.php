@@ -60,6 +60,11 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
+Route::filter('type', function($route)
+{
+	if (Item::checkType() == 'false') App::abort(404);
+});
+
 /*
 |--------------------------------------------------------------------------
 | CSRF Protection Filter

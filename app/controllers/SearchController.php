@@ -29,8 +29,8 @@ class SearchController extends \BaseController {
 	{
             $q = Input::get('q');
            
-            $results = Item::where('title', 'LIKE', '%'.$q.'%')->get();
+            $items = Item::where('title', 'LIKE', '%'.$q.'%')->get();
             
-            return View::make('search.store', ['results' => $results]);
+            return View::make('search.store', ['items' => $items]);
 	}
 }

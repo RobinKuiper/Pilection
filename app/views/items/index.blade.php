@@ -17,10 +17,10 @@
                                 @endif
 				<tr>
                                     <td>
-                                        <a href='systems/{{ $item->id }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
+                                        <a href='{{ $item->type }}/{{ $item->id }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
                                     </td>
                                     <td>
-                                        <h3> {{ link_to("systems/$item->id", $item->title) }} </h3>
+                                        <h3> {{ link_to("$item->type/$item->id", $item->title) }} </h3>
                                         <p> {{ Str::words($item->body, 50, $end = '...') }} </p>
                                     </td>
                                     <td><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, 'system') }}</td>

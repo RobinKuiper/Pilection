@@ -5,14 +5,22 @@
 
 	<table class="table table-striped table-hover">
 		<tbody>
-			@foreach($results as $result)
+			@foreach($items as $item)
+                                @if ($item->image == null) 
+                                    {? $path = 'images/' ?}
+                                    {? $item->image = 'system_default.png' ?}
+                                @else {? $path = 'upload/items/images/' ?}
+                                @endif
 				<tr>
                                     <td>
-                                        <h3> {{ link_to($result->type."/".$result->id, $result->title) }} </h3>
-                                        <p> {{ Str::words($result->body, 50, $end = '...') }} </p>
+                                        <a href='{{ $item->type }}/{{ $item->id }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
                                     </td>
-                                    <!--<td>Views: {{ Views::getViews($result->id, 'system') }}</td>-->
-                                    <td>{{ link_to("projects/$result->id#disqus_thread", '0 comments') }}</td>
+                                    <td>
+                                        <h3> {{ link_to("$item->type/$item->id", $item->title) }} </h3>
+                                        <p> {{ Str::words($item->body, 50, $end = '...') }} </p>
+                                    </td>
+                                    <td><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, 'system') }}</td>
+                                    <td>{{ link_to("systems/$item->id#disqus_thread", '0 comments') }}</td>
 				</tr>
 			@endforeach
 		</tbody>

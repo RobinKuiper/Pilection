@@ -83,10 +83,10 @@ class ItemsController extends \BaseController {
             $item = $this->item->findOrFail($id);
                 
             // Update viewcount
-            $this->views->updateViews($id);
+            $item->viewcount = $this->views->updateViews($id, $type, 1);
 
             // Get viewcount
-            $item->viewcount = $this->views->getViews($id);
+            //$item->viewcount = $this->views->getViews($id, $type);
 
             if($item->image == null){
                 $item->path = 'images/';

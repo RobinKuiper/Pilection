@@ -14,7 +14,9 @@
 <div class="row">
     <div id="profile-info" class="col-md-6">
         <p>Naam: {{{ Str::title($user->firstname.' '.$user->lastname) }}}</p>
+        <p>Member since: {{ date('d-m-Y H:i', strtotime($user->lastlogin)) }} </p>
         <p>Last login: {{ ($user->lastlogin == '0000-00-00 00:00:00') ? 'never' : date('d-m-Y H:i', strtotime($user->lastlogin)) }}</p>
+        <p>Profile views: {{ $user->views }}</p>
 
     </div>
 

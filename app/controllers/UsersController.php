@@ -3,15 +3,17 @@
 class UsersController extends \BaseController {
 
 	protected $user;
-        protected $item;
+    protected $item;
+    protected $views;
 
-	public function __construct(User $user, Item $item)
+	public function __construct(User $user, Item $item, Views $views)
 	{
-                $this->beforeFilter('guest', ['only' => ['create', 'store']]);
-                $this->beforeFilter('auth', ['only' => ['edit', 'index', 'show', 'update']]);
-		$this->beforeFilter('csrf', ['only' => 'edit']);
-		$this->user = $user;
-                $this->item = $item;
+        $this->beforeFilter('guest', ['only' => ['create', 'store']]);
+        $this->beforeFilter('auth', ['only' => ['edit', 'index', 'show', 'update']]);
+        $this->beforeFilter('csrf', ['only' => 'edit']);
+        $this->user = $user;
+        $this->item = $item;
+        $this->views = $views;
 	}
         
         /**
@@ -33,13 +35,15 @@ class UsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-                if(preg_match('/^[1-9][0-9]*$/', $id)):
-                    $user = $this->user->find($id);
-                ;else:
-                    $user = $this->user->where('username', '=', $id)->first();
-                endif;
-                
-                $items = $this->item->where('user_id', '=', $user->id)->orderBy('created_at', 'DESC')->get();
+        if(preg_match('/^[1-9][0-9]*$/', $id)):
+            $user = $this->user->find($id);
+        ;else:
+            $user = $this->user->where('username', '=', $id)->first();
+        endif;
+
+        $user->views = $this->views->updateViews($user->id, 'user', 1);
+
+        $items = $this->item->where('user_id', '=', $user->id)->orderBy('created_at', 'DESC')->get();
                 
 		return View::make('users.show', ['user' => $user, 'items' => $items]);
 	}

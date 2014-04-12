@@ -6,6 +6,8 @@ class UsersController extends \BaseController {
 
 	public function __construct(User $user)
 	{
+                $this->beforeFilter('guest', ['only' => ['create', 'store']]);
+                $this->beforeFilter('auth', ['only' => ['edit', 'index', 'show', 'update']]);
 		$this->beforeFilter('csrf', ['only' => 'edit']);
 		$this->user = $user;
 	}

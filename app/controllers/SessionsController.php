@@ -6,7 +6,8 @@ class SessionsController extends \BaseController {
 
 	public function __construct(User $user)
 	{
-		$this->beforeFilter('csrf', ['only' => 'edit']);
+                $this->beforeFilter('guest', ['only' => ['create', 'store']]);
+		$this->beforeFilter('csrf', ['on' => 'post']);
 		$this->user = $user;
 	}
         
@@ -17,8 +18,6 @@ class SessionsController extends \BaseController {
 	 */
 	public function create()
 	{
-		if(Auth::check()) return Redirect::to('/');
-
 		return View::make('sessions.create', ['active' => 'login']);
 	}
 
@@ -29,8 +28,8 @@ class SessionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		if(Auth::attempt(['email' => Input::get('login'), 'password' => Input::get('password')]) || 
-                   Auth::attempt(['username' => Input::get('login'), 'password' => Input::get('password')]))
+		if(Auth::attempt(['email' => Input::get('login'), 'password' => Input::get('password')], Input::get('remember')) || 
+                   Auth::attempt(['username' => Input::get('login'), 'password' => Input::get('password')], Input::get('remember')))
 		{
                         $this->user->where('id', '=', Auth::user()->id)->update(['lastlogin' => date('Y-m-d H:m:s')]);
                         
@@ -40,7 +39,7 @@ class SessionsController extends \BaseController {
 		}
 
 		return Redirect::to('login')
-			->with('message', 'Your credentials are incorrect')
+			->with('message', 'Your credentials are incorrect, '.link_to('password/forgot', 'forgot your password?'))
 			->with('alert_class', 'alert-danger')
 			->withInput();
 	}

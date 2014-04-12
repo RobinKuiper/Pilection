@@ -8,7 +8,9 @@ class ItemsController extends \BaseController {
         
         public function __construct(Item $item, Views $views, Tag $tag)
 	{
-                $this->beforeFilter('auth', ['only' => ['create', 'edit']]);
+                $this->beforeFilter('type');
+                $this->beforeFilter('auth', ['only' => ['create', 'edit', 'update', 'store']]);
+                $this->beforeFilter('user', ['only' => ['update', 'edit', 'destroy']]);
 		$this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
 		$this->item = $item;
                 $this->views = $views;

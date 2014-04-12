@@ -32,11 +32,23 @@ Breadcrumbs::register('tags', function($breadcrumbs, $tag) {
 
 Breadcrumbs::register('users', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Users', route('users.index'));
+    $breadcrumbs->push('Profile', route('users.index'));
 });
 
 Breadcrumbs::register('user', function($breadcrumbs, $user) {
     $breadcrumbs->parent('users');
 
     $breadcrumbs->push($user->username, route('users.show', $user->id));
+});
+
+Breadcrumbs::register('forgot-password', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+
+    $breadcrumbs->push('Forgot Password', route('password.create'));
+});
+
+Breadcrumbs::register('reset-password', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+
+    $breadcrumbs->push('Reset Password');
 });

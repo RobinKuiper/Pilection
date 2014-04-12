@@ -8,13 +8,17 @@
 	{{ Form::open(['route' => 'sessions.store', 'class' => 'form-signup', 'role' => 'form']) }}
 	    <h2 class="form-signin-heading">Please Login</h2>
 	 
-            <div class="input-group form-group">
+            <div class="form-group">
 	    	{{ Form::text('login', null, array('class'=>'form-control', 'placeholder'=>'Username or email address')) }}
-	    	<span class="input-group-addon">@</span>
 	    </div>
 
 	    <div class="form-group">	
 	    	{{ Form::password('password', array('class'=>'form-control', 'placeholder'=>'Password')) }}
+            </div>
+            
+            <div class="form-group text-right">
+                {{ Form::checkbox('remember') }}
+                {{ Form::label('remember', 'Remember me ') }}
             </div>
 
 	    {{ Form::submit('Login', array('class'=>'btn btn-large btn-primary btn-block'))}}

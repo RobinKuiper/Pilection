@@ -86,7 +86,7 @@ Route::filter('type', function()
     if (Item::checkType() == false) App::abort(404);
 });
 
-Route::filter('usercheck', function()
+Route::filter('user', function()
 {
     if (Item::checkUser() == false) 
         return Redirect::to(Input::segment(1).'/'.Input::segment(2))

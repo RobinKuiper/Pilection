@@ -16,7 +16,7 @@ Breadcrumbs::register('register', function($breadcrumbs) {
 
 Breadcrumbs::register('items', function($breadcrumbs, $type) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push($type, route('items.index'));
+    $breadcrumbs->push(Str::title($type), '/'.$type);
 });
 
 Breadcrumbs::register('item', function($breadcrumbs, $item, $type) {
@@ -32,7 +32,7 @@ Breadcrumbs::register('tags', function($breadcrumbs, $tag) {
 
 Breadcrumbs::register('users', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Profile', route('users.index'));
+    $breadcrumbs->push('Profile', '/profile');
 });
 
 Breadcrumbs::register('user', function($breadcrumbs, $user) {

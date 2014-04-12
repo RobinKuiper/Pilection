@@ -9,37 +9,41 @@
 
 <div class="row">
     
-    <div class="col-md-4">
+    <div class="col-md-3">
         <h3>Latest Systems</h3>
-        <ul class="list-group">
+        <div class="list-group">
             @foreach ($items['systems']['latest'] as $item)
-                <li class="list-group-item">
-                    {{ link_to("systems/$item->id", $item->title) }}
-                </li>
+            <a class="list-group-item" href="/systems/{{ $item->id }}" title="{{ $item->title }}">
+                {{ $item->title }}
+            </a>
             @endforeach
-        </ul>
+        </div>
     </div>
+
+    <div class="col-md-1"></div>
     
-    <div class="col-md-4">
+    <div class="col-md-3">
         <h3>Latest Scripts</h3>
-        <ul class="list-group">
+        <div class="list-group">
             @foreach ($items['scripts']['latest'] as $item)
-                <li class="list-group-item">
-                    {{ link_to("scripts/$item->id", $item->title) }}
-                </li>
+            <a class="list-group-item" href="/scripts/{{ $item->id }}" title="{{ $item->title }}">
+                {{ $item->title }}
+            </a>
             @endforeach
-        </ul>
+        </div>
     </div>
+
+    <div class="col-md-1"></div>
     
-    <div class="col-md-4">
+    <div class="col-md-3">
         <h3>Latest Projects</h3>
-        <ul class="list-group">
+        <div class="list-group">
             @foreach ($items['projects']['latest'] as $item)
-                <li class="list-group-item">
-                    {{ link_to("projects/$item->id", $item->title) }}
-                </li>
+            <a class="list-group-item" href="/projects/{{ $item->id }}" title="{{ $item->title }}">
+                {{ $item->title }}
+            </a>
             @endforeach
-        </ul>
+        </div>
     </div>
     
 </div>
@@ -80,4 +84,19 @@
     </div>
     
 </div>
+@stop
+
+@section('footer')
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'rpios'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
 @stop

@@ -1,6 +1,6 @@
 <?php
 
-Route::pattern('id', '[0-9]+');
+//Route::pattern('id', '[0-9]+');
 
 Route::get('/', 'PagesController@home');
 Route::get('about', 'PagesController@about');

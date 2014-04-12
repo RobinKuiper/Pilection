@@ -3,13 +3,15 @@
 class UsersController extends \BaseController {
 
 	protected $user;
+        protected $item;
 
-	public function __construct(User $user)
+	public function __construct(User $user, Item $item)
 	{
                 $this->beforeFilter('guest', ['only' => ['create', 'store']]);
                 $this->beforeFilter('auth', ['only' => ['edit', 'index', 'show', 'update']]);
 		$this->beforeFilter('csrf', ['only' => 'edit']);
 		$this->user = $user;
+                $this->item = $item;
 	}
         
         /**
@@ -19,9 +21,9 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-                $user = $this->user->find(Auth::user()->id);
-                
-		return View::make('users.show', ['user' => $user]);
+        $id = Auth::user()->id;
+
+		return $this->show($id);
 	}
         
         /**
@@ -31,12 +33,18 @@ class UsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-                $user = $this->user->find($id);
+                if(preg_match('/^[1-9][0-9]*$/', $id)):
+                    $user = $this->user->find($id);
+                ;else:
+                    $user = $this->user->where('username', '=', $id)->first();
+                endif;
                 
-		return View::make('users.show', ['user' => $user]);
+                $items = $this->item->where('user_id', '=', $user->id)->orderBy('created_at', 'DESC')->get();
+                
+		return View::make('users.show', ['user' => $user, 'items' => $items]);
 	}
         
-        /**
+     /**
 	 * Show users edit profile page
 	 *
 	 * @return View: edit profile

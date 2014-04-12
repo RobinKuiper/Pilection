@@ -32,14 +32,14 @@
             <div class='row'>
                 <div class="form-group input-group">
                     <span class="input-group-addon">http://</span>
-                    {{ Form::text('download', $item->download, array('class'=>'form-control', 'placeholder'=>'Download link')) }}
-                    {{ $errors->first('download') }}
+                    {{ Form::text('website_url', $item->website_url, array('class'=>'form-control', 'placeholder'=>'Website link')) }}
+                    {{ $errors->first('website') }}
                 </div>
-       
+                
                 <div class="form-group input-group">
                     <span class="input-group-addon">http://</span>
-                    {{ Form::text('website', $item->website, array('class'=>'form-control', 'placeholder'=>'Website link')) }}
-                    {{ $errors->first('website') }}
+                    {{ Form::text('download_url', $item->download_url, array('class'=>'form-control', 'placeholder'=>'Download link')) }}
+                    {{ $errors->first('download') }}
                 </div>
             </div>
         </div>

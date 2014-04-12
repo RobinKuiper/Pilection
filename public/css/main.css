@@ -3,6 +3,25 @@
     margin: 0 auto;
 }
 
-.bottom-margin{
-    margin-bottom: 40px;
+.margin-bottom-10 { margin-bottom: 10px;}
+.margin-bottom-20 { margin-bottom: 20px; }
+.margin-bottom-40 { margin-bottom: 40px; }
+
+.activity{
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 3px;
 }
+
+.image-border{
+    border: 1px solid #ddd;
+    width: 100px;
+    height: 100px;
+    float: left;
+    overflow: hidden;
+    margin-right: 10px;
+
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.image-border:hover{ border:1px solid #bbb; }

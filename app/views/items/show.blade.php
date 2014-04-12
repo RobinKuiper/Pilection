@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-<div class='row bottom-margin'>
+<div class='row margin-bottom-40'>
     <div class='col-md-1'>
         <span>{{ HTML::image($item->path.$item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
     </div>
@@ -32,19 +32,19 @@
     @endif
 </div>
 
-<div class='row bottom-margin'>
+<div class='row margin-bottom-40'>
     <div class='col-md-12'>
         <p>Views: {{ $item->viewcount }}</p>
     </div>
 </div>
 
-<div class='row bottom-margin'>
+<div class='row margin-bottom-40'>
     <div class='col-md-12'>
         <article>{{ $item->body }}</article>
     </div>
 </div>
 
-<div class='row bottom-margin'>
+<div class='row margin-bottom-40'>
     <div class='col-md-12'>
         <p>
             Tags: 
@@ -56,16 +56,16 @@
 </div>
 
 
-<div class='row bottom-margin'>
-    @if( !empty($item->download) )
+<div class='row margin-bottom-40'>
+    @if( !empty($item->download_url) )
     <div class='col-md-1'>
-        {{ link_to($item->download, 'Download', ['class' => 'btn btn-success']) }}
+        {{ link_to($item->download_url, 'Download', ['class' => 'btn btn-success']) }}
     </div>
     @endif
     
-    @if( !empty($item->website) )
+    @if( !empty($item->website_url) )
     <div class='col-md-1'>
-        {{ link_to($item->website, 'Website', ['class' => 'btn btn-primary']) }}
+        {{ link_to($item->website_url, 'Website', ['class' => 'btn btn-primary']) }}
     </div>
     @endif
 </div>

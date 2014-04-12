@@ -9,7 +9,7 @@
         
         @if(Auth::check())
         <div class='row'>
-            <div class='col-md-12 text-right bottom-margin'>
+            <div class='col-md-12 text-right margin-bottom-40'>
                 {{ link_to($type.'/create', 'Post new', ['class' => 'btn btn-success']) }}
             </div>
         </div>

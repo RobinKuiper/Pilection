@@ -46,7 +46,7 @@ class ItemsController extends \BaseController {
 	 */
 	public function store($type)
 	{
-            $input = Input::all();
+                $input = Input::all();
                 $input['type'] = $type;
                 $input['user_id'] = Auth::user()->id;
 
@@ -67,7 +67,7 @@ class ItemsController extends \BaseController {
                 $this->tag->set($input['tags'], $item->id);
                 $this->tag->saveTags();
 
-		return Redirect::to($type)
+		return Redirect::to($type.'/'.$item->id)
 				->with('message', 'New system created!')
 				->with('alert_class', 'alert-success');
 	}
@@ -129,8 +129,8 @@ class ItemsController extends \BaseController {
                 $update_fields = [
                     'title'     => $input['title'],
                     'body'      => $input['body'],
-                    'website_url'   => $input['website'],
-                    'download_url'  => $input['download'],
+                    'website_url'   => $input['website_url'],
+                    'download_url'  => $input['download_url'],
                 ];
                 
                 if( !empty($input['image'])){

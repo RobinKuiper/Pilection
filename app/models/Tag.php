@@ -20,7 +20,8 @@ class Tag extends Eloquent{
         
         public function saveTags() 
         {
-            foreach($this->tags as $tag):                
+            foreach($this->tags as $tag):  
+                $tag = trim($tag);
                 if($this->where('tag', '=', $tag)->count() == 0):
                     $this->create(['tag' => $tag]);
                 endif;

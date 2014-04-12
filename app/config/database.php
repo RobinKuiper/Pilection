@@ -56,7 +56,7 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'rpios',
-			'username'  => 'root',
+			'username'  => 'robin',
 			'password'  => 'Ro1988bin',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',

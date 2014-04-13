@@ -1,6 +1,7 @@
 <?php
 
-class PagesController extends BaseController {
+class PagesController extends BaseController
+{
 
     protected $rating;
 
@@ -8,7 +9,7 @@ class PagesController extends BaseController {
     {
         $this->rating = $rating;
     }
-    
+
     public function home()
     {
         $items['systems']['latest'] = Item::where('type', '=', 'systems')->latest()->take(5)->get();
@@ -22,22 +23,22 @@ class PagesController extends BaseController {
         return View::make('pages/home', ['active' => 'home', 'items' => $items]);
     }
 
-	public function about()
-	{
-            return View::make('pages/about', ['active' => 'about']);
-	}
+    public function about()
+    {
+        return View::make('pages/about', ['active' => 'about']);
+    }
 
     public function test()
     {
         $rating = [
-            'item_id'   => 1,
-            'score'     => 4,
-            'ip'        => Request::getClientIp()
+            'item_id' => 1,
+            'score' => 4,
+            'ip' => Request::getClientIp()
         ];
 
         $result = Rating::where('item_id', '=', $rating['item_id'])->where('ip', '=', $rating['ip'])->count();
 
-        if($result == 0)
+        if ($result == 0)
             Rating::create($rating);
     }
 

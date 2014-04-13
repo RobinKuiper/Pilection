@@ -1,12 +1,13 @@
 <?php
 
-class Grade extends Eloquent{
+class Grade extends Eloquent
+{
 
-	protected $fillable = ['grade'];
-	protected $table = 'grades';
+    protected $fillable = ['grade'];
+    protected $table = 'grades';
 
-	public $errors;
-	public static $rules = [];
+    public $errors;
+    public static $rules = [];
 
     public function getItemsByGrade($grade)
     {

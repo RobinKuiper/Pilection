@@ -1,7 +1,8 @@
 <?php
 
-class Rating extends \Eloquent {
-	protected $fillable = ['user_id', 'item_id', 'rating', 'ip', 'type'];
+class Rating extends \Eloquent
+{
+    protected $fillable = ['user_id', 'item_id', 'rating', 'ip', 'type'];
 
     public static function getRatingForItem($item_id)
     {
@@ -14,8 +15,8 @@ class Rating extends \Eloquent {
     {
         $items = $this->where('type', '=', $type)->get();
 
-        if(count($items) > 0){
-            foreach($items as $item):
+        if (count($items) > 0) {
+            foreach ($items as $item):
                 $rating[$item->item_id]['rating'] = $this->getRatingForItem($item->item_id);
                 $rating[$item->item_id]['item'] = Item::where('id', '=', $item->item_id)->first()->toArray();
             endforeach;
@@ -27,8 +28,8 @@ class Rating extends \Eloquent {
     private static function getRating($ratings)
     {
         $score = 0;
-        if(count($ratings) > 0){
-            foreach($ratings as $rating):
+        if (count($ratings) > 0) {
+            foreach ($ratings as $rating):
                 $score += $rating->rating;
             endforeach;
 
@@ -42,7 +43,7 @@ class Rating extends \Eloquent {
     {
         $count = Rating::where('item_id', '=', $item_id)->where('ip', '=', Request::getClientIp())->count();
 
-        if($count == 0) return false;
+        if ($count == 0) return false;
         else return true;
     }
 }

@@ -25,7 +25,8 @@
         <p>Member since: {{ date($settings->own->date_format, strtotime($user->created_at)) }} </p>
 
         @if($settings->show_lastlogin == '1')
-        <p>Last login: {{ ($user->lastlogin == '0000-00-00 00:00:00') ? 'never' : date($settings->own->date_format, strtotime($user->lastlogin)) }}</p>
+        <p>Last login: {{ ($user->lastlogin == '0000-00-00 00:00:00') ? 'never' : date($settings->own->date_format,
+            strtotime($user->lastlogin)) }}</p>
         @endif
 
         <p>Profile views: {{ $user->views }}</p>
@@ -34,20 +35,20 @@
 
     <div id="items" class="col-md-6">
         @if(count($items) > 0)
-            @foreach($items as $item)
-                @if ($item->image == null)
-                    {? $path = 'images/' ?}
-                    {? $item->image = 'system_default.png' ?}
-                @else {? $path = 'upload/items/images/' ?}
-                @endif
-                <a href='{{ $item->type }}/{{ $item->id }}' title='{{ $item->title }}'>
-                    <div class="image-border">
-                        {{ HTML::image($path . $item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}
-                    </div>
-                </a>
-            @endforeach
+        @foreach($items as $item)
+        @if ($item->image == null)
+        {? $path = 'images/' ?}
+        {? $item->image = 'system_default.png' ?}
+        @else {? $path = 'upload/items/images/' ?}
+        @endif
+        <a href='{{ $item->type }}/{{ $item->id }}' title='{{ $item->title }}'>
+            <div class="image-border">
+                {{ HTML::image($path . $item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}
+            </div>
+        </a>
+        @endforeach
         @else
-            <p>This user hasn't posted anything yet.</p>
+        <p>This user hasn't posted anything yet.</p>
         @endif
     </div>
 </div>

@@ -3,34 +3,35 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateRatingsTable extends Migration {
+class CreateRatingsTable extends Migration
+{
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('ratings', function(Blueprint $table) {
-			$table->increments('id');
-			$table->integer('item_id');
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('ratings', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('item_id');
             $table->integer('user_id');
-			$table->string('ip');
-			$table->float('rating');
-			$table->timestamps();
-		});
-	}
+            $table->string('ip');
+            $table->float('rating');
+            $table->timestamps();
+        });
+    }
 
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('ratings');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('ratings');
+    }
 
 }

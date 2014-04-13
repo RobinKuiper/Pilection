@@ -50,36 +50,49 @@
 
 <div class="row">
     
-    <div class="col-md-4">
+    <div class="col-md-3">
         <h3>Top Systems</h3>
-        <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
+        <div class="list-group">
+            @if( count($items['systems']['top']) > 0)
+                @foreach ($items['systems']['top'] as $item)
+                <a class="list-group-item" href="/systems/{{ $item['item']['id'] }}" title="{{ $item['item']['title'] }}">
+                    <span class="badge">{{ $item['rating'] }}</span>
+                    {{ $item['item']['title'] }}
+                </a>
+                @endforeach
+            @endif
+        </div>
     </div>
+
+    <div class="col-md-1"></div>
     
-    <div class="col-md-4">
+    <div class="col-md-3">
         <h3>Top Scripts</h3>
         <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            @if( count($items['scripts']['top']) > 0)
+                @foreach ($items['scripts']['top'] as $item)
+                <a class="list-group-item" href="/scripts/{{ $item['item']['id'] }}" title="{{ $item['item']['title'] }}">
+                    <span class="badge">{{ $item['rating'] }}</span>
+                    {{ $item['item']['title'] }}
+                </a>
+                @endforeach
+            @endif
         </ul>
     </div>
+
+    <div class="col-md-1"></div>
     
-    <div class="col-md-4">
+    <div class="col-md-3">
         <h3>Top Projects</h3>
         <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            @if( count($items['projects']['top']) > 0)
+                @foreach ($items['projects']['top'] as $item)
+                <a class="list-group-item" href="/projects/{{ $item['item']['id'] }}" title="{{ $item['item']['title'] }}">
+                    <span class="badge">{{ $item['rating'] }}</span>
+                    {{ $item['item']['title'] }}
+                </a>
+                @endforeach
+            @endif
         </ul>
     </div>
     

@@ -13,9 +13,21 @@
 
 <div class="row">
     <div id="profile-info" class="col-md-6">
+
+        @if($settings->show_name == 1)
         <p>Naam: {{{ Str::title($user->firstname.' '.$user->lastname) }}}</p>
-        <p>Member since: {{ date('d-m-Y H:i', strtotime($user->lastlogin)) }} </p>
-        <p>Last login: {{ ($user->lastlogin == '0000-00-00 00:00:00') ? 'never' : date('d-m-Y H:i', strtotime($user->lastlogin)) }}</p>
+        @endif
+
+        @if($settings->show_email == '1')
+        <p>Email: {{{ $user->email }}}</p>
+        @endif
+
+        <p>Member since: {{ date($settings->own->date_format, strtotime($user->created_at)) }} </p>
+
+        @if($settings->show_lastlogin == '1')
+        <p>Last login: {{ ($user->lastlogin == '0000-00-00 00:00:00') ? 'never' : date($settings->own->date_format, strtotime($user->lastlogin)) }}</p>
+        @endif
+
         <p>Profile views: {{ $user->views }}</p>
 
     </div>

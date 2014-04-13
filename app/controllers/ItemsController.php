@@ -2,19 +2,21 @@
 
 class ItemsController extends \BaseController {
     
-        protected $item;
-        protected $views;
-        protected $tag;
+    protected $item;
+    protected $views;
+    protected $tag;
+    protected $rating;
         
-        public function __construct(Item $item, Views $views, Tag $tag)
+    public function __construct(Item $item, Views $views, Tag $tag, Rating $rating)
 	{
-                $this->beforeFilter('type');
-                $this->beforeFilter('auth', ['only' => ['create', 'edit', 'update', 'store']]);
-                $this->beforeFilter('user', ['only' => ['update', 'edit', 'destroy']]);
-		$this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
-		$this->item = $item;
-                $this->views = $views;
-                $this->tag = $tag;
+        $this->beforeFilter('type');
+        $this->beforeFilter('auth', ['only' => ['create', 'edit', 'update', 'store']]);
+        $this->beforeFilter('user', ['only' => ['update', 'edit', 'destroy']]);
+        $this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
+        $this->item = $item;
+        $this->views = $views;
+        $this->tag = $tag;
+        $this->rating = $rating;
 	}
 
 	/**
@@ -80,22 +82,24 @@ class ItemsController extends \BaseController {
 	 */
 	public function show($type, $id)
 	{
-            $item = $this->item->findOrFail($id);
-                
-            // Update viewcount
-            $item->viewcount = $this->views->updateViews($id, $type, 1);
+        $item = $this->item->findOrFail($id);
 
-            // Get viewcount
-            //$item->viewcount = $this->views->getViews($id, $type);
+        // Update viewcount
+        $item->viewcount = $this->views->updateViews($id, $type, 1);
 
-            if($item->image == null){
-                $item->path = 'images/';
-                $item->image = 'system_default.png';
-            }else $item->path = 'upload/items/images/';
-            
-            $item->tags = $this->tag->getTagsByItem($id);
+        // Get viewcount
+        //$item->viewcount = $this->views->getViews($id, $type);
 
-            return View::make('items.show', ['type' => $type, 'item' => $item, 'active' => $type]);
+        if($item->image == null){
+            $item->path = 'images/';
+            $item->image = 'system_default.png';
+        }else $item->path = 'upload/items/images/';
+
+        $item->tags = $this->tag->getTagsByItem($id);
+        $item->rating = $this->rating->getRatingForItem($id);
+        $item->voted = $this->rating->voted($id);
+
+        return View::make('items.show', ['type' => $type, 'item' => $item, 'active' => $type]);
 	}
 
 	/**

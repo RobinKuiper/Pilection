@@ -44,6 +44,12 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+        <div id="rating"></div>
+    </div>
+</div>
+
 <div class='row margin-bottom-40'>
     <div class='col-md-12'>
         <p>
@@ -75,6 +81,27 @@
 @stop
 
 @section('footer')
+{{ HTML::script('js/vendor/raty/jquery.raty.js') }}
+
+<script>
+    $('#rating').raty({
+        half: true,
+        readOnly: {{ ($item->voted) ? 'true' : 'false' }},
+        path: '{{ url('js/vendor/raty') }}',
+        score: {{ $item->rating }},
+        size: 24,
+        starHalf: 'star-half-big.png',
+        starOff: 'star-off-big.png',
+        starOn: 'star-on-big.png',
+        click: function(score, evt) {
+            var id = {{ $item->id }}, type = '{{ $type }}';
+            $.get( '/ajax/getRating', { id: id, score: score, type: type }, function( data ) {
+                alert(data);
+            });
+        }
+    });
+</script>
+
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'rpios'; // required: replace example with your forum shortname

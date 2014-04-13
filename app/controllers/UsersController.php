@@ -5,8 +5,9 @@ class UsersController extends \BaseController {
 	protected $user;
     protected $item;
     protected $views;
+    protected $settings;
 
-	public function __construct(User $user, Item $item, Views $views)
+	public function __construct(User $user, Item $item, Views $views, Settings $settings)
 	{
         $this->beforeFilter('guest', ['only' => ['create', 'store']]);
         $this->beforeFilter('auth', ['only' => ['edit', 'index', 'show', 'update']]);
@@ -14,6 +15,7 @@ class UsersController extends \BaseController {
         $this->user = $user;
         $this->item = $item;
         $this->views = $views;
+        $this->settings = $settings;
 	}
         
         /**
@@ -42,10 +44,12 @@ class UsersController extends \BaseController {
         endif;
 
         $user->views = $this->views->updateViews($user->id, 'user', 1);
+        $settings = $this->settings->where('user_id', '=', $user->id)->first();
+        $settings->own = $this->settings->where('user_id', '=', Auth::user()->id)->first();
 
         $items = $this->item->where('user_id', '=', $user->id)->orderBy('created_at', 'DESC')->get();
                 
-		return View::make('users.show', ['user' => $user, 'items' => $items]);
+		return View::make('users.show', ['user' => $user, 'items' => $items, 'settings' => $settings]);
 	}
         
      /**
@@ -93,17 +97,18 @@ class UsersController extends \BaseController {
 
 		if( ! $this->user->fill($input)->isValid())
 		{
-                    return $this->user->errors;
 			return Redirect::back()->withInput()->withErrors($this->user->errors);
 		}
 
-		$this->user->create([
-                        'username'              => $input['username'],
+		$user = $this->user->create([
+            'username'      => $input['username'],
 			'email' 		=> $input['email'],
 			'firstname'		=> $input['firstname'],
 			'lastname'		=> $input['lastname'],
 			'password'		=> Hash::make($input['password'])
 		]);
+
+        $this->settings->saveDefaults($user->id);
 		
 		return Redirect::to('login')
 			->with('message', 'Thanks for registering!')

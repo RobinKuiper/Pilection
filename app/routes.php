@@ -4,6 +4,7 @@
 
 Route::get('/', 'PagesController@home');
 Route::get('about', 'PagesController@about');
+Route::get('test', 'PagesController@test');
 
 Route::resource('search', 'SearchController', ['only' => ['create', 'store']]);
 
@@ -22,6 +23,8 @@ Route::get('password/reset', 'PasswordController@edit');
 Route::get('password/reset/{token}', 'PasswordController@edit');
 Route::post('password/{token}/update', 'PasswordController@update');
 
+Route::get('ajax/getRating', 'AjaxController@getRating');
+
 Route::get('tags/{tag}', ['as' => 'tags.index', 'uses' => 'TagsController@index']);
 
 Route::get('{type}', ['as' => 'items.index', 'uses' => 'ItemsController@index']);
@@ -31,3 +34,4 @@ Route::get('{type}/{id}', ['as' => 'items.show', 'uses' => 'ItemsController@show
 Route::delete('{type}/{id}/destroy', ['as' => 'items.destroy', 'uses' => 'ItemsController@destroy']);
 Route::get('{type}/{id}/edit', ['as' => 'items.edit', 'uses' => 'ItemsController@edit']);
 Route::put('{type}/{id}/update', ['as' => 'items.update', 'uses' => 'ItemsController@update']);
+

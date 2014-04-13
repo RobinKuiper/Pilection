@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('tags', $tag) }}
+    {{ Breadcrumbs::render($breadcrumb, $title) }}
 @stop
 
 @section('content')
-	<h2>Tag - {{ Str::title($tag) }}</h2>
+	<h2>Tag - {{ Str::title($title) }}</h2>
 
 	<table class="table table-striped table-hover">
 		<tbody>

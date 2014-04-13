@@ -23,9 +23,10 @@ class TagsController extends \BaseController {
 	 */
 	public function index($tag)
 	{
-            $items = $this->tag->getItemsByTag($tag);
+        $items = $this->tag->getItemsByTag($tag);
+        $breadcrumb = 'tags';
 
-            return View::make('tags.index', ['tag' => $tag, 'items' => $items]);
+        return View::make('items.index', ['title' => $tag,'breadcrumb' => $breadcrumb, 'items' => $items]);
 	}
 
 	/**

@@ -26,9 +26,10 @@ class ItemsController extends \BaseController {
 	 */
 	public function index($type)
 	{
-            $items = $this->item->where('type', '=', $type)->get();
+        $items = $this->item->where('type', '=', $type)->get();
+        $breadcrumb = 'items';
 
-            return View::make('items.index', ['type' => $type, 'items' => $items, 'active' => $type]);
+        return View::make('items.index', ['breadcrumb' => $breadcrumb, 'title' => $type, 'type' => $type, 'items' => $items, 'active' => $type]);
 	}
 
 	/**

@@ -50,11 +50,13 @@ class Tag extends Eloquent{
         {
             $tag_id = $this->select('id')->where('tag', '=', $tag)->first();
             $item_ids = DB::table('items-tags')->select('item_id')->where('tag_id', '=', $tag_id->id)->get();
-            
+
+            $items = new stdClass();
             foreach($item_ids as $item):
-                $items[] = Item::where('id', '=', $item->item_id)->first()->toArray();
+                $id = $item->item_id;
+                $items->{$id} = Item::where('id', '=', $item->item_id)->first();
             endforeach;
-            
+
             return $items;
         }
         

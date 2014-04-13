@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa23518c-43d1-4c32-8c43-4f77bd7ecc6d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/Grade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/GradesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Item.php" afterPath="$PROJECT_DIR$/app/models/Item.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/ItemsController.php" afterPath="$PROJECT_DIR$/app/controllers/ItemsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/items/create.blade.php" afterPath="$PROJECT_DIR$/app/views/items/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/items/edit.blade.php" afterPath="$PROJECT_DIR$/app/views/items/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/master.blade.php" afterPath="$PROJECT_DIR$/app/views/layouts/master.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Tag.php" afterPath="$PROJECT_DIR$/app/models/Tag.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/TagsController.php" afterPath="$PROJECT_DIR$/app/controllers/TagsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/items/index.blade.php" afterPath="$PROJECT_DIR$/app/views/items/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tags/index.blade.php" afterPath="$PROJECT_DIR$/app/views/tags/index.blade.php" />
     </list>
     <ignored path="rpios.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,19 +29,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ItemsController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/ItemsController.php">
+      <file leaf-file-name="TagsController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/TagsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="125" column="8" selection-start="3452" selection-end="3452" vertical-scroll-proportion="-3.125" vertical-offset="1800" max-vertical-offset="2685">
+            <state line="26" column="29" selection-start="681" selection-end="681" vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="1515">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Item.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/Item.php">
+      <file leaf-file-name="Tag.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/Tag.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="101" selection-start="135" selection-end="135" vertical-scroll-proportion="0.09819967" vertical-offset="0" max-vertical-offset="870">
+            <state line="56" column="24" selection-start="1733" selection-end="1738" vertical-scroll-proportion="0.7364975" vertical-offset="390" max-vertical-offset="1155">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/items/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="8" selection-start="147" selection-end="147" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="1320">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemsController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/ItemsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="49" selection-start="416" selection-end="416" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="2700">
               <folding />
             </state>
           </provider>
@@ -80,7 +94,6 @@
         <option value="$PROJECT_DIR$/app/controllers/AjaxController.php" />
         <option value="$PROJECT_DIR$/app/views/pages/home.blade.php" />
         <option value="$PROJECT_DIR$/app/views/items/show.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/items/index.blade.php" />
         <option value="$PROJECT_DIR$/app/controllers/PagesController.php" />
         <option value="$PROJECT_DIR$/app/models/Rating.php" />
         <option value="$PROJECT_DIR$/app/views/layouts/master.blade.php" />
@@ -93,8 +106,11 @@
         <option value="$PROJECT_DIR$/app/views/grades/index.blade.php" />
         <option value="$PROJECT_DIR$/app/views/items/create.blade.php" />
         <option value="$PROJECT_DIR$/app/views/items/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/controllers/ItemsController.php" />
         <option value="$PROJECT_DIR$/app/models/Item.php" />
+        <option value="$PROJECT_DIR$/app/controllers/ItemsController.php" />
+        <option value="$PROJECT_DIR$/app/models/Tag.php" />
+        <option value="$PROJECT_DIR$/app/views/items/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/controllers/TagsController.php" />
       </list>
     </option>
   </component>
@@ -751,13 +767,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/items/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="20" selection-start="1072" selection-end="1072" vertical-scroll-proportion="-13.125" vertical-offset="135" max-vertical-offset="1320">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/items/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="88" column="43" selection-start="2252" selection-end="2252" vertical-scroll-proportion="-18.416666" vertical-offset="878" max-vertical-offset="1845">
@@ -796,13 +805,6 @@
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_04_13_105835_create_grades_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="45" selection-start="342" selection-end="342" vertical-scroll-proportion="0.24012807" vertical-offset="0" max-vertical-offset="937">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tags/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="37" selection-start="0" selection-end="2087" vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="780">
           <folding />
         </state>
       </provider>
@@ -856,16 +858,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/ItemsController.php">
+    <entry file="file://$PROJECT_DIR$/app/models/Item.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="8" selection-start="3452" selection-end="3452" vertical-scroll-proportion="-3.125" vertical-offset="1800" max-vertical-offset="2685">
+        <state line="4" column="101" selection-start="135" selection-end="135" vertical-scroll-proportion="0.09819967" vertical-offset="0" max-vertical-offset="870">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Item.php">
+    <entry file="file://$PROJECT_DIR$/app/views/tags/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="101" selection-start="135" selection-end="135" vertical-scroll-proportion="0.09819967" vertical-offset="0" max-vertical-offset="870">
+        <state line="27" column="21" selection-start="1443" selection-end="1443" vertical-scroll-proportion="0.67725754" vertical-offset="0" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/items/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="8" selection-start="147" selection-end="147" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="1320">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/ItemsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="49" selection-start="416" selection-end="416" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="2700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/TagsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="29" selection-start="681" selection-end="681" vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="1515">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Tag.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="24" selection-start="1733" selection-end="1738" vertical-scroll-proportion="0.7364975" vertical-offset="390" max-vertical-offset="1155">
           <folding />
         </state>
       </provider>

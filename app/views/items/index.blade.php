@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('items', Str::title($type)) }}
+    {{ Breadcrumbs::render($breadcrumb, Str::title($title)) }}
 @stop
 
 @section('content')
-	<h2>All {{ Str::title($type) }}</h2>
-        
-        @if(Auth::check())
+	<h2>{{ Str::title($title) }}</h2>
+
+        @if(Auth::check() && isset($type))
         <div class='row'>
             <div class='col-md-12 text-right margin-bottom-40'>
                 {{ link_to($type.'/create', 'Post new', ['class' => 'btn btn-success']) }}

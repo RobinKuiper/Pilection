@@ -30,6 +30,11 @@ Breadcrumbs::register('tags', function($breadcrumbs, $tag) {
     $breadcrumbs->push('Tag: '.$tag, route('tags.index'));
 });
 
+Breadcrumbs::register('grades', function($breadcrumbs, $grade) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push($grade, route('grades.index'));
+});
+
 Breadcrumbs::register('users', function($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Profile', '/profile');

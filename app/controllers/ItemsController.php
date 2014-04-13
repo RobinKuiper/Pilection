@@ -29,9 +29,9 @@ class ItemsController extends \BaseController {
         $items = $this->item->where('type', '=', $type)->get();
         $breadcrumb = 'items';
 
-        return View::make('items.index', ['breadcrumb' => $breadcrumb, 'title' => $type, 'type' => $type, 'items' => $items, 'active' => $type]);
-	}
+        return View::make('items.index', ['breadcrumb' => $breadcrumb, 'title' => $type, 'items' => $items, 'type' => $type, 'active' => $type]);
 
+    }
 	/**
 	 * Show the form for creating a new resource.
 	 *

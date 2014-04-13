@@ -48,14 +48,14 @@ class Tag extends Eloquent{
         
         public function getItemsByTag($tag)
         {
-            $tag_id = $this->select('id')->where('tag', '=', $tag)->first();
-            $item_ids = DB::table('items-tags')->select('item_id')->where('tag_id', '=', $tag_id->id)->get();
-
-            $items = new stdClass();
-            foreach($item_ids as $item):
-                $id = $item->item_id;
-                $items->{$id} = Item::where('id', '=', $item->item_id)->first();
-            endforeach;
+            $items = DB::table('items')
+                            ->join('items-tags', 'items-tags.item_id', '=', 'items.id')
+                            ->join('tags', function($join) use ($tag){
+                                $join->on('tags.id', '=', 'items-tags.tag_id')
+                                    ->where('tags.tag', '=', $tag);
+                            })
+                            ->select('items.*')
+                            ->get();
 
             return $items;
         }

@@ -23,9 +23,10 @@ class GradesController extends \BaseController {
 	 */
 	public function index($grade)
 	{
-            $items = $this->grade->getItemsByGrade($grade);
+        $items = $items = $this->grade->getItemsByGrade($grade);
+        $breadcrumb = 'grades';
 
-            return View::make('grades.index', ['grade' => $grade, 'items' => $items]);
+        return View::make('items.index', ['breadcrumb' => $breadcrumb, 'title' => $grade, 'items' => $items]);
 	}
 
 	/**

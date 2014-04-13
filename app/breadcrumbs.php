@@ -27,7 +27,7 @@ Breadcrumbs::register('item', function($breadcrumbs, $item, $type) {
 
 Breadcrumbs::register('tags', function($breadcrumbs, $tag) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Tag: '.$tag, route('tags.index'));
+    $breadcrumbs->push($tag, route('tags.index'));
 });
 
 Breadcrumbs::register('grades', function($breadcrumbs, $grade) {

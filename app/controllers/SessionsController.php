@@ -6,7 +6,7 @@ class SessionsController extends \BaseController {
 
 	public function __construct(User $user)
 	{
-                $this->beforeFilter('guest', ['only' => ['create', 'store']]);
+        $this->beforeFilter('guest', ['only' => ['create', 'store']]);
 		$this->beforeFilter('csrf', ['on' => 'post']);
 		$this->user = $user;
 	}
@@ -18,7 +18,9 @@ class SessionsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('sessions.create', ['active' => 'login']);
+
+
+       return View::make('sessions.create', ['active' => 'login']);
 	}
 
 	/**

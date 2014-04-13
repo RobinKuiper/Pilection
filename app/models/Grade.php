@@ -6,7 +6,7 @@ class Grade extends Eloquent{
 	protected $table = 'grades';
 
 	public $errors;
-	public static $rules = [	];
+	public static $rules = [];
 
     public function getItemsByGrade($grade)
     {

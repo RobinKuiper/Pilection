@@ -19,7 +19,7 @@ class Views extends \Eloquent {
                     'ip'        => $ip
                 ]);
 
-            if($get)
+            if($get)Profile views: 1
                return Views::getViews($item_id, $type);
         }
         

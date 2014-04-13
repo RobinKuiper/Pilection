@@ -2,7 +2,7 @@
 
 class Item extends Eloquent{
 
-	protected $fillable = ['user_id', 'title', 'body', 'image', 'download', 'website', 'type'];
+	protected $fillable = ['user_id', 'title', 'body', 'image', 'download', 'website', 'type', 'grade'];
 	protected $table = 'items';
         protected $softDelete = true;
 

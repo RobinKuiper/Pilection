@@ -48,9 +48,9 @@ class ItemsController extends \BaseController {
 	 */
 	public function store($type)
 	{
-                $input = Input::all();
-                $input['type'] = $type;
-                $input['user_id'] = Auth::user()->id;
+        $input = Input::all();
+        $input['type'] = $type;
+        $input['user_id'] = Auth::user()->id;
 
 		if( ! $this->item->fill($input)->isValid())
 		{
@@ -123,7 +123,7 @@ class ItemsController extends \BaseController {
 	 */
 	public function update($type, $id)
 	{
-                $input = Input::all();
+        $input = Input::all();
 
 		if( ! $this->item->fill($input)->isValid())
 		{
@@ -131,10 +131,11 @@ class ItemsController extends \BaseController {
 		}
                 
                 $update_fields = [
-                    'title'     => $input['title'],
-                    'body'      => $input['body'],
+                    'title'         => $input['title'],
+                    'body'          => $input['body'],
                     'website_url'   => $input['website_url'],
                     'download_url'  => $input['download_url'],
+                    'grade'         => $input['grade'],
                 ];
                 
                 if( !empty($input['image'])){

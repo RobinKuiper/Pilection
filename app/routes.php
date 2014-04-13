@@ -26,6 +26,7 @@ Route::post('password/{token}/update', 'PasswordController@update');
 Route::get('ajax/getRating', 'AjaxController@getRating');
 
 Route::get('tags/{tag}', ['as' => 'tags.index', 'uses' => 'TagsController@index']);
+Route::get('grade/{tag}', ['as' => 'grades.index', 'uses' => 'GradesController@index']);
 
 Route::get('{type}', ['as' => 'items.index', 'uses' => 'ItemsController@index']);
 Route::get('{type}/create', ['as' => 'items.create', 'uses' => 'ItemsController@create']);

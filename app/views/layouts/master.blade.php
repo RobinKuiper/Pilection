@@ -28,48 +28,58 @@
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav">
-                                    <li class='{{{ (isset($active) && $active == 'systems') ? 'active' : '' }}}'>{{ Link_to('systems', 'Systems') }}</li>
-                                    <li class='{{{ (isset($active) && $active == 'scripts') ? 'active' : '' }}}'>{{ Link_to('scripts', 'Scripts') }}</li>
-                                    <li class='{{{ (isset($active) && $active == 'projects') ? 'active' : '' }}}'>{{ Link_to('projects', 'Projects') }}</li>
-                                </ul>
-                                {{ Form::open(['route' => 'search.store', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}
-                                    <div class="form-group">
-                                        {{ Form::text('q', null, ['class' => 'form-control', 'placeholder' => 'Search']) }}
-                                    </div>
-                                    <button type="submit" class="btn btn-default">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                        Search
-                                    </button>
-                                {{ Form::close() }}
-                                <ul class='nav navbar-nav'>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            @foreach(Tag::all() as $tag)
-                                            <li>{{ link_to('tags/'.$tag->tag, $tag->tag) }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li class='{{{ (isset($active) && $active == 'home') ? 'active' : '' }}}'>{{ Link_to('/', 'Home') }}</li>
-                                    <li class='{{{ (isset($active) && $active == 'about') ? 'active' : '' }}}'>{{ Link_to('about', 'About') }}</li>                               
-                                    @if (Auth::check())
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->username }} <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li>{{ link_to('profile', 'Profile') }}</li>
-                                            <li>{{ link_to('#', 'Settings') }}</li>
-                                            <li class="divider"></li>
-                                            <li>{{ Link_to('logout', 'Logout') }}</li>
-                                        </ul>
-                                    </li>
-                                    @else
-                                    <li class='{{{ (isset($active) && $active == 'register') ? 'active' : '' }}}'>{{ Link_to('register', 'Register') }}</li>
-                                    <li class='{{{ (isset($active) && $active == 'login') ? 'active' : '' }}}'>{{ Link_to('login', 'Login') }}</li>
-                                    @endif
-                                </ul>
+                    <ul class="nav navbar-nav">
+                        <li class='{{{ (isset($active) && $active == 'systems') ? 'active' : '' }}}'>{{ Link_to('systems', 'Systems') }}</li>
+                        <li class='{{{ (isset($active) && $active == 'scripts') ? 'active' : '' }}}'>{{ Link_to('scripts', 'Scripts') }}</li>
+                        <li class='{{{ (isset($active) && $active == 'projects') ? 'active' : '' }}}'>{{ Link_to('projects', 'Projects') }}</li>
+                    </ul>
+                    {{ Form::open(['route' => 'search.store', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}
+                        <div class="form-group">
+                            {{ Form::text('q', null, ['class' => 'form-control', 'placeholder' => 'Search']) }}
+                        </div>
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search"></span>
+                            Search
+                        </button>
+                    {{ Form::close() }}
+                    <ul class='nav navbar-nav'>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                @foreach(Tag::all() as $tag)
+                                <li>{{ link_to('tags/'.$tag->tag, $tag->tag) }}</li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class='nav navbar-nav'>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grades <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                @foreach(Grade::all() as $grade)
+                                <li>{{ link_to('grade/'.$grade->grade, $grade->grade) }}</li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class='{{{ (isset($active) && $active == 'home') ? 'active' : '' }}}'>{{ Link_to('/', 'Home') }}</li>
+                        <li class='{{{ (isset($active) && $active == 'about') ? 'active' : '' }}}'>{{ Link_to('about', 'About') }}</li>
+                        @if (Auth::check())
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->username }} <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>{{ link_to('profile', 'Profile') }}</li>
+                                <li>{{ link_to('#', 'Settings') }}</li>
+                                <li class="divider"></li>
+                                <li>{{ Link_to('logout', 'Logout') }}</li>
+                            </ul>
+                        </li>
+                        @else
+                        <li class='{{{ (isset($active) && $active == 'register') ? 'active' : '' }}}'>{{ Link_to('register', 'Register') }}</li>
+                        <li class='{{{ (isset($active) && $active == 'login') ? 'active' : '' }}}'>{{ Link_to('login', 'Login') }}</li>
+                        @endif
+                    </ul>
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>

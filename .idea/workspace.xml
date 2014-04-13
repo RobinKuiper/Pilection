@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa23518c-43d1-4c32-8c43-4f77bd7ecc6d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/grades/index.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/tags/index.blade.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/GradesController.php" afterPath="$PROJECT_DIR$/app/controllers/GradesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/ItemsController.php" afterPath="$PROJECT_DIR$/app/controllers/ItemsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Tag.php" afterPath="$PROJECT_DIR$/app/models/Tag.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/TagsController.php" afterPath="$PROJECT_DIR$/app/controllers/TagsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/breadcrumbs.php" afterPath="$PROJECT_DIR$/app/breadcrumbs.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rpios.iws" />
@@ -35,7 +29,7 @@
       <file leaf-file-name="GradesController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/GradesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="673" selection-end="673" vertical-scroll-proportion="-12.5" vertical-offset="105" max-vertical-offset="1515">
+            <state line="27" column="0" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="1515">
               <folding />
             </state>
           </provider>
@@ -44,7 +38,7 @@
       <file leaf-file-name="ItemsController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/ItemsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="28" selection-start="851" selection-end="851" vertical-scroll-proportion="-10.625" vertical-offset="180" max-vertical-offset="2700">
+            <state line="29" column="28" selection-start="851" selection-end="851" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="2700">
               <folding />
             </state>
           </provider>
@@ -53,16 +47,25 @@
       <file leaf-file-name="Grade.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/Grade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="5" selection-start="349" selection-end="349" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="330">
+            <state line="15" column="5" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="330">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="breadcrumbs.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="breadcrumbs.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/breadcrumbs.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="44" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.6873977" vertical-offset="90" max-vertical-offset="960">
+            <state line="50" column="0" selection-start="1494" selection-end="1494" vertical-scroll-proportion="-30.291666" vertical-offset="23" max-vertical-offset="960">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="20" selection-start="135" selection-end="135" vertical-scroll-proportion="0.14047867" vertical-offset="0" max-vertical-offset="961">
               <folding />
             </state>
           </provider>
@@ -115,6 +118,7 @@
         <option value="$PROJECT_DIR$/app/controllers/GradesController.php" />
         <option value="$PROJECT_DIR$/app/controllers/ItemsController.php" />
         <option value="$PROJECT_DIR$/app/breadcrumbs.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -514,7 +518,6 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3299595" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16280323" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -526,6 +529,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3299595" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -548,6 +552,27 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/controllers/ItemsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="28" selection-start="851" selection-end="851" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="2700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Grade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="5" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="330">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/breadcrumbs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="44" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="960">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/items/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="88" column="14" selection-start="2304" selection-end="2304" vertical-scroll-proportion="0.0" vertical-offset="623" max-vertical-offset="1695">
@@ -588,9 +613,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="42" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="480">
-          <folding />
-        </state>
+        <state line="26" column="42" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="480" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/routes.php">
@@ -641,9 +664,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="42" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
-          <folding />
-        </state>
+        <state line="26" column="42" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/search/store.blade.php">
@@ -701,16 +722,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_04_13_095317_add_type_to_ratings.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="36" selection-start="303" selection-end="303" vertical-scroll-proportion="0.22411953" vertical-offset="0" max-vertical-offset="937">
-          <folding />
-        </state>
+        <state line="15" column="36" selection-start="303" selection-end="303" vertical-scroll-proportion="0.22411953" vertical-offset="0" max-vertical-offset="937" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pages/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="32" selection-start="2688" selection-end="2688" vertical-scroll-proportion="0.86446106" vertical-offset="420" max-vertical-offset="1800">
-          <folding />
-        </state>
+        <state line="82" column="32" selection-start="2688" selection-end="2688" vertical-scroll-proportion="0.86446106" vertical-offset="420" max-vertical-offset="1800" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/AjaxController.php">
@@ -750,16 +767,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_04_08_123338_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="961">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="961" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_04_13_105835_create_grades_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="45" selection-start="342" selection-end="342" vertical-scroll-proportion="0.24012807" vertical-offset="0" max-vertical-offset="937">
-          <folding />
-        </state>
+        <state line="16" column="45" selection-start="342" selection-end="342" vertical-scroll-proportion="0.24012807" vertical-offset="0" max-vertical-offset="937" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_04_13_105858_add_grade_to_items.php">
@@ -814,29 +827,27 @@
     <entry file="file://$PROJECT_DIR$/app/models/Tag.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="56" column="45" selection-start="1827" selection-end="1827" vertical-scroll-proportion="0.7119476" vertical-offset="405" max-vertical-offset="1155">
-          <folding>
-            <marker date="1397397796821" expanded="true" signature="-1:-1" placeholder="select * fro..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/ItemsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="28" selection-start="851" selection-end="851" vertical-scroll-proportion="-10.625" vertical-offset="180" max-vertical-offset="2700">
+        <state line="29" column="28" selection-start="851" selection-end="851" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="2700">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/GradesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="673" selection-end="673" vertical-scroll-proportion="-12.5" vertical-offset="105" max-vertical-offset="1515">
+        <state line="27" column="0" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="1515">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Grade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="5" selection-start="349" selection-end="349" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="330">
+        <state line="15" column="5" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="330">
           <folding />
         </state>
       </provider>
@@ -850,7 +861,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/breadcrumbs.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="44" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.6873977" vertical-offset="90" max-vertical-offset="960">
+        <state line="50" column="0" selection-start="1494" selection-end="1494" vertical-scroll-proportion="-30.291666" vertical-offset="23" max-vertical-offset="960">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="20" selection-start="135" selection-end="135" vertical-scroll-proportion="0.14047867" vertical-offset="0" max-vertical-offset="961">
           <folding />
         </state>
       </provider>

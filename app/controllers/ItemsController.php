@@ -83,7 +83,11 @@ class ItemsController extends \BaseController
      */
     public function show($type, $id)
     {
-        $item = $this->item->findOrFail($id);
+        if (preg_match('/^[1-9][0-9]*$/', $id)):
+            $item = $this->item->findOrFail($id);
+        else:
+            $item = $this->item->where('title', '=', $id)->first();
+        endif;
 
         // Update viewcount
         $item->viewcount = $this->views->updateViews($id, $type, 1);

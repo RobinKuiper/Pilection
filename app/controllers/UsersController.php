@@ -39,7 +39,7 @@ class UsersController extends \BaseController
     public function show($id)
     {
         if (preg_match('/^[1-9][0-9]*$/', $id)):
-            $user = $this->user->find($id);;
+            $user = $this->user->findOrFail($id);
         else:
             $user = $this->user->where('username', '=', $id)->first();
         endif;

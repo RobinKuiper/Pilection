@@ -28,14 +28,14 @@
 
         <div class="row border-bottom margin-bottom-10 padding-bottom-10">
             <div class="col-md-2">
-                <a href='{{ $item->type }}/{{ $item->id }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
+                <a href='{{ route('items.show', [$item->type, $item->title]) }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
                     $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
             </div>
 
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-md-10">
-                        <h3>{{ link_to("$item->type/$item->id", $item->title) }}</h3>
+                        <h3>{{ link_to(route('items.show', [$item->type, $item->title]), $item->title) }}</h3>
                     </div>
 
                     <div class="col-md-2">

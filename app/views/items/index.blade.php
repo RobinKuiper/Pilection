@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="row margin-bottom-40">
+<div class="row margin-bottom-20">
     <div class="col-md-2">
         <h2>{{ Str::title($title) }}</h2>
     </div>
@@ -18,99 +18,118 @@
     </div>
 </div>
 
-<div class="row margin-bottom-20">
-    @if(Route::currentRouteName() != 'items.index')
-    <span style="font-weight: 900;">Type: </span>
-    <a href="#" class="filter btn btn-default" data-filter=".systems">Systems</a>
-    <a href="#" class="filter btn btn-default" data-filter=".scripts">Scripts</a>
-    <a href="#" class="filter btn btn-default" data-filter=".projects">Projects</a>
-    @endif
+<div class="row">
+    <div class="col-md-2">
 
-    @if(Route::currentRouteName() != 'tags.index')
-    <span style="font-weight: 900;">Tag: </span>
-    <a href="#" class="filter btn btn-default" data-filter="all">Show All</a>
-    @foreach(Tag::all() as $tag)
-    <a href="#" class="filter btn btn-default" data-filter=".{{ $tag->tag }}">{{ $tag->tag }}</a>
-    @endforeach
-    @endif
-
-    @if(Route::currentRouteName() != 'grades.index')
-    <span style="font-weight: 900;">Grade: </span>
-    @foreach(Grade::all() as $grade)
-    <a href="#" class="filter btn btn-default" data-filter=".{{ $grade->grade }}">{{ $grade->grade }}</a>
-    @endforeach
-    @endif
-
-    <!--<span style="font-weight: 900;">Sort: </span>
-    <a class="sort btn btn-default" href="#" data-sort="Default">Default</a>
-    <a class="sort btn btn-default" href="#" data-sort="myorder:asc">Asc</a>
-    <a class="sort btn btn-default" href="#" data-sort="myorder:desc">Desc</a>
-    <a class="sort btn btn-default" href="#" data-sort="random">Random</a>-->
-</div>
-
-<!--
-<div class="sort" data-sort="default">Default</div>
-<div class="sort" data-sort="myorder:asc">Ascending</div>
-<div class="sort" data-sort="myorder:desc">Descending</div>
-<div class="sort" data-sort="random">Random</div>
--->
-
-<div id="MixIt">
-@if(count($items) > 0)
-    @foreach($items as $item)
-
-        @if ($item->image == null)
-            {? $path = 'images/' ?}
-            {? $item->image = 'system_default.png' ?}
-        @else {? $path = 'upload/items/images/' ?}
-        @endif
-
-        {? $tags = '' ?}
-        @foreach(Tag::getTagsByItem($item->id) as $tag)
-            {? $tags .= $tag->tag.' ' ?}
-        @endforeach
-
-        {? $grades = '' ?}
-        @foreach(Grade::getGradeByItem($item->id) as $grade)
-            {? $grades .= $grade->grade.' ' ?}
-        @endforeach
-
-        <div data-myorder="{{ $item->id }}" class="mix {{ $item->type }} {{ $tags }} {{ $grades }} row border-bottom margin-bottom-10 padding-bottom-10">
-            <div class="col-md-2">
-                <a href='{{ route('items.show', [$item->type, $item->title]) }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
-                    $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Filters</div>
             </div>
+            <div class="panel-body">
+                <nav>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#" class="filter" data-filter="all">Show All</a></li>
+                    </ul>
+                </nav>
 
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-10">
-                        <h3>{{ link_to(route('items.show', [$item->type, $item->title]), $item->title) }}</h3>
-                    </div>
+                @if(Route::currentRouteName() != 'items.index')
+                <nav>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li style="font-weight: 900">Type</li>
+                        <li><a href="#" class="filter" data-filter=".systems">Systems</a></li>
+                        <li><a href="#" class="filter" data-filter=".scripts">Scripts</a></li>
+                        <li><a href="#" class="filter" data-filter=".projects">Projects</a></li>
+                    </ul>
+                </nav>
+                @endif
 
-                    <div class="col-md-2">
-                        <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
-                             data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
-                        <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, $item->type) }}</span>
-                        <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
-                    </div>
-                </div>
+                @if(Route::currentRouteName() != 'tags.index')
+                <nav>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li style="font-weight: 900">Tag</li>
+                        @foreach(Tag::all() as $tag)
+                        <li><a href="#" class="filter" data-filter=".{{ $tag->tag }}">{{ $tag->tag }}</a></li>
+                        @endforeach
+                    </ul>
+                </nav>
+                @endif
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <p>{{{ Str::words($item->body, 50, $end = '...') }}}</p>
-                    </div>
-                </div>
+                @if(Route::currentRouteName() != 'grades.index')
+                <nav>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li style="font-weight: 900">Grade</li>
+                        @foreach(Grade::all() as $grade)
+                        <li><a href="#" class="filter" data-filter=".{{ $grade->grade }}">{{ $grade->grade }}</a></li>
+                        @endforeach
+                    </ul>
+                </nav>
+                @endif
             </div>
-        </div>
-    @endforeach
-@else
-    <div class="row">
-        <div class="col-md-12">
-            <p>There aren't any {{ $type }} currently. {{ link_to($type.'/create', 'Create') }} one!</p>
         </div>
     </div>
-@endif
+
+    <div class="col-md-10">
+        <div id="MixIt">
+            @if(count($items) > 0)
+            @foreach($items as $item)
+
+            @if ($item->image == null)
+            {? $path = 'images/' ?}
+            {? $item->image = 'system_default.png' ?}
+            @else {? $path = 'upload/items/images/' ?}
+            @endif
+
+            {? $tags = '' ?}
+            @foreach(Tag::getTagsByItem($item->id) as $tag)
+            {? $tags .= $tag->tag.' ' ?}
+            @endforeach
+
+            {? $grades = '' ?}
+            @foreach(Grade::getGradeByItem($item->id) as $grade)
+            {? $grades .= $grade->grade.' ' ?}
+            @endforeach
+
+            <div data-myorder="{{ $item->id }}" class="mix {{ $item->type }} {{ $tags }} {{ $grades }} row border-bottom margin-bottom-10 padding-bottom-10">
+                <div class="col-md-2">
+                    <a href='{{ route('items.show', [$item->type, $item->title]) }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
+                    $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
+                </div>
+
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h3>{{ link_to(route('items.show', [$item->type, $item->title]), $item->title) }}</h3>
+                            <p>{{{ Str::words($item->body, 50, $end = '...') }}}</p>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
+                                 data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
+                            <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, $item->type) }}</span>
+                            <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
+                        </div>
+                    </div>
+
+                    <!--<div class="row">
+                        <div class="col-md-12">
+
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            @endforeach
+            @else
+            <div class="row">
+                <div class="col-md-12">
+                    <p>There aren't any {{ $type }} currently. {{ link_to($type.'/create', 'Create') }} one!</p>
+                </div>
+            </div>
+            @endif
+        </div>
+    </div>
 </div>
+
+
 @stop
 
 @section('footer')

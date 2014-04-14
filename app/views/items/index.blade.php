@@ -57,26 +57,20 @@
 <script>
     $('.rating').raty({
         half: true,
-        path: '{{ url('js / vendor / raty
-    ') }}',
-        readOnly
-    :
-    function () {
+        path: '{{ url('js/vendor/raty') }}',
+        readOnly: function(){
         return $(this).attr('data-voted');
-    }
-    ,
-    score: function () {
+    },
+    score: function(){
         return $(this).attr('data-score');
-    }
-    ,
-    click: function (score, evt) {
+    },
+    click: function(score, evt) {
         var id = $(this).attr('id'), type = $(this).attr('data-type');
-        $.get('/ajax/getRating', { id: id, score: score, type: type }, function (data) {
+        $.get( '/ajax/getRating', { id: id, score: score, type: type }, function( data ) {
             alert(data);
         });
     }
-    })
-    ;
+    });
 </script>
 
 <script type="text/javascript">
@@ -85,8 +79,7 @@
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function () {
-        var s = document.createElement('script');
-        s.async = true;
+        var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';
         s.src = '//' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);

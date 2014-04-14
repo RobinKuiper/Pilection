@@ -22,8 +22,7 @@
 
     </div>
     <div class='col-md-1'>
-        {{ Form::open(['url' => $type.'/'.$item->id.'/destroy', 'class' => '', 'role' => 'form', 'method' => 'delete'])
-        }}
+        {{ Form::open(['url' => $type.'/'.$item->id.'/destroy', 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
         <button type="submit" class="btn btn-danger">
             <span class="glyphicon glyphicon-remove"></span>
             Remove
@@ -87,48 +86,20 @@
 <script>
     $('#rating').raty({
         half: true,
-        readOnly: {
-    {
-        ($item - > voted) ? 'true' : 'false'
-    }
-    },
-    path: '{{ url('
-    js / vendor / raty
-    ') }}',
-        score
-    :
-    {
-        {
-            $item - > rating
-        }
-    }
-    ,
+        readOnly: {{ ($item->voted) ? 'true' : 'false' }},
+    path: '{{ url('js/vendor/raty') }}',
+        score: {{ $item->rating }},
     size: 24,
-        starHalf
-    :
-    'star-half-big.png',
-        starOff
-    :
-    'star-off-big.png',
-        starOn
-    :
-    'star-on-big.png',
-        click
-    :
-    function (score, evt) {
-        var id = {
-        {
-            $item - > id
-        }
-    }
-    ,
-    type = '{{ $type }}';
-    $.get('/ajax/getRating', { id: id, score: score, type: type }, function (data) {
+        starHalf: 'star-half-big.png',
+        starOff: 'star-off-big.png',
+        starOn: 'star-on-big.png',
+        click: function(score, evt) {
+        var id = {{ $item->id }}, type = '{{ $type }}';
+    $.get( '/ajax/getRating', { id: id, score: score, type: type }, function( data ) {
         alert(data);
     });
     }
-    })
-    ;
+    });
 </script>
 
 <script type="text/javascript">
@@ -136,15 +107,12 @@
     var disqus_shortname = 'rpios'; // required: replace example with your forum shortname
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-</noscript>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 @stop

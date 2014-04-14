@@ -4,6 +4,11 @@ Breadcrumbs::register('home', function ($breadcrumbs) {
     $breadcrumbs->push('Home', '/');
 });
 
+Breadcrumbs::register('search', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Search Results', '/');
+});
+
 Breadcrumbs::register('login', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Login', route('sessions.create'));

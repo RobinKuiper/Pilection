@@ -16,7 +16,7 @@ class AjaxController extends \BaseController
 
         if ($count == 0) {
             Rating::create($rating);
-            echo "Your vote is save, thank you!";
+            echo "Your vote is saved, thank you!";
         } else
             echo "You have already voted on this item.";
     }

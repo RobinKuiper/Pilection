@@ -36,6 +36,7 @@ class Tag extends Eloquent
         endforeach;
     }
 
+    /* REWRITTEN BELOW
     public function getTagsByItem($id)
     {
         $tag_ids = DB::table('items-tags')->select('tag_id')->where('item_id', '=', $id)->get();
@@ -43,6 +44,21 @@ class Tag extends Eloquent
         foreach ($tag_ids as $tag_id):
             $tags[] = $this->select('tag')->where('id', '=', $tag_id->tag_id)->first();
         endforeach;
+
+        return $tags;
+    }
+    */
+
+    public function getTagsByItem($id)
+    {
+        $tags = DB::table('tags')
+            ->join('items-tags', 'items-tags.tag_id', '=', 'tags.id')
+            ->join('items', function ($join) use ($id) {
+                $join->on('items.id', '=', 'items-tags.item_id')
+                    ->where('items.id', '=', $id);
+            })
+            ->select('tags.tag')
+            ->get();
 
         return $tags;
     }

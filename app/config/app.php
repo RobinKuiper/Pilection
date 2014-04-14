@@ -109,6 +109,7 @@ return array(
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
         //'Cartalyst\Sentry\SentryServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
+        'Frozennode\Administrator\AdministratorServiceProvider',
 
     ),
 

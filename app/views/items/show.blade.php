@@ -4,46 +4,46 @@
 {{ Breadcrumbs::render('item', $item, $type) }}
 @stop
 
-<style>span.icons{ margin-right: 8px; }</style>
-
 @section('content')
 <div class='row margin-bottom-40'>
-    <div class='col-md-1'>
-        <span>{{ HTML::image($item->path.$item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
-    </div>
-    <div class='col-md-10'>
-        <div class="row">
-            <div class='col-md-5'>
-                <h2>{{ $item->title }}</h2>
-                <p>Posted by {{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}
-                at {{ date("d-m-Y H:i", strtotime($item->created_at)) }}</p>
-                <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ $item->viewcount }}</span>
-                <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("$item->type/$item->id#disqus_thread", '0') }}</span>
-                <span class="icons" id="rating"></span>
+    <div class="col-md-9">
+        <div class="row border-bottom margin-bottom-40 padding-bottom-10">
+            <div class='col-md-2'>
+                <span>{{ HTML::image($item->path.$item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
             </div>
+            <div class='col-md-10'>
+                <div class="row">
+                    <div class='col-md-6'>
+                        <h2>{{ $item->title }}</h2>
+                        <p>Posted by {{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}
+                        at {{ date("d-m-Y H:i", strtotime($item->created_at)) }}</p>
+                        <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ $item->viewcount }}</span>
+                        <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("$item->type/$item->id#disqus_thread", '0') }}</span>
+                        <span class="icons" id="rating"></span>
+                    </div>
 
-            <div class="col-md-6">
-                @if( Auth::check() && Auth::user()->id == $item->user_id )>
-                    {{ Form::open(['url' => $type.'/'.$item->id.'/destroy', 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
-                    <a href="{{ $item->id }}/edit" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-edit"></span>
-                        Edit
-                    </a>
+                    <div>
+                        @if( Auth::check() && Auth::user()->id == $item->user_id )>
+                            {{ Form::open(['url' => $type.'/'.$item->id.'/destroy', 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
+                            <a href="{{ $item->id }}/edit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                Edit
+                            </a>
 
-                    <button type="submit" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-remove"></span>
-                        Remove
-                    </button>
-                    {{ Form::close() }}
-                @endif
+                            <button type="submit" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                Remove
+                            </button>
+                            {{ Form::close() }}
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-9">
-        <article>{{ $item->body }}</article>
+        <div class="row">
+            <article>{{ $item->body }}</article>
+        </div>
     </div>
 
     <div class="col-md-3">

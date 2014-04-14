@@ -5,50 +5,62 @@
 @stop
 
 @section('content')
-<h2>{{ Str::title($title) }}</h2>
+<div class="row margin-bottom-40">
+    <div class="col-md-2">
+        <h2>{{ Str::title($title) }}</h2>
+    </div>
 
-@if(Auth::check() && isset($type))
-<div class='row'>
-    <div class='col-md-12 text-right margin-bottom-40'>
+    <div class="col-md-10 text-right">
+        @if(Auth::check() && isset($type))
         {{ link_to($type.'/create', 'Post new', ['class' => 'btn btn-success']) }}
+        @endif
     </div>
 </div>
-@endif
 
-<table class="table table-striped table-hover">
-    <tbody>
-    @if(count($items) > 0)
+@if(count($items) > 0)
     @foreach($items as $item)
-    @if ($item->image == null)
-    {? $path = 'images/' ?}
-    {? $item->image = 'system_default.png' ?}
-    @else {? $path = 'upload/items/images/' ?}
-    @endif
-    <tr>
-        <td>
-            <a href='{{ $item->type }}/{{ $item->id }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
-                $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
-        </td>
-        <td>
-            <h3> {{ link_to("$item->type/$item->id", $item->title) }} </h3>
 
-            <p> {{ Str::words($item->body, 50, $end = '...') }} </p>
-        </td>
-        <td>
-            <div id="{{ $item->id }}" class="rating" data-score="{{ Rating::getRatingForItem($item->id) }}"
-                 data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
-        </td>
-        <td><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, $item->type) }}</td>
-        <td>{{ link_to("systems/$item->id#disqus_thread", '0 comments') }}</td>
-    </tr>
+        @if ($item->image == null)
+            {? $path = 'images/' ?}
+            {? $item->image = 'system_default.png' ?}
+        @else {? $path = 'upload/items/images/' ?}
+        @endif
+
+        <div class="row border-bottom margin-bottom-10 padding-bottom-10">
+            <div class="col-md-2">
+                <a href='{{ $item->type }}/{{ $item->id }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
+                    $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
+            </div>
+
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h3>{{ link_to("$item->type/$item->id", $item->title) }}</h3>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
+                             data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
+                        <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, $item->type) }}</span>
+                        <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>{{{ Str::words($item->body, 50, $end = '...') }}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endforeach
-    @else
-    <tr>
-        <td>There aren't any {{ $type }} currently. {{ link_to($type.'/create', 'Create') }} one!</td>
-    </tr>
-    @endif
-    </tbody>
-</table>
+@else
+    <div class="row">
+        <div class="col-md-12">
+            <p>There aren't any {{ $type }} currently. {{ link_to($type.'/create', 'Create') }} one!</p>
+        </div>
+    </div>
+@endif
 @stop
 
 @section('footer')

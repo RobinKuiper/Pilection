@@ -10,7 +10,15 @@
     @yield('header')
 </head>
 
-<body>
+<body style="padding-top: 30px;">
+
+<style>
+    header{
+        position:fixed;
+        top: 0px;
+        width:100%;
+    }
+</style>
 
 <header>
     <nav class="navbar navbar-inverse" role="navigation">

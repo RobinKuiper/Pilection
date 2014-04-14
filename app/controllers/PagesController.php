@@ -12,15 +12,15 @@ class PagesController extends BaseController
 
     public function home()
     {
-        $items['systems']['latest'] = Item::where('type', '=', 'systems')->latest()->take(5)->get();
-        $items['scripts']['latest'] = Item::where('type', '=', 'scripts')->latest()->take(5)->get();
-        $items['projects']['latest'] = Item::where('type', '=', 'projects')->latest()->take(5)->get();
+        $items['systems']['latest'] = Item::where('type', '=', 'systems')->latest()->take(3)->get();
+        $items['scripts']['latest'] = Item::where('type', '=', 'scripts')->latest()->take(3)->get();
+        $items['projects']['latest'] = Item::where('type', '=', 'projects')->latest()->take(3)->get();
 
-        $items['systems']['top'] = $this->rating->getRatingByType('systems');
+        /*$items['systems']['top'] = $this->rating->getRatingByType('systems');
         $items['scripts']['top'] = $this->rating->getRatingByType('scripts');
-        $items['projects']['top'] = $this->rating->getRatingByType('projects');
+        $items['projects']['top'] = $this->rating->getRatingByType('projects');*/
 
-        return View::make('pages/home', ['active' => 'home', 'items' => $items]);
+        return View::make('pages/home2', ['active' => 'home', 'items' => $items]);
     }
 
     public function about()

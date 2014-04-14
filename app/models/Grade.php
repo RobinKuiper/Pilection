@@ -18,6 +18,19 @@ class Grade extends Eloquent
     }
     */
 
+    public static function getGradeByItem($id)
+    {
+        $tags = DB::table('grades')
+            ->join('items', function ($join) use ($id) {
+                $join->on('items.grade', '=', 'grades.id')
+                    ->where('items.id', '=', $id);
+            })
+            ->select('grades.grade')
+            ->get();
+
+        return $tags;
+    }
+
     public function getItemsByGrade($grade)
     {
         $items = DB::table('items')

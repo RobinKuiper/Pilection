@@ -100,7 +100,7 @@ class ItemsController extends \BaseController
             $item->image = 'system_default.png';
         } else $item->path = 'upload/items/images/';
 
-        $item->tags = $this->tag->getTagsByItem($id);
+        $item->tags = $this->tag->getTagsByItem($item->id);
         $item->rating = $this->rating->getRatingForItem($id);
         $item->voted = $this->rating->voted($id);
 

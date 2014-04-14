@@ -39,3 +39,7 @@ h3{ border-bottom: 1px solid #ddd; }
     width: 400px;
     margin: 0 auto;
 }
+
+#MixIt .mix{
+    display: none;
+}

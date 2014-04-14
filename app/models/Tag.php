@@ -49,7 +49,7 @@ class Tag extends Eloquent
     }
     */
 
-    public function getTagsByItem($id)
+    public static function getTagsByItem($id)
     {
         $tags = DB::table('tags')
             ->join('items-tags', 'items-tags.tag_id', '=', 'tags.id')

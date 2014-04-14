@@ -57,7 +57,7 @@ return array(
             'host' => 'localhost',
             'database' => 'rpios',
             'username' => 'robin',
-            'password' => '',
+            'password' => 'Ro1988bin',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',

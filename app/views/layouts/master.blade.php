@@ -10,13 +10,14 @@
     @yield('header')
 </head>
 
-<body style="padding-top: 30px;">
+<body style="padding-top: 70px;">
 
 <style>
     header{
         position:fixed;
         top: 0px;
         width:100%;
+        z-index: 99;
     }
 </style>
 

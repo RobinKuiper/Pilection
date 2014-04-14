@@ -4,76 +4,81 @@
 {{ Breadcrumbs::render('item', $item, $type) }}
 @stop
 
+<style>span.icons{ margin-right: 8px; }</style>
+
 @section('content')
 <div class='row margin-bottom-40'>
     <div class='col-md-1'>
         <span>{{ HTML::image($item->path.$item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
     </div>
-    <div class='col-md-4'>
-        <h2>{{ $item->title }}</h2>
-    </div>
+    <div class='col-md-10'>
+        <div class="row">
+            <div class='col-md-5'>
+                <h2>{{ $item->title }}</h2>
+                <p>Posted by {{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}
+                at {{ date("d-m-Y H:i", strtotime($item->created_at)) }}</p>
+                <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ $item->viewcount }}</span>
+                <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("$item->type/$item->id#disqus_thread", '0') }}</span>
+                <span class="icons" id="rating"></span>
+            </div>
 
-    @if( Auth::check() && Auth::user()->id == $item->user_id )
-    <div class='col-md-1'>
-        <a href="{{ $item->id }}/edit" class="btn btn-primary">
-            <span class="glyphicon glyphicon-edit"></span>
-            Edit
-        </a>
+            <div class="col-md-6">
+                @if( Auth::check() && Auth::user()->id == $item->user_id )>
+                    {{ Form::open(['url' => $type.'/'.$item->id.'/destroy', 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
+                    <a href="{{ $item->id }}/edit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        Edit
+                    </a>
 
-    </div>
-    <div class='col-md-1'>
-        {{ Form::open(['url' => $type.'/'.$item->id.'/destroy', 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
-        <button type="submit" class="btn btn-danger">
-            <span class="glyphicon glyphicon-remove"></span>
-            Remove
-        </button>
-        {{ Form::close() }}
-    </div>
-    @endif
-</div>
-
-<div class='row margin-bottom-40'>
-    <div class='col-md-12'>
-        <p>Views: {{ $item->viewcount }}</p>
-    </div>
-</div>
-
-<div class='row margin-bottom-40'>
-    <div class='col-md-12'>
-        <article>{{ $item->body }}</article>
+                    <button type="submit" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Remove
+                    </button>
+                    {{ Form::close() }}
+                @endif
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-12">
-        <div id="rating"></div>
+    <div class="col-md-9">
+        <article>{{ $item->body }}</article>
     </div>
-</div>
 
-<div class='row margin-bottom-40'>
-    <div class='col-md-12'>
-        <p>
-            Tags:
-            @foreach($item->tags as $tag)
-            {{ link_to('tags/'.$tag->tag, $tag->tag) }},
-            @endforeach
-        </p>
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Navigation</div>
+            </div>
+            <div class="panel-body">
+                <nav>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">Install Guide</a></li>
+                        @if( !empty($item->website_url) )
+                        <li>{{ link_to($item->website_url, 'Website') }}</li>
+                        @endif
+                        @if( !empty($item->download_url) )
+                        <li>{{ link_to($item->download_url, 'Download') }}</li>
+                        @endif
+                        <li><a href="#">Kutlink</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Tags</div>
+            <div class="panel-bod">
+                <nav>
+                    <ul class="nav nav-pills nav-stacked">
+                        @foreach($item->tags as $tag)
+                        <li>{{ link_to('tags/'.$tag->tag, $tag->tag) }}</li>
+                        @endforeach
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
-</div>
-
-
-<div class='row margin-bottom-40'>
-    @if( !empty($item->download_url) )
-    <div class='col-md-1'>
-        {{ link_to($item->download_url, 'Download', ['class' => 'btn btn-success']) }}
-    </div>
-    @endif
-
-    @if( !empty($item->website_url) )
-    <div class='col-md-1'>
-        {{ link_to($item->website_url, 'Website', ['class' => 'btn btn-primary']) }}
-    </div>
-    @endif
 </div>
 
 <div id="disqus_thread"></div>
@@ -84,17 +89,13 @@
 {{ HTML::script('js/vendor/raty/jquery.raty.js') }}
 
 <script>
-    $('#rating').raty({
+$('#rating').raty({
         half: true,
         readOnly: {{ ($item->voted) ? 'true' : 'false' }},
-    path: '{{ url('js/vendor/raty') }}',
+        path: '{{ url('js/vendor/raty') }}',
         score: {{ $item->rating }},
-    size: 24,
-        starHalf: 'star-half-big.png',
-        starOff: 'star-off-big.png',
-        starOn: 'star-on-big.png',
         click: function(score, evt) {
-        var id = {{ $item->id }}, type = '{{ $type }}';
+    var id = {{ $item->id }}, type = '{{ $type }}';
     $.get( '/ajax/getRating', { id: id, score: score, type: type }, function( data ) {
         alert(data);
     });

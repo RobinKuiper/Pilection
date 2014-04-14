@@ -17,10 +17,10 @@ Route::get('profile', ['as' => 'users.show', 'uses' => 'UsersController@index'])
 Route::get('profile/{id}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 Route::get('register', ['as' => 'users.create', 'uses' => 'UsersController@create']);
 
-Route::get('password/store', ['as' => 'passwords.store', 'as' => 'PasswordController@store']);
-Route::get('password/forgot', ['as' => 'passwords.create', 'as' => 'PasswordController@create']);
-Route::get('password/reset/{token}', ['as' => 'passwords.edit', 'as' => 'PasswordController@edit']);
-Route::post('password/{token}/update', ['as' => 'passwords.update', 'as' => 'PasswordController@update']);
+Route::get('password/store', ['as' => 'passwords.store', 'uses' => 'PasswordController@store']);
+Route::get('password/forgot', ['as' => 'passwords.create', 'uses' => 'PasswordController@create']);
+Route::get('password/reset/{token}', ['as' => 'passwords.edit', 'uses' => 'PasswordController@edit']);
+Route::post('password/{token}/update', ['as' => 'passwords.update', 'uses' => 'PasswordController@update']);
 
 Route::get('ajax/getRating', 'AjaxController@getRating');
 

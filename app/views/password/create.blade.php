@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-{{ Form::open(['route' => 'password.store', 'role' => 'form']) }}
+{{ Form::open(['route' => 'passwords.store', 'role' => 'form']) }}
 <h2 class="form-signin-heading">Forgot Password</h2>
 
 <div class="form-group">

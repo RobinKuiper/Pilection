@@ -21,6 +21,9 @@
     {{ Form::label('remember', 'Remember me ') }}
 </div>
 
-{{ Form::submit('Login', array('class'=>'btn btn-large btn-primary btn-block'))}}
+<div class="form-group">
+    {{ Form::submit('Login', array('class'=>'btn btn-large btn-primary btn-block'))}}
+    <p>{{ link_to(route('users.create'), 'Register') }} | {{ link_to(route('passwords.create'), 'Forgot Password?') }}</p>
+</div>
 {{ Form::close() }}
 @stop

@@ -54,7 +54,7 @@ Breadcrumbs::register('user', function ($breadcrumbs, $user) {
 Breadcrumbs::register('forgot-password', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
 
-    $breadcrumbs->push('Forgot Password', route('password.create'));
+    $breadcrumbs->push('Forgot Password', route('passwords.create'));
 });
 
 Breadcrumbs::register('reset-password', function ($breadcrumbs) {

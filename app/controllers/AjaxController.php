@@ -28,7 +28,7 @@ class AjaxController extends \BaseController
         $search = Item::whereRaw("match(title) against('+{$q}*' IN BOOLEAN MODE)")->get();
 
         foreach( $search as $results => $item):
-            $items[] = ['id' => $item->id, 'value' => $item->title];
+            $items[] = ['id' => $item->id, 'value' => $item->title, 'type' => $item->type];
         endforeach;
 
         return json_encode($items);

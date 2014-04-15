@@ -126,7 +126,8 @@
         source: '{{ route('ajax.gettags') }}',
         minLength: 2,
         select: function( event, ui ){
-            $('#title').val( ui.item.id );
+            window.location.replace("/" + ui.item.type + "/" + ui.item.value);
+            //console.log("/" + ui.item.type + "/" + ui.item.value);
         }
     });
 </script>

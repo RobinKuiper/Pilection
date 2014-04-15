@@ -110,7 +110,7 @@ class UsersController extends \BaseController
 
         $this->settings->saveDefaults($user->id);
 
-        return Redirect::to('login')
+       return Redirect::to('login')
             ->with('message', 'Thanks for registering!')
             ->with('alert_class', 'alert-success');
     }

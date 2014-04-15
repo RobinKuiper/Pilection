@@ -12,7 +12,7 @@ Route::post('sessions/store', ['as' => 'sessions.store', 'uses' => 'SessionsCont
 Route::get('login', ['as' => 'sessions.create', 'uses' => 'SessionsController@create']);
 Route::get('logout', ['as' => 'sessions.destroy', 'uses' => 'SessionsController@destroy']);
 
-Route::post('users/store', ['as' => 'users.store', 'uses' => 'UsersController']);
+Route::post('users/store', ['as' => 'users.store', 'uses' => 'UsersController@store']);
 Route::get('profile', ['as' => 'users.show', 'uses' => 'UsersController@index']);
 Route::get('profile/{id}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 Route::get('register', ['as' => 'users.create', 'uses' => 'UsersController@create']);

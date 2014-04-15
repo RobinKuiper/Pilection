@@ -96,7 +96,7 @@
 <script>
     new Share('.share', {
         title: '{{ $item->title }}',
-        text: '{{{ Str::words($item->body, 10, $end = '...') }}}',
+        text: '{{ Str::words($item->body, 10, $end = '...') }}',
         image: '{{ $item->path.$item->image }}',
         ui: {
             flyout: 'bottom center',

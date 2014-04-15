@@ -40,12 +40,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class='{{{ (isset($active) && $active == ' systems
-                    ') ? 'active' : '' }}}'>{{ Link_to('systems', 'Systems') }}</li>
-                    <li class='{{{ (isset($active) && $active == ' scripts
-                    ') ? 'active' : '' }}}'>{{ Link_to('scripts', 'Scripts') }}</li>
-                    <li class='{{{ (isset($active) && $active == ' projects
-                    ') ? 'active' : '' }}}'>{{ Link_to('projects', 'Projects') }}</li>
+                    <li class='{{{ (isset($active) && $active == 'systems') ? 'active' : '' }}}'>{{ Link_to('systems', 'Systems') }}</li>
+                    <li class='{{{ (isset($active) && $active == 'scripts') ? 'active' : '' }}}'>{{ Link_to('scripts', 'Scripts') }}</li>
+                    <li class='{{{ (isset($active) && $active == 'projects') ? 'active' : '' }}}'>{{ Link_to('projects', 'Projects') }}</li>
                 </ul>
                 {{ Form::open(['route' => 'search.store', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}
                 <div class="form-group">
@@ -78,10 +75,8 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class='{{{ (isset($active) && $active == ' home
-                    ') ? 'active' : '' }}}'>{{ Link_to('/', 'Home') }}</li>
-                    <li class='{{{ (isset($active) && $active == ' about
-                    ') ? 'active' : '' }}}'>{{ Link_to('about', 'About') }}</li>
+                    <li class='{{{ (isset($active) && $active == 'home') ? 'active' : '' }}}'>{{ Link_to('/', 'Home') }}</li>
+                    <li class='{{{ (isset($active) && $active == 'about') ? 'active' : '' }}}'>{{ Link_to('about', 'About') }}</li>
                     @if (Auth::check())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->username }} <b
@@ -94,10 +89,8 @@
                         </ul>
                     </li>
                     @else
-                    <li class='{{{ (isset($active) && $active == ' register
-                    ') ? 'active' : '' }}}'>{{ Link_to('register', 'Register') }}</li>
-                    <li class='{{{ (isset($active) && $active == ' login
-                    ') ? 'active' : '' }}}'>{{ Link_to('login', 'Login') }}</li>
+                    <li class='{{{ (isset($active) && $active == 'register') ? 'active' : '' }}}'>{{ Link_to('register', 'Register') }}</li>
+                    <li class='{{{ (isset($active) && $active == 'login') ? 'active' : '' }}}'>{{ Link_to('login', 'Login') }}</li>
                     @endif
                 </ul>
             </div>
@@ -126,9 +119,9 @@
         source: '{{ route('ajax.gettags') }}',
         minLength: 2,
         select: function( event, ui ){
-            window.location.replace("/" + ui.item.type + "/" + ui.item.value);
-            //console.log("/" + ui.item.type + "/" + ui.item.value);
-        }
+        window.location.replace("/" + ui.item.type + "/" + ui.item.value);
+        //console.log("/" + ui.item.type + "/" + ui.item.value);
+    }
     });
 </script>
 @yield('footer')

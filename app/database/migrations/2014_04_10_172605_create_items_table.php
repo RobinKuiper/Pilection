@@ -17,7 +17,10 @@ class CreateItemsTable extends Migration
             $table->engine = 'MyISAM';
 
             $table->increments('id');
+            $table->integer('user_id');
             $table->string('title');
+            $table->string('type');
+            $table->integer('grade');
             $table->text('body');
             $table->string('image')->nullable();
             $table->string('website_url');

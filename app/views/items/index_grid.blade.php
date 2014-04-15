@@ -113,7 +113,7 @@
                     <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->title]), $item->title) }}</div>
 
                     <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
-                    <div class="hidden-info col-md-2">{{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}</div>
+                    <div class="hidden-info col-md-2">{{ link_to(route('users.show', 'test'), User::find($item->user_id)->username) }}</div>
 
                     <div class="info col-md-2">
                         <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"

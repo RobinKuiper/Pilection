@@ -70,52 +70,33 @@
     <div class="col-md-10">
         <div id="MixIt">
             @if(count($items) > 0)
-            @foreach($items as $item)
 
-            @if ($item->image == null)
-            {? $path = 'images/' ?}
-            {? $item->image = 'system_default.png' ?}
-            @else {? $path = 'upload/items/images/' ?}
-            @endif
+                @foreach($items as $item)
 
-            {? $tags = '' ?}
-            @foreach(Tag::getTagsByItem($item->id) as $tag)
-            {? $tags .= $tag->tag.' ' ?}
-            @endforeach
+                {? $tags = '' ?}
+                @foreach(Tag::getTagsByItem($item->id) as $tag)
+                {? $tags .= $tag->tag.' ' ?}
+                @endforeach
 
-            {? $grades = '' ?}
-            @foreach(Grade::getGradeByItem($item->id) as $grade)
-            {? $grades .= $grade->grade.' ' ?}
-            @endforeach
+                {? $grades = '' ?}
+                @foreach(Grade::getGradeByItem($item->id) as $grade)
+                {? $grades .= $grade->grade.' ' ?}
+                @endforeach
 
-            <div data-myorder="{{ $item->id }}" class="mix {{ $item->type }} {{ $tags }} {{ $grades }} row border-bottom margin-bottom-10 padding-bottom-10">
-                <div class="col-md-2">
-                    <a href='{{ route('items.show', [$item->type, $item->title]) }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
-                    $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
-                </div>
-
-                <div class="col-md-10">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <h3>{{ link_to(route('items.show', [$item->type, $item->title]), $item->title) }}</h3>
-                            <p>{{{ Str::words($item->body, 20, $end = '...') }}}</p>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
-                                 data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
-                            <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, $item->type) }}</span>
-                            <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
-                        </div>
+                <div class="row">
+                    <div class="col-md-4">{{ link_to(route('items.show', [$item->type, $item->title]), $item->title) }}</div>
+                    <div class="col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
+                    <div class="col-md-2">{{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}</div>
+                    <div class="col-md-2">
+                        <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
+                             data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
                     </div>
-
-                    <!--<div class="row">
-                        <div class="col-md-12">
-
-                        </div>
-                    </div>-->
+                    <div class="col-md-2">
+                        <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, $item->type) }}</span>
+                        <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
+                    </div>
                 </div>
-            </div>
+
             @endforeach
             @else
             <div class="row">

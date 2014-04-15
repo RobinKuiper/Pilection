@@ -22,12 +22,12 @@
                         <span class="icons" id="rating"></span>
                     </div>
 
-                    <div class="col-md-1">
+                    <div class="col-md-2">
                         <span class="share"></span>
                     </div>
 
-                    <div>
-                        @if( Auth::check() && Auth::user()->id == $item->user_id )>
+                    <div class="col-md-4">
+                        @if( Auth::check() && Auth::user()->id == $item->user_id )
                             {{ Form::open(['url' => $type.'/'.$item->id.'/destroy', 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
                             <a href="{{ $item->id }}/edit" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-edit"></span>

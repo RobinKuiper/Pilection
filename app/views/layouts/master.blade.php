@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}
+    {{ HTML::style('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css') }}
     {{ HTML::style('css/main.css') }}
 
     @yield('header')
@@ -48,7 +49,8 @@
                 </ul>
                 {{ Form::open(['route' => 'search.store', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}
                 <div class="form-group">
-                    {{ Form::text('q', null, ['class' => 'form-control', 'placeholder' => 'Search']) }}
+                    {{ Form::text('q', null, ['id' => 'search', 'class' => 'form-control', 'placeholder' => 'Search']) }}
+                    {{ Form::hidden('title', Input::old('title'), ['id' => 'title']) }}
                 </div>
                 <button type="submit" class="btn btn-default">
                     <span class="glyphicon glyphicon-search"></span>
@@ -117,6 +119,17 @@
 
 {{ HTML::script('http://code.jquery.com/jquery-latest.min.js') }}
 {{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
+{{ HTML::script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js') }}
+
+<script>
+    $( "#search" ).autocomplete({
+        source: '{{ route('ajax.gettags') }}',
+        minLength: 2,
+        select: function( event, ui ){
+            $('#title').val( ui.item.id );
+        }
+    });
+</script>
 @yield('footer')
 </body>
 </html>

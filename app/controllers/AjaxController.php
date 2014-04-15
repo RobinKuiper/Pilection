@@ -21,4 +21,17 @@ class AjaxController extends \BaseController
             echo "You have already voted on this item.";
     }
 
+    public function getTags()
+    {
+        $q = Input::get('term');
+
+        $search = Item::whereRaw("match(title) against('+{$q}*' IN BOOLEAN MODE)")->get();
+
+        foreach( $search as $results => $item):
+            $items[] = ['id' => $item->id, 'value' => $item->title];
+        endforeach;
+
+        return json_encode($items);
+    }
+
 }

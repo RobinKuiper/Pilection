@@ -7,11 +7,11 @@
 @section('content')
 
 <div class="row margin-bottom-20">
-    <div class="col-md-2">
+    <div class="col-md-4">
         <h2>{{ Str::title($title) }}</h2>
     </div>
 
-    <div class="col-md-10 text-right">
+    <div class="col-md-8 text-right">
         @if(Auth::check() && isset($type))
         {{ link_to($type.'/create', 'Post new', ['class' => 'btn btn-success']) }}
         @endif
@@ -20,7 +20,6 @@
 
 <div class="row">
     <div class="col-md-2">
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title">Filters</div>
@@ -134,17 +133,11 @@
 
 @section('footer')
 {{ HTML::script('js/vendor/raty/jquery.raty.js') }}
-<script src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>
+{{ HTML::script('http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js') }}
 
 <script>
-    // On document ready:
-
     $(function(){
-
-        // Instantiate MixItUp:
-
         $('#MixIt').mixItUp();
-
     });
 </script>
 

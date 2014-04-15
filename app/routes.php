@@ -22,7 +22,9 @@ Route::get('password/forgot', ['as' => 'passwords.create', 'uses' => 'PasswordCo
 Route::get('password/reset/{token}', ['as' => 'passwords.edit', 'uses' => 'PasswordController@edit']);
 Route::post('password/{token}/update', ['as' => 'passwords.update', 'uses' => 'PasswordController@update']);
 
-Route::get('ajax/getRating', 'AjaxController@getRating');
+Route::get('ajax/getRating', ['as' => 'ajax.getrating', 'uses' => 'AjaxController@getRating']);
+Route::get('ajax/getTags', ['as' => 'ajax.gettags', 'uses' => 'AjaxController@getTags']);
+
 
 Route::get('tags/{tag}', ['as' => 'tags.index', 'uses' => 'TagsController@index']);
 Route::get('grade/{tag}', ['as' => 'grades.index', 'uses' => 'GradesController@index']);

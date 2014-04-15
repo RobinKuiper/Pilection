@@ -30,16 +30,7 @@ class PagesController extends BaseController
 
     public function test()
     {
-        $rating = [
-            'item_id' => 1,
-            'score' => 4,
-            'ip' => Request::getClientIp()
-        ];
-
-        $result = Rating::where('item_id', '=', $rating['item_id'])->where('ip', '=', $rating['ip'])->count();
-
-        if ($result == 0)
-            Rating::create($rating);
+        return View::make('tests.form');
     }
 
 }

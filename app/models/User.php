@@ -5,7 +5,6 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface
 {
-
     protected $fillable = ['username', 'firstname', 'lastname', 'email', 'password'];
 
     public $errors;
@@ -60,6 +59,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     public function getReminderEmail()
     {
         return $this->email;
+    }
+
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
     }
 
     public function isValid()

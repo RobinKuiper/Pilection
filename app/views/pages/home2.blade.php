@@ -43,7 +43,7 @@
     @endforeach
     @else
     <tr>
-        <td>There aren't any {{ $item->type }} currently. {{ link_to($item->type.'/create', 'Create') }} one!</td>
+        <td>There aren't any systems currently. {{ link_to(route('items.create', 'systems'), 'Create') }} one!</td>
     </tr>
     @endif
     </tbody>
@@ -83,7 +83,7 @@
     @endforeach
     @else
     <tr>
-        <td>There aren't any {{ $item->type }} currently. {{ link_to($item->type.'/create', 'Create') }} one!</td>
+        <td>There aren't any scripts currently. {{ link_to(route('items.create', 'scripts'), 'Create') }} one!</td>
     </tr>
     @endif
     </tbody>
@@ -123,7 +123,7 @@
     @endforeach
     @else
     <tr>
-        <td>There aren't any projects currently. {{ link_to('projects/create', 'Create') }} one!</td>
+        <td>There aren't any projects currently. {{ link_to(route('items.create', 'projects'), 'Create') }} one!</td>
     </tr>
     @endif
     </tbody>

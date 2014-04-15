@@ -98,7 +98,7 @@
                     <div class="row">
                         <div class="col-md-10">
                             <h3>{{ link_to(route('items.show', [$item->type, $item->title]), $item->title) }}</h3>
-                            <p>{{{ Str::words($item->body, 20, $end = '...') }}}</p>
+                            <p>{{{ Str::words(strip_tags($item->body), 20, $end = '...') }}}</p>
                         </div>
 
                         <div class="col-md-2">

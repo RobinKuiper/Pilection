@@ -15,6 +15,11 @@ class Item extends Eloquent
         //'body' 		=> 'required|regex:/^[a-zA-Z0-9_\-&@$%(),.:+\r\n ]+$/|min:10'
     ];
 
+    public static $sluggable = array(
+        'build_from' => 'title',
+        'save_to'    => 'slug',
+    );
+
     public function isValid()
     {
         $validation = Validator::make($this->attributes, static::$rules);

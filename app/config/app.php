@@ -107,7 +107,6 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
-        //'Cartalyst\Sentry\SentryServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 
@@ -177,7 +176,6 @@ return array(
         'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
         'Breadcrumbs'     => 'DaveJamesMiller\Breadcrumbs\Facade',
-        //'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
         'Sluggable' => 'Cviebrock\EloquentSluggable\Facades\Sluggable',
 
     ),

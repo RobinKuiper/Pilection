@@ -47,6 +47,7 @@ class PasswordController extends \BaseController
      */
     public function edit($token = null)
     {
+        if (is_null($token)) App::abort(404);
         return View::make('password.edit', ['token' => $token]);
     }
 

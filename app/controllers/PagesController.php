@@ -30,7 +30,7 @@ class PagesController extends BaseController
 
     public function test()
     {
-        return View::make('tests.form');
+        return Session::all();
     }
 
 }

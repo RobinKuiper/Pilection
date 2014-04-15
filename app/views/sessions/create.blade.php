@@ -25,5 +25,7 @@
     {{ Form::submit('Login', array('class'=>'btn btn-large btn-primary btn-block'))}}
     <p>{{ link_to(route('users.create'), 'Register') }} | {{ link_to(route('passwords.create'), 'Forgot Password?') }}</p>
 </div>
+
+{{ Form::hidden('url', $url['intended']) }}
 {{ Form::close() }}
 @stop

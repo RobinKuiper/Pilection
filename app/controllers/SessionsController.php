@@ -19,7 +19,8 @@ class SessionsController extends \BaseController
      */
     public function create()
     {
-        return View::make('sessions.create', ['active' => 'login']);
+        $url = Session::get('url');
+        return View::make('sessions.create', ['url' => $url, 'active' => 'login']);
     }
 
     /**
@@ -34,7 +35,7 @@ class SessionsController extends \BaseController
         ) {
             $this->user->where('id', '=', Auth::user()->id)->update(['lastlogin' => date('Y-m-d H:m:s')]);
 
-            return Redirect::to('/')
+            return Redirect::to(Input::get('url'))
                 ->with('message', 'You are now logged in!')
                 ->with('alert_class', 'alert-success');
         }

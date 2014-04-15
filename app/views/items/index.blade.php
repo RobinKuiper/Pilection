@@ -137,7 +137,11 @@
 
 <script>
     $(function(){
-        $('#MixIt').mixItUp();
+        $('#MixIt').mixItUp({
+            animation: {
+                enable: false,
+            }
+        });
     });
 </script>
 

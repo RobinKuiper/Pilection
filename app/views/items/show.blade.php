@@ -22,6 +22,10 @@
                         <span class="icons" id="rating"></span>
                     </div>
 
+                    <div class="col-md-1">
+                        <span class="share"></span>
+                    </div>
+
                     <div>
                         @if( Auth::check() && Auth::user()->id == $item->user_id )>
                             {{ Form::open(['url' => $type.'/'.$item->id.'/destroy', 'class' => '', 'role' => 'form', 'method' => 'delete']) }}
@@ -87,6 +91,18 @@
 
 @section('footer')
 {{ HTML::script('js/vendor/raty/jquery.raty.js') }}
+{{ HTML::script('js/vendor/carrot/share-button/share.min.js') }}
+
+<script>
+    new Share('.share', {
+        title: '{{ $item->title }}',
+        text: '{{{ Str::words($item->body, 10, $end = '...') }}}',
+        image: '{{ $item->path.$item->image }}',
+        ui: {
+            flyout: 'bottom center',
+        },
+    });
+</script>
 
 <script>
 $('#rating').raty({

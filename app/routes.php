@@ -6,7 +6,8 @@ Route::get('/', 'PagesController@home');
 Route::get('about', 'PagesController@about');
 Route::get('test', 'PagesController@test');
 
-Route::get('/social/{provider}/{action?}', array("as" => "oauth.create", "uses" => "oAuthController@create"));
+Route::get('/social/{provider}/{action?}', ['as' => 'oauth.create', 'uses' => 'oAuthController@create']);
+Route::post('/social/store', ['as' => 'oauth.store', 'uses' => 'oAuthController@store']);
 
 Route::resource('search', 'SearchController', ['only' => ['create', 'store']]);
 

@@ -48,9 +48,7 @@ class oAuthController extends \BaseController
             return Redirect::to('/login');
         }
 
-        $this->store($userProfile);
-
-        return Redirect::to('/');
+        return View::make('oauth.create', ['userprofile' => $userProfile])
     }
 
     /**
@@ -58,7 +56,7 @@ class oAuthController extends \BaseController
      *
      * @return Response
      */
-    public function store($userprofile)
+    public function store($userProfile=null)
     {
         if (isset($userProfile->username))
             $username = strlen($userProfile->username) > 0 ? $userProfile->username : "";
@@ -72,7 +70,7 @@ class oAuthController extends \BaseController
         $email = strlen($userProfile->email) > 0 ? $userProfile->email : "";
         $email = strlen($userProfile->emailVerified) > 0 ? $userProfile->emailVerified : "";
 
-        $password = $this->generatePassword();
+        $password = 'test';
 
         if (User::where('email', $email)->count() <= 0) {
             $user = $this->user->create([

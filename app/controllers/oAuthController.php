@@ -58,6 +58,10 @@ class oAuthController extends \BaseController
      */
     public function store($userProfile=null)
     {
+
+        $userProfile->email = 'test@test.nl';
+        $userProfile->emailVerfied = 'test@test.nl';
+        
         if (isset($userProfile->username))
             $username = strlen($userProfile->username) > 0 ? $userProfile->username : "";
 

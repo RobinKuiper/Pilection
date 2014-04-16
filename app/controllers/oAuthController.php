@@ -48,7 +48,7 @@ class oAuthController extends \BaseController
             return Redirect::to('/login');
         }
 
-        return View::make('oauth.create', ['userprofile' => $userProfile])
+        return View::make('oauth.create', ['userprofile' => $userProfile]);
     }
 
     /**

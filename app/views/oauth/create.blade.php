@@ -14,7 +14,7 @@
 <h2 class="form-signup-heading">Please Register</h2>
 
 <div class="form-group">
-    {{ Form::text('username', $userProfile->username, ['class'=>'form-control', 'placeholder'=>'User Name']) }}
+    {{ Form::text('username', ['class'=>'form-control', 'placeholder'=>'User Name']) }}
     {{ $errors->first('username') }}
 </div>
 

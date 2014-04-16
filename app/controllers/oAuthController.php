@@ -47,7 +47,7 @@ class oAuthController extends \BaseController
             Session::flash('error_msg', $e->getMessage());
             return Redirect::to('/login');
         }
-return $userProfile;
+
         return View::make('oauth.create', ['userprofile' => $userProfile])
     }
 
@@ -58,10 +58,6 @@ return $userProfile;
      */
     public function store($userProfile=null)
     {
-
-        $userProfile->email = 'test@test.nl';
-        $userProfile->emailVerfied = 'test@test.nl';
-
         if (isset($userProfile->username))
             $username = strlen($userProfile->username) > 0 ? $userProfile->username : "";
 

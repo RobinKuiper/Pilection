@@ -48,6 +48,18 @@ class oAuthController extends \BaseController
             return Redirect::to('/login');
         }
 
+        if (isset($userProfile->username))
+            $userProfile->username = strlen($userProfile->username) > 0 ? $userProfile->username : "";
+
+        if (isset($userProfile->screen_name))
+            $userProfile->username = strlen($userProfile->screen_name) > 0 ? $userProfile->screen_name : "";
+
+        if (isset($userProfile->displayName))
+            $userProfile->username = strlen($userProfile->displayName) > 0 ? $userProfile->displayName : "";
+
+        $userProfile->email = strlen($userProfile->email) > 0 ? $userProfile->email : "";
+        $userProfile->email = strlen($userProfile->emailVerified) > 0 ? $userProfile->emailVerified : "";
+
         return View::make('oauth.create', ['userProfile' => $userProfile]);
     }
 
@@ -56,25 +68,12 @@ class oAuthController extends \BaseController
      *
      * @return Response
      */
-    public function store($userProfile=null)
+    public function store()
     {
-        if (isset($userProfile->username))
-            $username = strlen($userProfile->username) > 0 ? $userProfile->username : "";
-
-        if (isset($userProfile->screen_name))
-            $username = strlen($userProfile->screen_name) > 0 ? $userProfile->screen_name : "";
-
-        if (isset($userProfile->displayName))
-            $username = strlen($userProfile->displayName) > 0 ? $userProfile->displayName : "";
-
-        $email = strlen($userProfile->email) > 0 ? $userProfile->email : "";
-        $email = strlen($userProfile->emailVerified) > 0 ? $userProfile->emailVerified : "";
-
-        $password = 'test';
-
         if (User::where('email', $email)->count() <= 0) {
             $user = $this->user->create([
-                'email' => $email,
+                'username' => Input::get('username'),
+                'email' => Input::get('email'),
                 'password' => Hash::make($password)
             ]);
 

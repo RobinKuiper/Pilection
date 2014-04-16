@@ -37,5 +37,6 @@
 <a href="{{ route('oauth.create', 'facebook') }}" class="zocial facebook">Sign in with Facebook</a>
 <a href="{{ route('oauth.create', 'google') }}" class="zocial google">Sign in with Google+</a>
 <a href="{{ route('oauth.create', 'twitter') }}" class="zocial twitter">Sign in with Twitter</a>
+<a href="{{ route('oauth.create', 'github') }}" class="zocial github">Sign in with Github</a>
 
 @stop

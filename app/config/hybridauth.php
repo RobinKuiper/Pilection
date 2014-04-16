@@ -14,6 +14,10 @@ return array(
         "Twitter"    => array (
             "enabled"    => true,
             "keys"       => array ( "key" => "mBQxd3SL0fOxBgRX831iRbeLK", "secret" => "hzwCBha59uOZyD6zgaKcscnl3ufWiqyFmhTsJLj6JN6EcRJWiU" )
+        ),
+        "Github"    => array (
+            "enabled"    => true,
+            "keys"       => array ( "key" => "987efc106bce306b1fba", "secret" => "7090621deb5c033ee400c2b9fa8fd005411afe47" )
         )
     ),
 );

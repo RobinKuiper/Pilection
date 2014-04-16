@@ -70,10 +70,14 @@ class oAuthController extends \BaseController
      */
     public function store()
     {
+        $username = Input::get('username');
+        $email = Input::get('email');
+        $password = Input::get('password');
+
         if (User::where('email', $email)->count() <= 0) {
             $user = $this->user->create([
-                'username' => Input::get('username'),
-                'email' => Input::get('email'),
+                'username' => $username,
+                'email' => $email,
                 'password' => Hash::make($password)
             ]);
 

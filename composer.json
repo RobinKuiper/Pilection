@@ -7,7 +7,8 @@
         "laravel/framework": "4.1.*",
         "twitter/bootstrap": "*",
         "davejamesmiller/laravel-breadcrumbs": "~2.2.0",
-        "cviebrock/eloquent-sluggable": "1.0.*"
+        "cviebrock/eloquent-sluggable": "1.0.*",
+        "hybridauth/hybridauth": "dev-master"
     },
     "require-dev": {
         "way/generators": "2.*"

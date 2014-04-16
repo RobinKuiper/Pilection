@@ -60,5 +60,4 @@ class SessionsController extends \BaseController
             ->with('message', 'Your are now logged out!')
             ->with('alert_class', 'alert-info');
     }
-
 }

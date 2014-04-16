@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('head')
+{{ HTML::style('css/zocial/zocial.css') }}
+@stop
+
 @section('breadcrumbs')
 {{ Breadcrumbs::render('login') }}
 @stop
@@ -23,9 +27,15 @@
 
 <div class="form-group">
     {{ Form::submit('Login', array('class'=>'btn btn-large btn-primary btn-block'))}}
-    <p>{{ link_to(route('users.create'), 'Register') }} | {{ link_to(route('passwords.create'), 'Forgot Password?') }}</p>
 </div>
 
 {{ Form::hidden('url', $url['intended']) }}
 {{ Form::close() }}
+
+<p>{{ link_to(route('users.create'), 'Register') }} | {{ link_to(route('passwords.create'), 'Forgot Password?') }}</p>
+
+<a href="{{ route('oauth.create', 'facebook') }}" class="zocial facebook">Sign in with Facebook</a>
+<a href="{{ route('oauth.create', 'google') }}" class="zocial google">Sign in with Google+</a>
+<a href="{{ route('oauth.create', 'twitter') }}" class="zocial twitter">Sign in with Twitter</a>
+
 @stop

@@ -8,19 +8,19 @@
     {{ HTML::style('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css') }}
     {{ HTML::style('css/main.css') }}
 
-    @yield('header')
+    <style>
+        header{
+            position:fixed;
+            top: 0px;
+            width:100%;
+            z-index: 99;
+        }
+    </style>
+
+    @yield('head')
 </head>
 
 <body style="padding-top: 70px;">
-
-<style>
-    header{
-        position:fixed;
-        top: 0px;
-        width:100%;
-        z-index: 99;
-    }
-</style>
 
 <header>
     <nav class="navbar navbar-inverse" role="navigation">

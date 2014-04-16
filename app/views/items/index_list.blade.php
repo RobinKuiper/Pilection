@@ -84,7 +84,7 @@
                 @endforeach
 
                 <div class="row">
-                    <div class="col-md-4">{{ link_to(route('items.show', [$item->type, $item->title]), $item->title) }}</div>
+                    <div class="col-md-4">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</div>
                     <div class="col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
                     <div class="col-md-2">{{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}</div>
                     <div class="col-md-2">

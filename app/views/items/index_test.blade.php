@@ -101,7 +101,7 @@
             <div class="item col-md-3 mix {{ $type }} {{ $tags }} {{ $grades }}">
                 <div class="thumbnail">
                     <div class="caption">
-                        <h4 class="group inner list-group-item-heading">{{ link_to(route('items.show', [$item->type, $item->title]), $item->title) }}</h4>
+                        <h4 class="group inner list-group-item-heading">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"

@@ -106,11 +106,11 @@
 
                 <div class="row list margin-bottom-10 padding-bottom-10 item mix {{ $type }} {{ $tags }} {{ $grades }}">
                     <div class="hidden-img row" style="height: 100px; width: 100px; overflow: hidden;">
-                        <a href='{{ route('items.show', [$item->type, $item->title]) }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
+                        <a href='{{ route('items.show', [$item->type, $item->slug]) }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
                         $item->title, ['style' => 'max-width: 100px; max-height: 100px']) }}</a>
                     </div>
 
-                    <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->title]), $item->title) }}</div>
+                    <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</div>
 
                     <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
                     <div class="hidden-info col-md-2">{{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}</div>

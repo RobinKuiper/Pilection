@@ -86,7 +86,7 @@ class ItemsController extends \BaseController
         if (preg_match('/^[1-9][0-9]*$/', $id)):
             $item = $this->item->findOrFail($id);
         else:
-            $item = $this->item->where('title', '=', $id)->first();
+            $item = $this->item->where('slug', '=', $id)->first();
         endif;
 
         // Update viewcount

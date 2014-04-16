@@ -90,14 +90,14 @@
 
             <div data-myorder="{{ $item->id }}" class="mix {{ $item->type }} {{ $tags }} {{ $grades }} row border-bottom margin-bottom-10 padding-bottom-10">
                 <div class="col-md-2">
-                    <a href='{{ route('items.show', [$item->type, $item->title]) }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
+                    <a href='{{ route('items.show', [$item->type, $item->slug]) }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
                     $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
                 </div>
 
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-10">
-                            <h3>{{ link_to(route('items.show', [$item->type, $item->title]), $item->title) }}</h3>
+                            <h3>{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</h3>
                             <p>{{{ Str::words(strip_tags($item->body), 20, $end = '...') }}}</p>
                         </div>
 

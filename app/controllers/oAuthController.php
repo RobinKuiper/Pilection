@@ -71,12 +71,12 @@ class oAuthController extends \BaseController
 
                 if (isset($userProfile->username))
                     $userProfile->username = strlen($userProfile->username) > 0 ? $userProfile->username : "";
-
                 if (isset($userProfile->screen_name))
                     $userProfile->username = strlen($userProfile->screen_name) > 0 ? $userProfile->screen_name : "";
-
                 if (isset($userProfile->displayName))
                     $userProfile->username = strlen($userProfile->displayName) > 0 ? $userProfile->displayName : "";
+
+                $userProfile->provider = $provider;
 
                 return View::make('oauth.create', ['userProfile' => $userProfile]);
 
@@ -98,8 +98,8 @@ class oAuthController extends \BaseController
      */
     public function store()
     {
+        $userProfile = json_decode(Input::get('userProfile'));
         $username = Input::get('username');
-        $email = Input::get('email');
         $password = Input::get('password');
 
         if (User::where('email', $email)->count() <= 0) {

@@ -24,7 +24,7 @@
     {{ $errors->first('password_confirmation') }}
 </div>
 
-{{ Form::hidden('email', $userProfile->email) }}
+{{ Form::hidden('userProfile', json_encode($userProfile)) }}
 {{ Form::submit('Create Profile', array('class'=>'btn btn-large btn-primary btn-block'))}}
 
 {{ Form::close() }}

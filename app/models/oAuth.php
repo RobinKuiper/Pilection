@@ -3,9 +3,9 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class oAuth extends Eloquent implements UserInterface, RemindableInterface
+class oAuth extends Eloquent
 {
-    protected $fillable = ['username', 'email', 'firstname', 'lastname', 'provider', 'provider_uid', 'user_id', 'profile_url', 'website_url'];
+    protected $fillable = ['username', 'email', 'firstname', 'lastname', 'provider', 'provider_uid', 'user_id', 'profile_url', 'website_url', 'photo_url', 'age', 'description', 'gender', 'language', 'birthday', 'phone', 'address', 'country', 'zip', 'region', 'city'];
 
     public $errors;
     public static $rules = [];
@@ -25,14 +25,29 @@ class oAuth extends Eloquent implements UserInterface, RemindableInterface
         $this->create([
             'username'       => $auth->username,
             'email'          => $auth->email,
-            'firstname'      => $auth->first_name,
-            'lastname'       => $auth->last_name,
+            'firstname'      => $auth->firstName,
+            'lastname'       => $auth->lastName,
             'provider'       => $provider,
             'provider_uid'   => $auth->identifier,
             'user_id'        => $user->id,
             'profile_url'    => $auth->profileURL,
-            'website_url'    => $auth->websiteURL
+            'website_url'    => $auth->webSiteURL,
+
+            'photo_url'      => $auth->photoURL,
+            'description'    => $auth->description,
+            'gender'         => $auth->gender,
+            'language'       => $auth->language,
+            'age'            => $auth->age,
+            'birthday'       => $auth->birthDay . '-' . $auth->birthMonth . '-' . $auth->birthYear,
+            'phone'          => $auth->phone,
+            'address'        => $auth->address,
+            'country'        => $auth->country,
+            'region'         => $auth->region,
+            'city'           => $auth->city,
+            'zip'            => $auth->zip
+
         ]);
+
     }
 
 }

@@ -14,6 +14,14 @@
     {{ $errors->first('username') }}
 </div>
 
+@if($userProfile->email == null)
+<div class="input-group form-group">
+    {{ Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'Email']) }}
+    <span class="input-group-addon">@</span>
+    {{ $errors->first('email') }}
+</div>
+@endif
+
 <div class="form-group">
     {{ Form::password('password', ['class'=>'form-control', 'placeholder'=>'Password']) }}
     {{ $errors->first('password') }}

@@ -76,7 +76,7 @@ class oAuthController extends \BaseController
                 if (isset($userProfile->displayName))
                     $userProfile->username = strlen($userProfile->displayName) > 0 ? $userProfile->displayName : "";
 
-                $userProfile->provider = $provider;
+                $userProfile->provider = $social_provider;
 
                 return View::make('oauth.create', ['userProfile' => $userProfile]);
 
@@ -99,31 +99,31 @@ class oAuthController extends \BaseController
     public function store()
     {
         $userProfile = json_decode(Input::get('userProfile'));
-        $username = Input::get('username');
-        $password = Input::get('password');
+        $userProfile->email = ($userProfile->email == null) ? Input::get('email') : $userProfile->email;
 
-        if (User::where('email', $email)->count() <= 0) {
-            $user = $this->user->create([
-                'username' => $username,
-                'email' => $email,
-                'password' => Hash::make($password)
-            ]);
+        $userInput = [
+            'username'  => Input::get('username'),
+            'email'     => $userProfile->email,
+            'firstname' => $userProfile->firstName,
+            'lastname'  => $userProfile->lastName,
+            'password'  => Input::get('password')
+        ];
 
-            $this->settings->saveDefaults($user->id);
+        if (!$this->user->fill($userInput)->isValid()) {
+            return Redirect::back()->withInput()->withErrors($this->user->errors);
         }
 
-        if (Auth::attempt(['email' => $email, 'password' => $password], Input::get('remember'))) {
-            $this->user->where('id', '=', Auth::user()->id)->update(['lastlogin' => date('Y-m-d H:m:s')]);
+        $user = $this->user->create($userInput);
 
-            return Redirect::to(Input::get('url'))
-                ->with('message', 'You are now logged in!')
-                ->with('alert_class', 'alert-success');
-        }
+        $this->settings->saveDefaults($user->id);
+        $this->oauth->create_authentication($userProfile->provider, $user, $userProfile);
 
-        return Redirect::to('login')
-            ->with('message', 'Your credentials are incorrect, ' . link_to('password/forgot', 'forgot your password?'))
-            ->with('alert_class', 'alert-danger')
-            ->withInput();
+        Auth::loginUsingId($user->id);
+        $this->user->where('id', '=', $user->id)->update(['lastlogin' => date('Y-m-d H:m:s')]);
+
+        return Redirect::to('profile')
+            ->with('message', 'You are now logged in!')
+            ->with('alert_class', 'alert-success');
     }
 
 }

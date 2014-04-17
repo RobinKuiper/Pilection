@@ -100,6 +100,8 @@ class UsersController extends \BaseController
             return Redirect::back()->withInput()->withErrors($this->user->errors);
         }
 
+        // changed
+        /*
         $user = $this->user->create([
             'username' => $input['username'],
             'email' => $input['email'],
@@ -107,6 +109,9 @@ class UsersController extends \BaseController
             'lastname' => $input['lastname'],
             'password' => Hash::make($input['password'])
         ]);
+        */
+
+        $user = $this->user->create($input);
 
         $this->settings->saveDefaults($user->id);
 

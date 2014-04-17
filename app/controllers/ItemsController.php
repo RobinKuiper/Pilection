@@ -90,10 +90,7 @@ class ItemsController extends \BaseController
         endif;
 
         // Update viewcount
-        $item->viewcount = $this->views->updateViews($id, $type, 1);
-
-        // Get viewcount
-        //$item->viewcount = $this->views->getViews($id, $type);
+        $item->viewcount = $this->views->updateViews($item->id, $type, 1);
 
         if ($item->image == null) {
             $item->path = 'images/';
@@ -101,8 +98,8 @@ class ItemsController extends \BaseController
         } else $item->path = 'upload/items/images/';
 
         $item->tags = $this->tag->getTagsByItem($item->id);
-        $item->rating = $this->rating->getRatingForItem($id);
-        $item->voted = $this->rating->voted($id);
+        $item->rating = $this->rating->getRatingForItem($item->id);
+        $item->voted = $this->rating->voted($item->id);
 
         return View::make('items.show', ['type' => $type, 'item' => $item, 'active' => $type]);
     }

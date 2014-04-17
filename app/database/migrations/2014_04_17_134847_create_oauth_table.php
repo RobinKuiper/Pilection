@@ -17,12 +17,12 @@ class CreateOauthTable extends Migration {
 			$table->integer('user_id');
 			$table->string('provider');
 			$table->string('provider_uid');
-			$table->string('email');
+			$table->string('email')->nullable();
 			$table->string('username');
-			$table->string('firstname');
-			$table->string('lastname');
-			$table->string('profile_url');
-			$table->string('website_url');
+			$table->string('firstname')->nullable();
+			$table->string('lastname')->nullable();
+			$table->string('profile_url')->nullable();
+			$table->string('website_url')->nullable();
 			$table->timestamps();
 		});
 	}

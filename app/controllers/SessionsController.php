@@ -20,7 +20,7 @@ class SessionsController extends \BaseController
     public function create()
     {
         $url = Session::get('url');
-        return View::make('sessions.create', ['url' => $url, 'active' => 'login']);
+        return View::make('sessions.create2', ['url' => $url, 'active' => 'login']);
     }
 
     /**

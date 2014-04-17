@@ -119,7 +119,7 @@
         source: '{{ route('ajax.gettags') }}',
         minLength: 2,
         select: function( event, ui ){
-        window.location.replace("/" + ui.item.type + "/" + ui.item.value);
+        window.location.replace("/" + ui.item.type + "/" + ui.item.slug);
         //console.log("/" + ui.item.type + "/" + ui.item.value);
     }
     });

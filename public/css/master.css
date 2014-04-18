@@ -1,0 +1,53 @@
+/* Item:show */
+.icons{ margin-right: 8px; }
+
+/* Profile */
+.image-border {
+    border: 1px solid #ddd;
+    width: 100px;
+    height: 100px;
+    float: left;
+    overflow: hidden;
+    margin-right: 10px;
+
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.image-border:hover {
+    border: 1px solid #bbb;
+}
+
+/* Items Index */
+
+#MixIt .mix{
+    display: none;
+}
+
+#MixIt .nav > li > a.active{
+    text-decoration: none;
+    background-color: #eee;
+}
+
+.hidden-img{ display: none; }
+
+/* Search */
+.ui-autocomplete {
+    padding: 5px 0;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    background-clip: padding-box;
+}
+.ui-autocomplete a{
+    border-radius: 0px;
+    padding: 4px;
+}
+.ui-autocomplete.source:hover {
+    background: #454545;
+}

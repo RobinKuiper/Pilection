@@ -3,8 +3,6 @@
 @section('head')
 {{ HTML::style('css/zocial/zocial.css') }}
 {{ HTML::style('css/bootstrap-switch/bootstrap-switch.min.css') }}
-
-
 @stop
 
 @section('breadcrumbs')

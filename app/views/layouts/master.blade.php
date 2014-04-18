@@ -7,6 +7,7 @@
     {{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}
     {{ HTML::style('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css') }}
     {{ HTML::style('css/main.css') }}
+    {{ HTML::style('css/master.css') }}
 
     <style>
         header{

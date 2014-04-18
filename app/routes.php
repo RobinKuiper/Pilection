@@ -6,6 +6,7 @@ Route::get('/', 'PagesController@home');
 Route::get('about', 'PagesController@about');
 Route::get('test', 'PagesController@test');
 
+Route::get('social', ['as' => 'oauth.index', 'uses' => 'oAuthController@index']);
 Route::get('/social/{provider}/{action?}', ['as' => 'oauth.create', 'uses' => 'oAuthController@create']);
 Route::post('/social/store', ['as' => 'oauth.store', 'uses' => 'oAuthController@store']);
 

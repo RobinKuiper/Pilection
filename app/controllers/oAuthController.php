@@ -16,6 +16,11 @@ class oAuthController extends \BaseController
         $this->oauth = $oauth;
     }
 
+    public function index()
+    {
+        return View::make('layouts.login', ['active' => 'oauth']);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

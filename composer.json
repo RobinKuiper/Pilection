@@ -41,3 +41,6 @@
     },
     "minimum-stability": "stable"
 }
+
+
+//php artisan asset:publish --path="vendor/twitter/bootstrap/dist/" bootstrap

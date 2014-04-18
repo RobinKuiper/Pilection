@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    "base_url"   => "http://rpios.re-code.nl/social/provider/auth",
+    "base_url"   => "http://pilection.eu/social/provider/auth",
     "providers"  => array (
         "Google"     => array (
             "enabled"    => true,

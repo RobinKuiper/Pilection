@@ -80,13 +80,16 @@
                     <li class='{{{ (isset($active) && $active == 'about') ? 'active' : '' }}}'>{{ Link_to('about', 'About') }}</li>
                     @if (Auth::check())
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->username }} <b
-                                class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <!--<img src="http://www.gravatar.com/avatar/{{ md5(strtolower(trim( Auth::user()->email ))) }}?s=40">-->
+                            {{ Auth::user()->username }}
+                            <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li>{{ link_to('profile', 'Profile') }}</li>
-                            <li>{{ link_to('#', 'Settings') }}</li>
+                            <li>{{ link_to(route('users.index'), 'Profile') }}</li>
+                            <li>{{ link_to(route('users.edit'), 'Edit Profile') }}</li>
+
                             <li class="divider"></li>
-                            <li>{{ Link_to('logout', 'Logout') }}</li>
+                            <li>{{ Link_to(route('sessions.destroy'), 'Logout') }}</li>
                         </ul>
                     </li>
                     @else

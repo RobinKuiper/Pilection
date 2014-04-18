@@ -12,7 +12,7 @@ class UsersController extends \BaseController
     {
         $this->beforeFilter('guest', ['only' => ['create', 'store']]);
         $this->beforeFilter('auth', ['only' => ['edit', 'index', 'show', 'update']]);
-        $this->beforeFilter('csrf', ['only' => 'edit']);
+        //$this->beforeFilter('csrf', ['only' => 'edit']);
         $this->user = $user;
         $this->item = $item;
         $this->views = $views;
@@ -58,11 +58,14 @@ class UsersController extends \BaseController
      *
      * @return View: edit profile
      */
-    public function edit($id)
+    public function edit()
     {
-        $user = $this->user->find($id);
+        $id = Auth::user()->id;
 
-        return View::make('users.edit', ['user' => $user]);
+        $user = $this->user->find($id);
+        $settings = $this->settings->where('user_id', '=', $id);
+
+        return View::make('users.edit', ['user' => $user, 'settings' => $settings]);
     }
 
     /**
@@ -70,9 +73,37 @@ class UsersController extends \BaseController
      *
      * @return Redirect
      */
-    public function update($id)
+    public function update()
     {
-        return 'edit';
+
+        switch(Input::get('change')){
+            case 'profile':
+                $rules = [
+                    'firstname' => 'alpha|min:2',
+                    'lastname' => 'alpha|min:2',
+                ];
+                break;
+
+            case 'password':
+                $rules = [
+                    'password' => 'required|alpha_num|between:6,12',
+                    'password_confirmation' => 'same:password'
+                ];
+                break;
+
+            case 'email':
+                $rules = [
+                    'email' => 'required|email|unique:users',
+                ];
+                break;
+        }
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withInput()->withErrors($validator);
+        }
     }
 
     /**

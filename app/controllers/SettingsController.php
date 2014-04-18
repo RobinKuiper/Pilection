@@ -2,6 +2,14 @@
 
 class SettingsController extends \BaseController
 {
+    protected $settings;
+
+    public function __construct(Settings $settings)
+    {
+        $this->beforeFilter('auth', ['only' => ['edit', 'index', 'show', 'update']]);
+        //$this->beforeFilter('csrf', ['only' => 'edit']);
+        $this->settings = $settings;
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -11,7 +19,8 @@ class SettingsController extends \BaseController
      */
     public function edit()
     {
-        return View::make('settings.edit');
+        $settings = $this->settings->where('user_id', '=', Auth::user()->id)->first();
+        return View::make('settings.edit', ['settings' => $settings]);
     }
 
     /**

@@ -142,28 +142,31 @@ class UsersController extends \BaseController
      */
     public function store()
     {
-        $input = Input::all();
+        $token = str_random(40);
 
-        //return $input;
+        $input_fields = [
+            'username'      => Input::get('username'),
+            'password'      => Input::get('password'),
+            'password_confirmation' => Input::get('password_confirmation'),
+            'email'         => Input::get('email'),
+            'firstname'     => Input::get('firstname'),
+            'lastname'      => Input::get('lastname'),
+            'validation'    => $token
+        ];
 
-        if (!$this->user->fill($input)->isValid()) {
+        if (!$this->user->fill($input_fields)->isValid()) {
             return Redirect::back()->withInput()->withErrors($this->user->errors);
         }
 
-        // changed
-        /*
-        $user = $this->user->create([
-            'username' => $input['username'],
-            'email' => $input['email'],
-            'firstname' => $input['firstname'],
-            'lastname' => $input['lastname'],
-            'password' => Hash::make($input['password'])
-        ]);
-        */
+        $input_fields['password'] = Hash::make($input_fields['password']);
 
-        $user = $this->user->create($input);
-
+        $user = $this->user->create($input_fields);
         $this->settings->saveDefaults($user->id);
+
+        Mail::send('emails.auth.validation', ['token' => $token, 'id' => $user->id], function($message)
+        {
+            $message->to(Input::get('email'), Input::get('firstname') . ' ' . Input::get('lastname') . ' (' . Input::get('username') . ')')->subject('Email validation!');
+        });
 
        return Redirect::Route('sessions.create')
             ->with('message', 'Thanks for registering!')

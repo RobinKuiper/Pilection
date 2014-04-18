@@ -38,6 +38,9 @@ Route::get('password/forgot', ['as' => 'passwords.create', 'uses' => 'PasswordCo
 Route::get('password/reset/{token}', ['as' => 'passwords.edit', 'uses' => 'PasswordController@edit']);
 Route::post('password/{token}/update', ['as' => 'passwords.update', 'uses' => 'PasswordController@update']);
 
+/* Email validation */
+Route::get('validation/{id}/{token}', ['as' => 'validation.create', 'uses' => 'ValidationController@create']);
+
 /* Ajax */
 Route::get('ajax/getRating', ['as' => 'ajax.getrating', 'uses' => 'AjaxController@getRating']);
 Route::get('ajax/getTags', ['as' => 'ajax.gettags', 'uses' => 'AjaxController@getTags']);

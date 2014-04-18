@@ -28,7 +28,7 @@ return array(
     |
     */
 
-    'host' => 'smtp.rgjkuiper.nl',
+    'host' => 'smtp.pilection.eu',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
     |
     */
 
-    'from' => array('address' => 'info@rgjkuiper.nl', 'name' => 'RPiOS'),
+    'from' => array('address' => 'info@pilection.eu', 'name' => 'Pilection Info'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
     |
     */
 
-    'username' => 'info@rgjkuiper.nl',
+    'username' => 'info@pilection.eu',
 
     /*
     |--------------------------------------------------------------------------

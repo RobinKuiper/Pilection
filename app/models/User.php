@@ -5,7 +5,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface
 {
-    protected $fillable = ['username', 'firstname', 'lastname', 'email', 'password'];
+    protected $fillable = ['username', 'firstname', 'lastname', 'email', 'password', 'validation'];
 
     public $errors;
     public static $rules = [
@@ -13,7 +13,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         'firstname' => 'alpha|min:2',
         'lastname' => 'alpha|min:2',
         'email' => 'required|email|unique:users',
-        'password' => 'required|alpha_num|between:6,12',
+        'password' => 'required|alpha_dash|between:6,12',
         'password_confirmation' => 'same:password'
     ];
 
@@ -74,6 +74,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     public function getRememberTokenName()
     {
         return 'remember_token';
+    }
+
+    public function isValidated($login)
+    {
+        if( count($this->where('email', '=', $login)->where('validation', '=', 0)->first()) == 1 ||
+            count($this->where('username', '=', $login)->where('validation', '=', 0)->first()) == 1)
+                return true;
+
+        return false;
     }
 
     public function isValid()

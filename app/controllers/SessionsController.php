@@ -30,20 +30,31 @@ class SessionsController extends \BaseController
      */
     public function store()
     {
-        if (Auth::attempt(['email' => Input::get('login'), 'password' => Input::get('password')], Input::get('remember')) ||
-            Auth::attempt(['username' => Input::get('login'), 'password' => Input::get('password')], Input::get('remember'))
-        ) {
-            $this->user->where('id', '=', Auth::user()->id)->update(['lastlogin' => date('Y-m-d H:m:s')]);
+        if($this->user->isValidated(Input::get('login'))){
+            if (Auth::attempt(['email' => Input::get('login'), 'password' => Input::get('password')], Input::get('remember')) ||
+                Auth::attempt(['username' => Input::get('login'), 'password' => Input::get('password')], Input::get('remember')))
+            {
+                $this->user->where('id', '=', Auth::user()->id)->update(['lastlogin' => date('Y-m-d H:m:s')]);
 
-            return Redirect::to(Input::get('url'))
-                ->with('message', 'You are now logged in!')
-                ->with('alert_class', 'alert-success');
+                return Redirect::to(Input::get('url'))
+                    ->with('message', 'You are now logged in!')
+                    ->with('alert_class', 'alert-success');
+            }else{
+
+                return Redirect::to('login')
+                    ->with('message', 'Your credentials are incorrect, ' . link_to('password/forgot', 'forgot your password?'))
+                    ->with('alert_class', 'alert-danger')
+                    ->withInput();
+
+            }
+        }else{
+
+            return Redirect::to('login')
+                ->with('message', 'Your account is not yet activated.')
+                ->with('alert_class', 'alert-danger')
+                ->withInput();
+
         }
-
-        return Redirect::to('login')
-            ->with('message', 'Your credentials are incorrect, ' . link_to('password/forgot', 'forgot your password?'))
-            ->with('alert_class', 'alert-danger')
-            ->withInput();
     }
 
     /**

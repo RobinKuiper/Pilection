@@ -82,20 +82,33 @@ class UsersController extends \BaseController
                     'firstname' => 'alpha|min:2',
                     'lastname' => 'alpha|min:2',
                 ];
-                break;
+
+                $update_fields  = [
+                    'firstname' => Input::get('firstname'),
+                    'lastname' => Input::get('lastname')
+                ];
+            break;
 
             case 'password':
                 $rules = [
                     'password' => 'required|alpha_num|between:6,12',
                     'password_confirmation' => 'same:password'
                 ];
-                break;
+
+                $update_fields = [
+                  'password' => Hash::make(Input::get('password'))
+                ];
+            break;
 
             case 'email':
                 $rules = [
                     'email' => 'required|email|unique:users',
                 ];
-                break;
+
+                $update_fields = [
+                    'email' => Input::get('email')
+                ];
+            break;
         }
 
         $validator = Validator::make(Input::all(), $rules);
@@ -104,6 +117,12 @@ class UsersController extends \BaseController
         {
             return Redirect::back()->withInput()->withErrors($validator);
         }
+
+        $this->user->where('id', '=', Auth::user()->id)->update($update_fields);
+
+        return Redirect::Route('users.index')
+            ->with('message', 'Your ' . Input::get('change') . ' is updated!')
+            ->with('alert_class', 'alert-success');
     }
 
     /**
@@ -146,7 +165,7 @@ class UsersController extends \BaseController
 
         $this->settings->saveDefaults($user->id);
 
-       return Redirect::to('login')
+       return Redirect::Route('sessions.create')
             ->with('message', 'Thanks for registering!')
             ->with('alert_class', 'alert-success');
     }

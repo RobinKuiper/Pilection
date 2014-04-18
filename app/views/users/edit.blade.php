@@ -36,12 +36,12 @@
         {{ Form::open(['route' => 'users.update', 'class' => 'form-signup', 'role' => 'form']) }}
 
         <div class="form-group">
-            {{ Form::password('password', ['class'=>'form-control', 'placeholder'=>'Password']) }}
+            {{ Form::password('password', ['class'=>'form-control', 'placeholder'=>'New Password']) }}
             {{ $errors->first('password') }}
         </div>
 
         <div class="form-group">
-            {{ Form::password('password_confirmation', ['class'=>'form-control', 'placeholder'=>'Confirm Password']) }}
+            {{ Form::password('password_confirmation', ['class'=>'form-control', 'placeholder'=>'Confirm New Password']) }}
             {{ $errors->first('password_confirmation') }}
         </div>
 

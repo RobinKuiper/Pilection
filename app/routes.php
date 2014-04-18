@@ -33,7 +33,7 @@ Route::get('profile/{id}', ['as' => 'users.show', 'uses' => 'UsersController@sho
 //Route::post('settings/update', ['as' => 'settings.update', 'uses' => 'SettingsController@update']);
 
 /* Forgot Password */
-Route::get('password/store', ['as' => 'passwords.store', 'uses' => 'PasswordController@store']);
+Route::post('password/store', ['as' => 'passwords.store', 'uses' => 'PasswordController@store']);
 Route::get('password/forgot', ['as' => 'passwords.create', 'uses' => 'PasswordController@create']);
 Route::get('password/reset/{token}', ['as' => 'passwords.edit', 'uses' => 'PasswordController@edit']);
 Route::post('password/{token}/update', ['as' => 'passwords.update', 'uses' => 'PasswordController@update']);

@@ -6,7 +6,9 @@
 
 @section('content')
 <div class="row margin-bottom-20">
-    <div class="col-md-6"><h2>{{ $user->username }}</h2></div>
+    <div class="col-md-6">
+        <h2><img src="http://www.gravatar.com/avatar/{{ md5(strtolower(trim( $user->email ))) }}?s=60"> {{ $user->username }}</h2>
+    </div>
 
     <div class="col-md-6"><h2>Items</h2></div>
 </div>

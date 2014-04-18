@@ -81,7 +81,6 @@
                     @if (Auth::check())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <!--<img src="http://www.gravatar.com/avatar/{{ md5(strtolower(trim( Auth::user()->email ))) }}?s=40">-->
                             {{ Auth::user()->username }}
                             <b class="caret"></b></a>
                         <ul class="dropdown-menu">

@@ -24,7 +24,7 @@
 <body style="padding-top: 70px;">
 
 <header>
-    <nav class="navbar navbar-inverse" role="navigation">
+    <nav class="navbar navbar-inverse border-green" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">

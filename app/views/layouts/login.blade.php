@@ -22,9 +22,9 @@
     <div class="row loginContainer">
         <div class="col-md-6 col-md-offset-3">
 
-            <div class="row headerContainer">
+            <div class="row headerContainer border-green" onclick="location.href='/';" style="cursor:pointer;">
                 <div class="col-md-12">
-                    <h1>Pilection</h1>
+                    <h1><a href="/" title="Pilection" class="white-link">Pilection</a></h1>
                 </div>
             </div>
 
@@ -105,14 +105,15 @@
                             <div class="row margin-bottom-20">
                                 <div class="col-md-12 text-center">
                                     <h3>Forgot Password</h3>
+                                    <p style="font-size: 10pt;">Enter the email address associated with your account.</p>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
                                     <div class="form-group">
-                                        {{ Form::label('login', 'Username or email') }}
-                                        {{ Form::text('email', null, array('class'=>'form-control input-sm', 'placeholder'=>'Email', 'tabindex'=>'1')) }}
+                                        {{ Form::label('email', 'Email') }}
+                                        {{ Form::email('email', null, array('class'=>'form-control input-sm', 'placeholder'=>'Email', 'tabindex'=>'1')) }}
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +121,7 @@
                             <div class="row">
                                 <div class="col-md-10 col-md-offset-2">
                                     <div class="form-group">
-                                        {{ Form::submit('Send Reminder', array('class'=>'btn btn-primary btn-sm' , 'tabindex'=>'2'))}}
+                                        {{ Form::submit('Send Password Reset Mail', array('class'=>'btn btn-primary btn-sm' , 'tabindex'=>'2'))}}
                                     </div>
                                 </div>
                             </div>

@@ -10,3 +10,11 @@
     border-bottom: 1px solid #ddd;
     margin-bottom: 3px;
 }
+
+.border-green{ border-bottom: 4px solid #009933; }
+
+.white-link{ color: #fff; }
+.white-link:hover{
+    color: #DDDDDD;
+    text-decoration: none;
+}

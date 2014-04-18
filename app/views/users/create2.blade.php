@@ -78,14 +78,14 @@
 
     <div class="col-xs-12 col-sm-3 col-md-4 col-sm-offset-0 col-md-offset-0">
         {{ Form::open(['route' => 'sessions.store', 'role' => 'form']) }}
-        <h2>Or Register with</h2>
+        <h2>...Or Sign In With</h2>
         <hr class="colorgraph">
         <ul class="nav">
             <li class="margin-bottom-10">
-                {{ link_to(route('oauth.create', 'facebook'), 'Sign in with Facebook', ['class' => 'zocial facebook']) }}
+                {{ link_to(route('oauth.create', 'facebook'), 'Facebook', ['class' => 'zocial facebook']) }}
             </li>
             <li>
-                {{ link_to(route('oauth.create', 'twitter'), 'Sign in with Twitter', ['class' => 'zocial twitter']) }}
+                {{ link_to(route('oauth.create', 'twitter'), 'Twitter', ['class' => 'zocial twitter']) }}
             </li>
         </ul>
 

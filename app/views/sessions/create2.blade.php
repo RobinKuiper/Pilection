@@ -61,7 +61,7 @@
 @stop
 
 @section('footer')
-{{ HTML::script('js/vendor/bootstrap-switch/bootstrap-switch.min.js') }}
+{{ HTML::script('js/bootstrap-switch/bootstrap-switch.min.js') }}
 
 <script>
     $(function(){

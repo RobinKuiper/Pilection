@@ -140,7 +140,7 @@
 {{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
 {{ HTML::script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js') }}
 
-{{ HTML::script('js/vendor/bootstrap-switch/bootstrap-switch.min.js') }}
+{{ HTML::script('js/bootstrap-switch/bootstrap-switch.min.js') }}
 
 <script>
     $(function(){

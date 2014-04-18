@@ -90,8 +90,8 @@
 @stop
 
 @section('footer')
-{{ HTML::script('js/vendor/raty/jquery.raty.js') }}
-{{ HTML::script('js/vendor/carrot/share-button/share.min.js') }}
+{{ HTML::script('js/raty/jquery.raty.js') }}
+{{ HTML::script('js/carrot/share-button/share.min.js') }}
 
 <script>
     new Share('.share', {
@@ -108,7 +108,7 @@
 $('#rating').raty({
         half: true,
         readOnly: {{ ($item->voted) ? 'true' : 'false' }},
-        path: '{{ url('js/vendor/raty') }}',
+        path: '{{ url('js/raty') }}',
         score: {{ $item->rating }},
         click: function(score, evt) {
     var id = {{ $item->id }}, type = '{{ $type }}';

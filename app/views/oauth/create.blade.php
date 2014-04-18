@@ -36,9 +36,4 @@
 {{ Form::submit('Create Profile', array('class'=>'btn btn-large btn-primary btn-block'))}}
 
 {{ Form::close() }}
-
-@foreach($userProfile as $key => $value)
-<li>{{ $key }} : {{ $value }}</li>
-@endforeach
-
 @stop

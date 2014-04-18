@@ -132,7 +132,7 @@
 @stop
 
 @section('footer')
-{{ HTML::script('js/vendor/raty/jquery.raty.js') }}
+{{ HTML::script('js/raty/jquery.raty.js') }}
 {{ HTML::script('http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js') }}
 
 <script>
@@ -169,7 +169,7 @@
 
     $('.rating').raty({
         half: true,
-        path: '{{ url('js/vendor/raty') }}',
+        path: '{{ url('js/raty') }}',
         readOnly: function(){
         return $(this).attr('data-voted');
     },

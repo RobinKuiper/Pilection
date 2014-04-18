@@ -4,6 +4,12 @@
 {{ Breadcrumbs::render($breadcrumb, Str::title($title)) }}
 @stop
 
+@section('head')
+<style>
+    #filters, #changeLayout{ display: none; }
+</style>
+@stop
+
 @section('content')
 
 <div class="row margin-bottom-20">
@@ -19,7 +25,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2" id="filters">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title">Filters</div>
@@ -67,8 +73,8 @@
         </div>
     </div>
 
-    <div class="col-md-10">
-        <div class="well well-sm">
+    <div class="col-md-12" id="items">
+        <div class="well well-sm" id="changeLayout">
             <strong>Show</strong>
             <div class="btn-group">
                 <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
@@ -104,7 +110,7 @@
                 }
             </style>
 
-                <div class="row list margin-bottom-10 padding-bottom-10 item mix {{ $type }} {{ $tags }} {{ $grades }}">
+                <div class="row list margin-bottom-10 padding-bottom-10 item {{ $item->type }} {{ $tags }} {{ $grades }}">
                     <div class="hidden-img row" style="height: 100px; width: 100px; overflow: hidden;">
                         <a href='{{ route('items.show', [$item->type, $item->slug]) }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
                         $item->title, ['style' => 'max-width: 100px; max-height: 100px']) }}</a>
@@ -149,6 +155,13 @@
 
 <script>
     $(function(){
+        $('#MixIt .item').addClass('mix');
+        $('#items').removeClass('col-md-12');
+        $('#items').addClass('col-md-10');
+
+        $('#filters').show();
+        $('#changeLayout').show();
+
         $('#MixIt').mixItUp({
             animation: {
                 enable: true,

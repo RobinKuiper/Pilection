@@ -169,7 +169,7 @@ class UsersController extends \BaseController
         });
 
        return Redirect::Route('sessions.create')
-            ->with('message', 'Thanks for registering!')
+            ->with('message', 'Thanks for registering, you will receive a email with a validation link soon!')
             ->with('alert_class', 'alert-success');
     }
 

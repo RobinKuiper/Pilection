@@ -58,14 +58,13 @@
             <div class="panel-body">
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">Install Guide</a></li>
+                        <li><a href="http://wiki.pilection.eu/index.php/{{ $item->slug }}/Installation">Install Guide</a></li>
                         @if( !empty($item->website_url) )
                         <li>{{ link_to($item->website_url, 'Website') }}</li>
                         @endif
                         @if( !empty($item->download_url) )
                         <li>{{ link_to($item->download_url, 'Download') }}</li>
                         @endif
-                        <li><a href="#">Kutlink</a></li>
                     </ul>
                 </nav>
             </div>

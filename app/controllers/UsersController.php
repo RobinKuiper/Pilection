@@ -50,7 +50,7 @@ class UsersController extends \BaseController
 
         $items = $this->item->where('user_id', '=', $user->id)->orderBy('created_at', 'DESC')->get();
 
-        return View::make('users.show', ['user' => $user, 'items' => $items, 'settings' => $settings]);
+        return View::make('users.show', ['user' => $user, 'items' => $items, 'settings' => $settings, 'title' => $user->username]);
     }
 
     /**
@@ -65,7 +65,7 @@ class UsersController extends \BaseController
         $user = $this->user->find($id);
         $settings = $this->settings->where('user_id', '=', $id);
 
-        return View::make('users.edit', ['user' => $user, 'settings' => $settings]);
+        return View::make('users.edit', ['user' => $user, 'settings' => $settings, 'title' => 'Edit Profile']);
     }
 
     /**
@@ -147,7 +147,7 @@ class UsersController extends \BaseController
      */
     public function create()
     {
-        return View::make('users.create2', ['active' => 'register']);
+        return View::make('users.create2', ['active' => 'register', 'title' => 'Register']);
     }
 
     /**

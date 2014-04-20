@@ -1,6 +1,7 @@
 <?php
 
 //Route::pattern('id', '[0-9]+');
+Route::when('*', 'csrf', array('post', 'put', 'delete'));
 
 /* Pages */
 Route::get('/', 'PagesController@home');

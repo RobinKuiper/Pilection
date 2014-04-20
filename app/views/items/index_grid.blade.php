@@ -74,15 +74,7 @@
     </div>
 
     <div class="col-md-12" id="items">
-        <div class="well well-sm" id="changeLayout">
-            <strong>Show</strong>
-            <div class="btn-group">
-                <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-                        class="glyphicon glyphicon-th"></span>Grid</a>
-            </div>
-        </div>
-
+        
         <div id="MixIt" class="row">
             @if(count($items) > 0)
 
@@ -168,45 +160,6 @@
             }
         });
     });
-
-    $('#grid').on('click', function(){
-        event.preventDefault();
-        $('#MixIt .item').removeClass('row');
-        $('#MixIt .item').addClass('col-md-2');
-        $('#MixIt .item').removeClass('margin-bottom-10');
-        $('#MixIt .item').addClass('margin-bottom-40');
-        $('#MixIt .item').removeClass('list');
-        $('#MixIt .item').addClass('grid');
-
-        $('#MixIt .item .title').removeClass('col-md-4');
-        $('#MixIt .item .title').addClass('row');
-
-        $('#MixIt .item .hidden-info').hide();
-        $('#MixIt .item .hidden-img').show();
-
-        $('#MixIt .item .info').removeClass('col-md-2');
-        $('#MixIt .item .info').addClass('row');
-    });
-
-    $('#list').on('click', function(){
-        event.preventDefault();
-        $('#MixIt .item').removeClass('col-md-2');
-        $('#MixIt .item').addClass('row');
-        $('#MixIt .item').removeClass('margin-bottom-40');
-        $('#MixIt .item').addClass('margin-bottom-10');
-        $('#MixIt .item').removeClass('grid');
-        $('#MixIt .item').addClass('list');
-
-        $('#MixIt .item .title').removeClass('row');
-        $('#MixIt .item .title').addClass('col-md-4');
-
-        $('#MixIt .item .hidden-info').show();
-        $('#MixIt .item .hidden-img').hide();
-
-        $('#MixIt .item .info').removeClass('row');
-        $('#MixIt .item .info').addClass('col-md-2');
-    });
-
 </script>
 
 <script>

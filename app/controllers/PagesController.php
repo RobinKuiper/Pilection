@@ -25,7 +25,7 @@ class PagesController extends BaseController
 
     public function about()
     {
-        return View::make('pages/about', ['active' => 'about']);
+        return View::make('pages/about', ['active' => 'about', 'title' => 'About']);
     }
 
     public function test()

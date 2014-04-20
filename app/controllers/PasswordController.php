@@ -16,7 +16,7 @@ class PasswordController extends \BaseController
      */
     public function create()
     {
-        return View::make('layouts.login', ['active' => 'forgot']);
+        return View::make('layouts.login', ['active' => 'forgot', 'title' => 'Forgot Pasword']);
     }
 
     /**

@@ -22,7 +22,9 @@ class ValidationController extends \BaseController
         {
             $this->user->where('id', '=', $id)->update(['validation' => '0']);
 
-            return Redirect::route('sessions.create', ['active' == 'login'])
+            Auth::loginUsingId($id);
+
+            return Redirect::route('users.index', ['active' == 'login'])
                 ->with('message', 'Your account is now activated!')
                 ->with('alert_class', 'alert-success');
 

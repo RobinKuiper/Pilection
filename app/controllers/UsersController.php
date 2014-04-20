@@ -50,7 +50,7 @@ class UsersController extends \BaseController
 
         $items = $this->item->where('user_id', '=', $user->id)->orderBy('created_at', 'DESC')->get();
 
-        return View::make('users.show', ['user' => $user, 'items' => $items, 'settings' => $settings]);
+        return View::make('users.show', ['user' => $user, 'items' => $items, 'settings' => $settings, 'title' => $user->username]);
     }
 
     /**
@@ -65,7 +65,7 @@ class UsersController extends \BaseController
         $user = $this->user->find($id);
         $settings = $this->settings->where('user_id', '=', $id);
 
-        return View::make('users.edit', ['user' => $user, 'settings' => $settings]);
+        return View::make('users.edit', ['user' => $user, 'settings' => $settings, 'title' => 'Edit Profile']);
     }
 
     /**
@@ -75,6 +75,7 @@ class UsersController extends \BaseController
      */
     public function update()
     {
+        $id = Auth::user()->id;
 
         switch(Input::get('change')){
             case 'profile':
@@ -101,13 +102,20 @@ class UsersController extends \BaseController
             break;
 
             case 'email':
+                $token = str_random(40);
+
                 $rules = [
                     'email' => 'required|email|unique:users',
                 ];
 
                 $update_fields = [
-                    'email' => Input::get('email')
+                    'email' => Input::get('email'),
+                    'validation' => $token
                 ];
+
+                $this->user->mailValidation($id, $token);
+
+                Auth::logout();
             break;
         }
 
@@ -118,7 +126,14 @@ class UsersController extends \BaseController
             return Redirect::back()->withInput()->withErrors($validator);
         }
 
-        $this->user->where('id', '=', Auth::user()->id)->update($update_fields);
+        $this->user->where('id', '=', $id)->update($update_fields);
+
+        if(Input::get('change' == 'email'))
+        {
+            return Redirect::Route('sessions.create')
+                ->with('message', 'Your email is updated! You will get an activation email soon.')
+                ->with('alert_class', 'alert-success');
+        }
 
         return Redirect::Route('users.index')
             ->with('message', 'Your ' . Input::get('change') . ' is updated!')
@@ -132,7 +147,7 @@ class UsersController extends \BaseController
      */
     public function create()
     {
-        return View::make('users.create2', ['active' => 'register']);
+        return View::make('users.create2', ['active' => 'register', 'title' => 'Register']);
     }
 
     /**
@@ -163,13 +178,10 @@ class UsersController extends \BaseController
         $user = $this->user->create($input_fields);
         $this->settings->saveDefaults($user->id);
 
-        Mail::send('emails.auth.validation', ['token' => $token, 'id' => $user->id], function($message)
-        {
-            $message->to(Input::get('email'), Input::get('firstname') . ' ' . Input::get('lastname') . ' (' . Input::get('username') . ')')->subject('Email validation!');
-        });
+        $this->user->mailValidation($user->id, $token);
 
        return Redirect::Route('sessions.create')
-            ->with('message', 'Thanks for registering!')
+            ->with('message', 'Thanks for registering, you will receive a email with a validation link soon!')
             ->with('alert_class', 'alert-success');
     }
 

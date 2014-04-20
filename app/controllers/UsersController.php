@@ -140,14 +140,14 @@ class UsersController extends \BaseController
             ->with('alert_class', 'alert-success');
     }
 
-    /**
+    /***********
      * Show the form for registering a new user.
      *
      * @return View: Register form
      */
     public function create()
     {
-        return View::make('users.create2', ['active' => 'register', 'title' => 'Register']);
+        return View::make('users.create', ['active' => 'register', 'title' => 'Register']);
     }
 
     /**

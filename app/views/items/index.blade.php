@@ -4,6 +4,12 @@
 {{ Breadcrumbs::render($breadcrumb, Str::title($title)) }}
 @stop
 
+@section('head')
+<style>
+    #filters, #changeLayout{ display: none; }
+</style>
+@stop
+
 @section('content')
 
 <div class="row margin-bottom-20">
@@ -19,7 +25,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2" id="filters">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title">Filters</div>
@@ -67,55 +73,67 @@
         </div>
     </div>
 
-    <div class="col-md-10">
-        <div id="MixIt">
+    <div class="col-md-12" id="items">
+        <div class="well well-sm" id="changeLayout">
+            <strong>Show</strong>
+            <div class="btn-group">
+                <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+                        class="glyphicon glyphicon-th"></span>Grid</a>
+            </div>
+        </div>
+
+        <div id="MixIt" class="row">
             @if(count($items) > 0)
-            @foreach($items as $item)
 
-            @if ($item->image == null)
-            {? $path = 'images/' ?}
-            {? $item->image = 'system_default.png' ?}
-            @else {? $path = 'upload/items/images/' ?}
-            @endif
+                @foreach($items as $item)
 
-            {? $tags = '' ?}
-            @foreach(Tag::getTagsByItem($item->id) as $tag)
-            {? $tags .= $tag->tag.' ' ?}
-            @endforeach
+                @if ($item->image == null)
+                {? $path = 'images/' ?}
+                {? $item->image = 'system_default.png' ?}
+                @else {? $path = 'upload/items/images/' ?}
+                @endif
 
-            {? $grades = '' ?}
-            @foreach(Grade::getGradeByItem($item->id) as $grade)
-            {? $grades .= $grade->grade.' ' ?}
-            @endforeach
+                {? $tags = '' ?}
+                @foreach(Tag::getTagsByItem($item->id) as $tag)
+                {? $tags .= $tag->tag.' ' ?}
+                @endforeach
 
-            <div data-myorder="{{ $item->id }}" class="mix {{ $item->type }} {{ $tags }} {{ $grades }} row border-bottom margin-bottom-10 padding-bottom-10">
-                <div class="col-md-2">
-                    <a href='{{ route('items.show', [$item->type, $item->slug]) }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
-                    $item->title, ['width' => '100px', 'max-height' => '100px']) }}</a>
-                </div>
+                {? $grades = '' ?}
+                @foreach(Grade::getGradeByItem($item->id) as $grade)
+                {? $grades .= $grade->grade.' ' ?}
+                @endforeach
 
-                <div class="col-md-10">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <h3>{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</h3>
-                            <p>{{{ Str::words(strip_tags($item->body), 20, $end = '...') }}}</p>
-                        </div>
+            <style>
+                #MixIt .list{
+                    border-bottom: 1px solid #ccc;
+                }
+            </style>
 
-                        <div class="col-md-2">
-                            <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
-                                 data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
-                            <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, $item->type) }}</span>
-                            <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
-                        </div>
+                <div class="row list margin-bottom-10 padding-bottom-10 item {{ $item->type }} {{ $tags }} {{ $grades }}">
+                    <div class="hidden-img row" style="height: 100px; width: 100px; overflow: hidden;">
+                        <a href='{{ route('items.show', [$item->type, $item->slug]) }}' title='{{ $item->title }}'>{{ HTML::image($path . $item->image,
+                        $item->title, ['style' => 'max-width: 100px; max-height: 100px']) }}</a>
                     </div>
 
-                    <!--<div class="row">
-                        <div class="col-md-12">
+                    <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</div>
 
-                        </div>
-                    </div>-->
+                    <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
+                    <div class="hidden-info col-md-2">{{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}</div>
+
+                    <div class="info col-md-2">
+                        <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
+                             data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
+                    </div>
+
+                    <div class="info col-md-2">
+                        <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, $item->type) }}</span>
+                        <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
+                    </div>
                 </div>
-            </div>
+
+
+
             @endforeach
             @else
             <div class="row">
@@ -133,16 +151,62 @@
 
 @section('footer')
 {{ HTML::script('js/raty/jquery.raty.js') }}
-{{ HTML::script('http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js') }}
+{{ HTML::script('js/mixitup/jquery.mixitup.min.js') }}
 
 <script>
     $(function(){
+        $('#MixIt .item').addClass('mix');
+        $('#items').removeClass('col-md-12');
+        $('#items').addClass('col-md-10');
+
+        $('#filters').show();
+        $('#changeLayout').show();
+
         $('#MixIt').mixItUp({
             animation: {
-                enable: false,
+                enable: true,
             }
         });
     });
+
+    $('#grid').on('click', function(){
+        event.preventDefault();
+        $('#MixIt .item').removeClass('row');
+        $('#MixIt .item').addClass('col-md-2');
+        $('#MixIt .item').removeClass('margin-bottom-10');
+        $('#MixIt .item').addClass('margin-bottom-40');
+        $('#MixIt .item').removeClass('list');
+        $('#MixIt .item').addClass('grid');
+
+        $('#MixIt .item .title').removeClass('col-md-4');
+        $('#MixIt .item .title').addClass('row');
+
+        $('#MixIt .item .hidden-info').hide();
+        $('#MixIt .item .hidden-img').show();
+
+        $('#MixIt .item .info').removeClass('col-md-2');
+        $('#MixIt .item .info').addClass('row');
+    });
+
+    $('#list').on('click', function(){
+        event.preventDefault();
+        $('#MixIt .item').removeClass('col-md-2');
+        $('#MixIt .item').addClass('row');
+        $('#MixIt .item').removeClass('margin-bottom-40');
+        $('#MixIt .item').addClass('margin-bottom-10');
+        $('#MixIt .item').removeClass('grid');
+        $('#MixIt .item').addClass('list');
+
+        $('#MixIt .item .title').removeClass('row');
+        $('#MixIt .item .title').addClass('col-md-4');
+
+        $('#MixIt .item .hidden-info').show();
+        $('#MixIt .item .hidden-img').hide();
+
+        $('#MixIt .item .info').removeClass('row');
+        $('#MixIt .item .info').addClass('col-md-2');
+    });
+
 </script>
 
 <script>

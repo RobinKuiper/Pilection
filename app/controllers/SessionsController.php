@@ -12,7 +12,7 @@ class SessionsController extends \BaseController
         $this->user = $user;
     }
 
-    /**
+    /******
      * Show the form for creating a new resource.
      *
      * @return Response

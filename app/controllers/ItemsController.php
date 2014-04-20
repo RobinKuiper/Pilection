@@ -30,7 +30,7 @@ class ItemsController extends \BaseController
         $items = $this->item->where('type', '=', $type)->get();
         $breadcrumb = 'items';
 
-        return View::make('items.index_grid', ['breadcrumb' => $breadcrumb, 'title' => $type, 'items' => $items, 'type' => $type, 'active' => $type]);
+        return View::make('items.index', ['breadcrumb' => $breadcrumb, 'title' => $type, 'items' => $items, 'type' => $type, 'active' => $type]);
 
     }
 

@@ -20,6 +20,6 @@ class GradesController extends \BaseController
         $items = $this->grade->getItemsByGrade($grade);
         $breadcrumb = 'grades';
 
-        return View::make('items.index_grid', ['breadcrumb' => $breadcrumb, 'title' => $grade, 'items' => $items]);
+        return View::make('items.index', ['breadcrumb' => $breadcrumb, 'title' => $grade, 'items' => $items]);
     }
 }

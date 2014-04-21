@@ -80,7 +80,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     {
         Mail::send('emails.auth.validation', ['token' => $token, 'id' => $id], function($message)
         {
-            $message->to(Input::get('email'), Input::get('firstname') . ' ' . Input::get('lastname') . ' (' . Input::get('username') . ')')->subject('Email validation!');
+            $message->to(Input::get('email'), Input::get('firstname') . ' ' . Input::get('lastname') . ' (' . Input::get('username') . ')')->subject('Welcome to Pilection!');
         });
     }
 

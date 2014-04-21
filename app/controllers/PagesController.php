@@ -30,7 +30,10 @@ class PagesController extends BaseController
 
     public function test()
     {
-        return View::make('emails/auth/validation', ['token' => '1', 'id' => '1']);
+        Mail::send('emails.auth.validation', ['token' => 'test', 'id' => 'test'], function($message)
+        {
+            $message->to('robingjkuiper@gmail.com', 'Robin Kuiper (RobinKuiper)')->subject('Welcome to Pilection!');
+        });
     }
 
 }

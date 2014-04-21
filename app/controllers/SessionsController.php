@@ -33,7 +33,7 @@ class SessionsController extends \BaseController
             if (Auth::attempt(['email' => Input::get('login'), 'password' => Input::get('password')], Input::get('remember')) ||
                 Auth::attempt(['username' => Input::get('login'), 'password' => Input::get('password')], Input::get('remember')))
             {
-                $this->user->where('id', '=', Auth::user()->id)->update(['lastlogin' => date('Y-m-d H:m:s')]);
+                $this->user->setLastLogin();
 
                 return Redirect::to(Input::get('url'))
                     ->with('message', 'You are now logged in!')

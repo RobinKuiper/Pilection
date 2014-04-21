@@ -70,7 +70,7 @@ class ItemsController extends \BaseController
         $this->tag->set($input['tags'], $item->id);
         $this->tag->saveTags();
 
-        return Redirect::to($type . '/' . $item->id)
+        return Redirect::to($type . '/' . $item->slug)
             ->with('message', 'New system created!')
             ->with('alert_class', 'alert-success');
     }

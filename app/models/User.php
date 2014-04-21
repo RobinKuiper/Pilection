@@ -76,6 +76,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         return 'remember_token';
     }
 
+    public function setLastLogin($id=null)
+    {
+        $id = ($id == null) ? Auth::user()->id : $id;
+        $this->user->where('id', '=', $id)->update(['lastlogin' => date('Y-m-d H:m:s')]);
+    }
+
     public function mailValidation($id, $token)
     {
         Mail::send('emails.auth.validation', ['token' => $token, 'id' => $id], function($message)

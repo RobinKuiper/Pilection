@@ -1,5 +1,13 @@
-/* Item:show */
-.icons{ margin-right: 8px; }
+body{
+    padding-top: 70px;
+}
+
+header{
+    position:fixed;
+    top: 0px;
+    width:100%;
+    z-index: 99;
+}
 
 /* Profile */
 .image-border {

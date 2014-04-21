@@ -20,21 +20,25 @@
 <div class="row">
     <div class="col-md-8">
         <div class="row border-bottom margin-bottom-20">
-            <h2>Pilection.eu launched</h2>
-            <p>Posted by {{ link_to(route('users.show', 'RobinKuiper'), 'RobinKuiper') }}
-                at {{ date("d-m-Y H:i", '1398101939') }}</p>
+            <div class="col-md-12">
+                <h2>Pilection.eu launched</h2>
+                <p>Posted by {{ link_to(route('users.show', 'RobinKuiper'), 'RobinKuiper') }}
+                    at {{ date("d-m-Y H:i", '1398101939') }}</p>
+            </div>
         </div>
 
         <div class="row">
-            <p>The first version of <a href="http://pilection.eu" title="Pilection">Pilection</a> is launched today!<br>
-            We will try to keep track of <a href="http://raspberrypi.org" title="Raspberry Pi">Raspberry Pi</a> resources, but we need your help, please submit any OS, script, software, etc designed for the Pi, so we can keep a nice collection here.</p>
+            <div class="col-md-12">
+                <p>The first version of <a href="http://pilection.eu" title="Pilection">Pilection</a> is launched today!<br>
+                    We will try to keep track of <a href="http://raspberrypi.org" title="Raspberry Pi">Raspberry Pi</a> resources, but we need your help, please submit any OS, script, software, etc designed for the Pi, so we can keep a nice collection here.</p>
 
-            <p>Whenever you think something is interesting, you can login to your account and create a new item.<br>
-            Not willing to register? No problem, you can submit a item <a href="#" title="#">here</a>, and we will post it!</p>
+                <p>Whenever you think something is interesting, you can login to your account and create a new item.<br>
+                    Not willing to register? No problem, you can submit a item <a href="#" title="#">here</a>, and we will post it!</p>
 
-            <p>Like we said, this is the first version, so there will be more features in the future.</p>
+                <p>Like we said, this is the first version, so there will be more features in the future.</p>
 
-            <p>Found any bugs/issues? Please report them here: <a href="https://bitbucket.org/recodenl/pilection/issues" title="Pilection Issue Tracker">Pilection Issue Tracker</a></p>
+                <p>Found any bugs/issues? Please report them here: <a href="https://bitbucket.org/recodenl/pilection/issues" title="Pilection Issue Tracker">Pilection Issue Tracker</a></p>
+            </div>
         </div>
     </div>
     <div class="col-md-4">

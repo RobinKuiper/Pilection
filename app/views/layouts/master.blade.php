@@ -10,19 +10,10 @@
     {{ HTML::style('css/main.css') }}
     {{ HTML::style('css/master.css') }}
 
-    <style>
-        header{
-            position:fixed;
-            top: 0px;
-            width:100%;
-            z-index: 99;
-        }
-    </style>
-
     @yield('head')
 </head>
 
-<body style="padding-top: 70px;">
+<body>
 
 <header>
     <nav class="navbar navbar-inverse border-green" role="navigation">

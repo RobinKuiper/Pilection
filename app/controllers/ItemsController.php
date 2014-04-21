@@ -137,6 +137,7 @@ class ItemsController extends \BaseController
             'website_url' => $input['website_url'],
             'download_url' => $input['download_url'],
             'grade' => $input['grade'],
+            'type' => $input['type']
         ];
 
         if (!empty($input['image'])) {

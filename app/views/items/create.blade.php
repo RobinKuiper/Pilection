@@ -87,7 +87,7 @@
         <div class='row'>
             <div class='col-md-12'>
                 <div class="form-group">
-                    {{ Form::text('title', null, array('class'=>'form-control', 'placeholder'=>'System name')) }}
+                    {{ Form::text('title', null, array('class'=>'form-control', 'placeholder'=>'Item name')) }}
                     {{ $errors->first('title') }}
                 </div>
             </div>
@@ -96,7 +96,7 @@
         <div class='row'>
             <div class='col-md-12'>
                 <div class="form-group">
-                    {{ Form::textarea('body', null, array('class'=>'form-control', 'placeholder'=>'System info')) }}
+                    {{ Form::textarea('body', null, array('class'=>'form-control', 'placeholder'=>'Item info')) }}
                     {{ $errors->first('body') }}
                 </div>
             </div>

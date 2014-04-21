@@ -142,6 +142,16 @@
                 {{ $errors->first('image') }}
             </div>
         </div>
+
+        <div class="form-group">
+            {{ Form::label('type', 'Type') }}
+            <select name="type" class="btn btn-default">
+                <option value="systems" {{ ($item->type == 'systems') ? 'selected' : '' }}>System</option>
+                <option value="software" {{ ($item->type == 'software') ? 'selected' : '' }}>Software</option>
+                <option value="scripts" {{ ($item->type == 'scripts') ? 'selected' : '' }}>Script</option>
+                <option value="projects" {{ ($item->type == 'project') ? 'selected' : '' }}>Project</option>
+            </select>
+        </div>
     </div>
 </div>
 {{ Form::close() }}

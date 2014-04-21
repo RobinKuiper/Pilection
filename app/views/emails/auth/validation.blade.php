@@ -72,7 +72,7 @@
                             <br />
                             <p>You have succesfully signed up for Pilection, only thing to do is confirm your email address, by clicking on the following link:
 
-                            <p>URL::to('validation/'.$id.'/'.$token, 'Confirm your email!')</p>
+                            <p>{{ link_to('validation/'.$id.'/'.$token, 'Confirm your email!') }}</p>
 
                             Best Regards,<br/>
                             Robin Kuiper<p/>

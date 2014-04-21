@@ -30,7 +30,7 @@ class PagesController extends BaseController
 
     public function test()
     {
-        return Session::all();
+        return View::make('emails/auth/validation', ['token' => '1', 'id' => '1']);
     }
 
 }

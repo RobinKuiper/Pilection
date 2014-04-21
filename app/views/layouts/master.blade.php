@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                {{ link_to('/', 'Pilection', ['class' => 'navbar-brand']) }}
+                <a href="/" title="Pilection" class="navbar-brand">Pilection <sup style="position: absolute; top: 37px; left: 70px; font-size: 7pt;">Beta</sup></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

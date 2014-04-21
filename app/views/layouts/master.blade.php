@@ -87,7 +87,7 @@
                             <b class="caret"></b></a>
                         <ul class="dropdown-menu" style="margin-top: 5px;">
                             <li>{{ link_to(route('users.index'), 'Profile') }}</li>
-                            <li>{{ link_to(route('users.edit'), 'Edit Profile') }}</li>
+                            <li>{{ link_to(route('users.edit', 'profile'), 'Edit Profile') }}</li>
 
                             <li class="divider"></li>
                             <li>{{ Link_to(route('sessions.destroy'), 'Logout') }}</li>

@@ -25,6 +25,7 @@ Route::get('logout', ['as' => 'sessions.destroy', 'uses' => 'SessionsController@
 Route::get('register', ['as' => 'users.create', 'uses' => 'UsersController@create']);
 Route::post('users/store', ['as' => 'users.store', 'uses' => 'UsersController@store']);
 Route::get('profile/edit', ['as' => 'users.edit', 'uses' => 'UsersController@edit']);
+Route::get('profile/edit/{active}', ['as' => 'users.edit', 'uses' => 'UsersController@edit']);
 Route::post('profile/update', ['as' => 'users.update', 'uses' => 'UsersController@update']);
 Route::get('profile', ['as' => 'users.index', 'uses' => 'UsersController@index']);
 Route::get('profile/{id}', ['as' => 'users.show', 'uses' => 'UsersController@show']);

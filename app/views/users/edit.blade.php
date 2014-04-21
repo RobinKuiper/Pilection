@@ -5,15 +5,16 @@
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs margin-bottom-20">
-    <li class="active"><a href="#profile" data-toggle="tab">Change Profile</a></li>
-    <li><a href="#password" data-toggle="tab">Change Password</a></li>
-    <li><a href="#email" data-toggle="tab">Change Email</a></li>
-    <li><a href="#settings" data-toggle="tab">Settings</a></li>
+    <li class="{{ $active == 'profile' ? 'active' : '' }}"><a href="{{ route('users.edit', 'profile') }}" data-target="#profile" title="Edit Profile" data-toggle="tab">Edit Profile</a></li>
+    <li class="{{ $active == 'password' ? 'active' : '' }}"><a href="{{ route('users.edit', 'password') }}" data-target="#password" title="Change Password" data-toggle="tab">Change Password</a></li>
+    <li class="{{ $active == 'email' ? 'active' : '' }}"><a href="{{ route('users.edit', 'email') }}" data-target="#email" title="Change Email" data-toggle="tab">Change Email</a></li>
+    <!--<li><a href="#settings" data-toggle="tab">Settings</a></li>-->
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-    <div class="tab-pane active" id="profile">
+
+    <div class="tab-pane {{ $active == 'profile' ? 'active' : '' }}" id="profile">
         {{ Form::open(['route' => 'users.update', 'class' => 'form-signup', 'role' => 'form']) }}
 
         <div class="form-group">
@@ -31,7 +32,7 @@
 
         {{ Form::close() }}
     </div>
-    <div class="tab-pane" id="password">
+    <div class="tab-pane {{ $active == 'password' ? 'active' : '' }}" id="password">
 
         {{ Form::open(['route' => 'users.update', 'class' => 'form-signup', 'role' => 'form']) }}
 
@@ -51,7 +52,7 @@
         {{ Form::close() }}
 
     </div>
-    <div class="tab-pane" id="email">
+    <div class="tab-pane {{ $active == 'email' ? 'active' : '' }}" id="email">
         {{ Form::open(['route' => 'users.update', 'class' => 'form-signup', 'role' => 'form']) }}
 
         <div class="input-group form-group">

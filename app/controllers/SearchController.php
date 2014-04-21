@@ -7,7 +7,6 @@ class SearchController extends \BaseController
 
     public function __construct(Views $views)
     {
-        $this->beforeFilter('csrf', ['only' => ['store']]);
         $this->views = $views;
     }
 

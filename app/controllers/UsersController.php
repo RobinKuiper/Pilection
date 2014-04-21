@@ -12,7 +12,6 @@ class UsersController extends \BaseController
     {
         $this->beforeFilter('guest', ['only' => ['create', 'store']]);
         $this->beforeFilter('auth', ['only' => ['edit', 'index', 'show', 'update']]);
-        //$this->beforeFilter('csrf', ['only' => 'edit']);
         $this->user = $user;
         $this->item = $item;
         $this->views = $views;
@@ -58,14 +57,14 @@ class UsersController extends \BaseController
      *
      * @return View: edit profile
      */
-    public function edit()
+    public function edit($active='profile')
     {
         $id = Auth::user()->id;
 
         $user = $this->user->find($id);
         $settings = $this->settings->where('user_id', '=', $id);
 
-        return View::make('users.edit', ['user' => $user, 'settings' => $settings, 'title' => 'Edit Profile']);
+        return View::make('users.edit', ['user' => $user, 'settings' => $settings, 'title' => 'Edit Profile', 'active' => $active]);
     }
 
     /**

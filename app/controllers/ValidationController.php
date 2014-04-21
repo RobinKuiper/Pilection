@@ -7,7 +7,6 @@ class ValidationController extends \BaseController
     public function __construct(User $user)
     {
         $this->beforeFilter('guest');
-        $this->beforeFilter('csrf', ['on' => ['post']]);
         $this->user = $user;
     }
 

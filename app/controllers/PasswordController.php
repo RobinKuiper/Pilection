@@ -6,7 +6,6 @@ class PasswordController extends \BaseController
     public function __construct()
     {
         $this->beforeFilter('guest');
-        $this->beforeFilter('csrf', ['on' => ['post']]);
     }
 
     /**

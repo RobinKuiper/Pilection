@@ -38,8 +38,6 @@ header{
     background-color: #eee;
 }
 
-.hidden-img{ display: none; }
-
 /* Search */
 .ui-autocomplete {
     padding: 5px 0;

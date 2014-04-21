@@ -123,13 +123,7 @@
                 {? $grades .= $grade->grade.' ' ?}
                 @endforeach
 
-            <style>
-                #MixIt .list{
-                    border-bottom: 1px solid #ccc;
-                }
-            </style>
-
-            <div class="row list padding-top-10 padding-bottom-10 item {{ $item->type }} {{ $tags }} {{ $grades }}">
+            <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type }} {{ $tags }} {{ $grades }}">
                 <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</div>
 
                 <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
@@ -164,12 +158,25 @@
     </div>
 </div>
 
+<div id="disqus_thread"></div>
 
 @stop
 
 @section('footer')
 {{ HTML::script('js/raty/jquery.raty.js') }}
 {{ HTML::script('js/mixitup/jquery.mixitup.min.js') }}
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'rpios'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
 
 <script>
     $(function(){

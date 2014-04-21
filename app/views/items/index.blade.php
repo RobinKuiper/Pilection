@@ -144,7 +144,7 @@
             @else
             <div class="row">
                 <div class="col-md-12">
-                    <p>There aren't any {{ (isset($type)) ? $type : 'items' }} currently. {{ (isset($type)) ? link_to($type.'/create', 'Create') : '' }} one!</p>
+                    <p>There aren't any {{ (isset($type)) ? $type : 'items' }} currently. {{ (isset($type)) ? link_to($type.'/create', 'Create') . ' one!' : '' }}</p>
                 </div>
             </div>
             @endif

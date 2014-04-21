@@ -60,9 +60,15 @@ class ItemsController extends \BaseController
         }
 
         if (!empty($input['image'])) {
-            if (!$input['image'] = $this->item->saveImage($input['image'])) {
+            /*if (!$input['image'] = $this->item->saveImage($input['image'])) {
                 return Redirect::back()->withInput()->withErrors(['image' => 'Something went wrong with the image, try again or contact the administrator.']);
-            }
+            }*/
+
+            $save_path = 'upload/items/images';
+            $filename = $input['image']->getClientOriginalName();
+
+            if ($input['image']->move($save_path, $filename))
+                $input['image'] = $input['image'];
         }
 
         $item = $this->item->create($input);
@@ -141,11 +147,16 @@ class ItemsController extends \BaseController
         ];
 
         if (!empty($input['image'])) {
-            if (!$input['image'] = $this->item->saveImage($input['image'])) {
+            /*if (!$input['image'] = $this->item->saveImage($input['image'])) {
                 return Redirect::back()->withInput()->withErrors(['image' => 'Something went wrong with the image, try again or contact the administrator.']);
-            }
+            }*/
 
-            $update_fields = ['image' => $input['image']];
+            $save_path = 'upload/items/images';
+            $filename = $input['image']->getClientOriginalName();
+
+
+            if ($input['image']->move($save_path, $filename))
+                $update_fields = ['image' => $input['image']];
         }
 
         $this->item->where('id', '=', $id)->update($update_fields);

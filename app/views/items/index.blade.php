@@ -7,6 +7,14 @@
 @section('head')
 <style>
     #filters, #changeLayout{ display: none; }
+
+    #MixIt .item{
+        cursor: pointer;
+    }
+
+    #MixIt .item:hover{
+        background-color: #eeeeee;
+    }
 </style>
 @stop
 
@@ -121,24 +129,28 @@
                 }
             </style>
 
-                <div class="row list margin-bottom-10 padding-bottom-10 item {{ $item->type }} {{ $tags }} {{ $grades }}">
-                    <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</div>
+            <div class="row list padding-top-10 padding-bottom-10 item {{ $item->type }} {{ $tags }} {{ $grades }}">
+                <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</div>
 
-                    <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
-                    <div class="hidden-info col-md-2">{{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}</div>
+                <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
+                <div class="hidden-info col-md-2">{{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}</div>
 
-                    <div class="info col-md-2">
-                        <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
-                             data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
-                    </div>
-
-                    <div class="info col-md-2">
-                        <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, $item->type) }}</span>
-                        <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
-                    </div>
+                <div class="info col-md-2">
+                    <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
+                         data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
                 </div>
 
+                <div class="info col-md-2">
+                    <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, $item->type) }}</span>
+                    <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
+                </div>
+            </div>
 
+            <div class="row item-body" style="display: none;">
+                <div class="col-md-12">
+                    {{ $item->body }}
+                </div>
+            </div>
 
             @endforeach
             @else
@@ -160,6 +172,13 @@
 {{ HTML::script('js/mixitup/jquery.mixitup.min.js') }}
 
 <script>
+    $(function(){
+        $('#MixIt .item').click(function(){
+            $(this).next('.item-body').slideToggle();
+        });
+    });
+
+
     $(function(){
         $('#MixIt .item').addClass('mix');
         $('#items').removeClass('col-md-12');

@@ -14,7 +14,7 @@
         text-align: center;
     }
 
-    .file-upload input {
+    .file-upload input, .file-upload select {
         position: absolute;
         top: 0;
         left: 0;
@@ -26,7 +26,7 @@
         filter: alpha(opacity=0);
     }
 
-    .itemForm input, .file-upload{
+    .itemForm input, .file-upload, .file-upload select{
         padding: 9px;
         border: solid 1px #E5E5E5;
         outline: 0;
@@ -40,7 +40,7 @@
         line-height: 150%;
     }
 
-    .itemForm input, .itemForm textarea, .file-upload{
+    .itemForm input, .itemForm textarea, .file-upload, .file-upload select{
         box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
         -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
         -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
@@ -50,7 +50,8 @@
     }
 
     .itemForm input:hover, .itemForm textarea:hover,
-    .itemForm input:focus, .itemForm textarea:focus, .file-upload {
+    .itemForm input:focus, .itemForm textarea:focus,
+    .file-upload:hover, .file-upload select:hover {
         border-color: #C9C9C9;
     }
 
@@ -136,14 +137,6 @@
         </div>
 
         <div class="form-group">
-            <div class="file-upload">
-                {{ Form::label('image', 'Upload image', ['class' => '']) }}
-                {{ Form::file('image', ['class' => 'file-upload']) }}
-                {{ $errors->first('image') }}
-            </div>
-        </div>
-
-        <div class="form-group">
             {{ Form::label('type', 'Type') }}
             <select name="type" class="btn btn-default">
                 <option value="systems" {{ ($item->type == 'systems') ? 'selected' : '' }}>System</option>
@@ -152,6 +145,15 @@
                 <option value="projects" {{ ($item->type == 'project') ? 'selected' : '' }}>Project</option>
             </select>
         </div>
+
+        <div class="form-group">
+            <div class="file-upload">
+                {{ Form::label('image', 'Upload image', ['class' => '']) }}
+                {{ Form::file('image', ['class' => 'file-upload']) }}
+                {{ $errors->first('image') }}
+            </div>
+        </div>
+
     </div>
 </div>
 {{ Form::close() }}

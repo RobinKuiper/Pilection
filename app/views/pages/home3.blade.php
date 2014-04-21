@@ -44,7 +44,7 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading" style="font-weight: 900">
-                <a href="http://www.reddit.com" target="_blank">
+                <a href="http://www.reddit.com/r/raspberry_pi" target="_blank">
                     <img src="http://www.redditstatic.com/about/assets/reddit-logo.png" style="height: 40px;">
                 </a>
                 <a href="http://www.raspberrypi.org" target="_blank">
@@ -63,21 +63,21 @@
                 <div class="tab-pane active" id="new">
                     <ul class="list-group">
                         @foreach($reddit['new']->data->children as $item)
-                        <li class="list-group-item" style="padding: 15px;">{{ link_to($item->data->url, $item->data->title) }} <small style="float: right">{{ link_to('http://reddit.com'.$item->data->permalink, $item->data->num_comments . ' comment(s)') }}</small></li>
+                        <li class="list-group-item" style="padding: 15px;">{{ link_to($item->data->url, $item->data->title, ['target' => '_blank']) }} <small style="float: right">{{ link_to('http://reddit.com'.$item->data->permalink, $item->data->num_comments . ' comment(s)') }}</small></li>
                         @endforeach
                     </ul>
                 </div>
                 <div class="tab-pane" id="hot">
                     <ul class="list-group">
                         @foreach($reddit['hot']->data->children as $item)
-                        <li class="list-group-item" style="padding: 15px;">{{ link_to($item->data->url, $item->data->title) }} <small style="float: right">{{ link_to('http://reddit.com'.$item->data->permalink, $item->data->num_comments . ' comment(s)') }}</small></li>
+                        <li class="list-group-item" style="padding: 15px;">{{ link_to($item->data->url, $item->data->title, ['target' => '_blank']) }} <small style="float: right">{{ link_to('http://reddit.com'.$item->data->permalink, $item->data->num_comments . ' comment(s)') }}</small></li>
                         @endforeach
                     </ul>
                 </div>
                 <div class="tab-pane" id="top">
                     <ul class="list-group">
                         @foreach($reddit['top']->data->children as $item)
-                        <li class="list-group-item" style="padding: 15px;">{{ link_to($item->data->url, $item->data->title) }} <small style="float: right">{{ link_to('http://reddit.com'.$item->data->permalink, $item->data->num_comments . ' comment(s)') }}</small></li>
+                        <li class="list-group-item" style="padding: 15px;">{{ link_to($item->data->url, $item->data->title, ['target' => '_blank']) }} <small style="float: right">{{ link_to('http://reddit.com'.$item->data->permalink, $item->data->num_comments . ' comment(s)') }}</small></li>
                         @endforeach
                     </ul>
                 </div>

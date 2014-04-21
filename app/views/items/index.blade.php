@@ -141,7 +141,11 @@
             </div>
 
             <div class="row item-body" style="display: none;">
-                <div class="col-md-12">
+                <div class="col-md-2">
+                    {{ HTML::image($item->path.$item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}
+                </div>
+
+                <div class="col-md-10">
                     {{ $item->body }}
                 </div>
             </div>

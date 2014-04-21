@@ -79,7 +79,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     public function setLastLogin($id=null)
     {
         $id = ($id == null) ? Auth::user()->id : $id;
-        $this->user->where('id', '=', $id)->update(['lastlogin' => date('Y-m-d H:m:s')]);
+        $this->where('id', '=', $id)->update(['lastlogin' => date('Y-m-d H:m:s')]);
     }
 
     public function mailValidation($id, $token)

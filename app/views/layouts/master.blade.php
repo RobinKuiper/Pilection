@@ -112,15 +112,14 @@
     @yield('content')
 </div>
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- pilection_side -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-2044382203546332"
-     data-ad-slot="6857618407"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+<div class="bottom-add margin-top-20" style="text-align: center;">
+    <script async="" src="//www.google-analytics.com/analytics.js"></script><script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- pilection_side -->
+    <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2044382203546332" data-ad-slot="6857618407"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
 
 {{ HTML::script('http://code.jquery.com/jquery-latest.min.js') }}
 {{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}

@@ -77,16 +77,7 @@
     </div>
 
     <div class="col-md-12" id="items">
-        <!--<div class="well well-sm" id="changeLayout">
-            <strong>Show</strong>
-            <div class="btn-group">
-                <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-                        class="glyphicon glyphicon-th"></span>Grid</a>
-            </div>
-        </div>-->
-
-        <div class="row list margin-bottom-10 padding-bottom-10 item" style="background-color: #f9f9f9; padding-top: 5px; font-size: 10pt">
+        <div class="row list margin-bottom-10 padding-bottom-10" style="background-color: #f9f9f9; padding-top: 5px; font-size: 10pt">
             <div class="title col-md-4">Title</div>
 
             <div class="hidden-info col-md-2">Posted at</div>
@@ -97,10 +88,19 @@
             <div class="info col-md-2"></div>
         </div>
 
+        <style>
+            .item{
+                display: none;
+            }
+
+            .{{ $filter }} {
+                display: block;
+            }
+        </style>
+
         <div id="MixIt" class="row">
             @if(count($items) > 0)
                 @foreach($items as $item)
-
                     <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type }} {{ $item_info[$item->id]['tags'] }} {{ $item_info[$item->id]['grade'] }}">
                         <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</div>
 

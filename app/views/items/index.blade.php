@@ -112,7 +112,7 @@
 
                         <div class="info col-md-2">
                             <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ $item_info[$item->id]['views'] }}</span>
-                            <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
+                            <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->slug#disqus_thread", '0') }}</span>
                         </div>
                     </div>
 

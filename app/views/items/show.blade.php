@@ -18,7 +18,7 @@
                         <p>Posted by {{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}
                         at {{ date("d-m-Y H:i", strtotime($item->created_at)) }}</p>
                         <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ $item->viewcount }}</span>
-                        <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("$item->type/$item->id#disqus_thread", '0') }}</span>
+                        <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("$item->type/$item->slug#disqus_thread", '0') }}</span>
                         <span class="icons" id="rating"></span>
                     </div>
 

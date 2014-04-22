@@ -45,7 +45,6 @@
                     </ul>
                 </nav>
 
-                @if(Route::currentRouteName() != 'items.index')
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
                         <li style="font-weight: 900">Type</li>
@@ -55,9 +54,7 @@
                         <li><a href="#" class="filter" data-filter=".projects">Projects</a></li>
                     </ul>
                 </nav>
-                @endif
 
-                @if(Route::currentRouteName() != 'tags.index')
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
                         <li style="font-weight: 900">Tag</li>
@@ -66,9 +63,7 @@
                         @endforeach
                     </ul>
                 </nav>
-                @endif
 
-                @if(Route::currentRouteName() != 'grades.index')
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
                         <li style="font-weight: 900">Grade</li>
@@ -77,7 +72,6 @@
                         @endforeach
                     </ul>
                 </nav>
-                @endif
             </div>
         </div>
     </div>
@@ -167,6 +161,7 @@
 <script>
     $(function(){
         $('#MixIt .item').click(function(){
+            $('.item-body').slideUp();
             $(this).next('.item-body').slideToggle();
         });
     });
@@ -183,11 +178,17 @@
         $('#MixIt').mixItUp({
             animation: {
                 enable: true,
+            },
+            controls: {
+                toggleLogic: 'or',
+            },
+            load: {
+                filter: '.{{ (isset($filter)) ? $filter : 'all' }}'
             }
         });
     });
 
-    $('#grid').on('click', function(){
+    /*$('#grid').on('click', function(){
         event.preventDefault();
         $('#MixIt .item').removeClass('row');
         $('#MixIt .item').addClass('col-md-2');
@@ -223,7 +224,7 @@
 
         $('#MixIt .item .info').removeClass('row');
         $('#MixIt .item .info').addClass('col-md-2');
-    });
+    });*/
 
 </script>
 

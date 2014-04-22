@@ -26,6 +26,6 @@ class TagsController extends \BaseController
         $items = $this->tag->getItemsByTag($tag);
         $breadcrumb = 'tags';
 
-        return View::make('items.index', ['breadcrumb' => $breadcrumb, 'title' => $tag, 'items' => $items]);
+        return View::make('items.index', ['breadcrumb' => $breadcrumb, 'title' => $tag, 'items' => $items, 'filter' => $tag]);
     }
 }

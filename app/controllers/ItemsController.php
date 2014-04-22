@@ -31,7 +31,8 @@ class ItemsController extends \BaseController
      */
     public function index($type)
     {
-        $items = $this->item->where('type', '=', $type)->get();
+        //$items = $this->item->where('type', '=', $type)->get();
+        $items = $this->item->all();
         $tags = $this->tag->all();
         $grades = $this->grade->all();
 
@@ -59,6 +60,7 @@ class ItemsController extends \BaseController
                             'active'        => $type,
                             'tags'          => $tags,
                             'grades'        => $grades,
+                            'filter'        => $type
         ]);
 
     }

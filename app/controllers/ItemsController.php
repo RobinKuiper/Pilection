@@ -120,7 +120,7 @@ class ItemsController extends \BaseController
             return Redirect::back()->withInput()->withErrors($this->item->errors);
         }
 
-        $item = $this->item->find($id);
+        $item = $this->item->findOrFail($id);
 
         $item->title        = $input['title'];
         $item->body         = $input['body'];
@@ -135,7 +135,7 @@ class ItemsController extends \BaseController
             $item->image = $input['image'];
         }
 
-        $this->item->save();
+        $item->save();
 
         return Redirect::to($type . '/' . $id)
             ->with('message', 'System updated!')

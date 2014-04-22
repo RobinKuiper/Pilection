@@ -120,22 +120,22 @@ class ItemsController extends \BaseController
             return Redirect::back()->withInput()->withErrors($this->item->errors);
         }
 
-        $update_fields = [
-            'title' => $input['title'],
-            'body' => $input['body'],
-            'website_url' => $input['website_url'],
-            'download_url' => $input['download_url'],
-            'grade' => $input['grade'],
-            'type' => $input['type']
-        ];
+        $item = $this->item->find($id);
+
+        $item->title        = $input['title'];
+        $item->body         = $input['body'];
+        $item->website_url  = $input['website_url'];
+        $item->download_url = $input['download_url'];
+        $item->grade        = $input['grade'];
+        $item->type         = $input['type'];
 
         if($input['image'] != null)
         {
-            $this->item->find($id)->image->clear();
-            $update_fields['image'] = $input['image'];
+            $item->image->clear();
+            $item->image = $input['image'];
         }
 
-        $this->item->where('id', '=', $id)->update($update_fields);
+        $this->item->save();
 
         return Redirect::to($type . '/' . $id)
             ->with('message', 'System updated!')

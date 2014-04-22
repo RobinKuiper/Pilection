@@ -178,7 +178,8 @@
                 enable: true,
             },
             controls: {
-                toggleFilterButtons: true
+                toggleFilterButtons: true,
+                toggleLogic: 'and'
             },
             load: {
                 filter: '{{ (isset($filter)) ? '.'.$filter : 'all' }}'

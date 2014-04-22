@@ -2,6 +2,7 @@
 
 class Item extends Eloquent
 {
+    use Codesleeve\Stapler\Stapler;
 
     protected $fillable = ['user_id', 'title', 'body', 'image', 'download', 'website', 'type', 'grade'];
     protected $table = 'items';
@@ -20,6 +21,18 @@ class Item extends Eloquent
         'save_to'    => 'slug',
     );
 
+    public function __construct(array $attributes = array())
+    {
+        $this->hasAttachedFile('image', [
+            'styles' => [
+                'medium' => '300x300',
+                'thumb' => '100x100'
+            ]
+        ]);
+
+        parent::__construct($attributes);
+    }
+
     public function isValid()
     {
         $validation = Validator::make($this->attributes, static::$rules);
@@ -27,15 +40,6 @@ class Item extends Eloquent
         if ($validation->passes()) return true;
 
         $this->errors = $validation->messages();
-        return false;
-    }
-
-    public function saveImage($image)
-    {
-        $save_path = 'public/upload/items/images';
-        $filename = $image->getClientOriginalName();
-        if ($image->move($save_path, $filename)) return $filename;
-
         return false;
     }
 

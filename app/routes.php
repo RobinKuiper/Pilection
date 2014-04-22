@@ -6,7 +6,9 @@ Route::when('*', 'csrf', array('post', 'put', 'delete'));
 /* Pages */
 Route::get('/', 'PagesController@home');
 Route::get('about', 'PagesController@about');
-Route::get('test', 'PagesController@test');
+
+Route::get('test', ['as' => 'test.get', 'uses' => 'PagesController@test']);
+Route::post('test/post', ['as' => 'test.post', 'uses' => 'PagesController@testPost']);
 
 /* oAuth/Social login */
 Route::get('social', ['as' => 'oauth.index', 'uses' => 'oAuthController@index']);
@@ -58,4 +60,3 @@ Route::get('{type}/{id}', ['as' => 'items.show', 'uses' => 'ItemsController@show
 Route::delete('{type}/{id}/destroy', ['as' => 'items.destroy', 'uses' => 'ItemsController@destroy']);
 Route::get('{type}/{id}/edit', ['as' => 'items.edit', 'uses' => 'ItemsController@edit']);
 Route::put('{type}/{id}/update', ['as' => 'items.update', 'uses' => 'ItemsController@update']);
-

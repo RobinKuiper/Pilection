@@ -8,7 +8,8 @@
         "twitter/bootstrap": "*",
         "davejamesmiller/laravel-breadcrumbs": "~2.2.0",
         "cviebrock/eloquent-sluggable": "1.0.*",
-        "hybridauth/hybridauth": "dev-master"
+        "hybridauth/hybridauth": "dev-master",
+        "codesleeve/stapler": "dev-master"
     },
     "require-dev": {
         "way/generators": "2.*"

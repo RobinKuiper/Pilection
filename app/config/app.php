@@ -109,6 +109,7 @@ return array(
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+        'Codesleeve\Stapler\StaplerServiceProvider',
 
     ),
 

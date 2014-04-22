@@ -9,7 +9,7 @@
     <div class="col-md-9">
         <div class="row border-bottom margin-bottom-40 padding-bottom-10">
             <div class='col-md-2'>
-                <span>{{ HTML::image($item->path.$item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
+                <span>{{ HTML::image($item->image->url(), $item->title, ['width' => '100px', 'max-height' => '100px']) }}</span>
             </div>
             <div class='col-md-10'>
                 <div class="row">
@@ -96,7 +96,7 @@
     new Share('.share', {
         title: '{{ $item->title }}',
         text: '{{ Str::words($item->body, 10, $end = '...') }}',
-        image: '{{ $item->path.$item->image }}',
+        image: '{{ $item->image->url() }}',
         ui: {
             flyout: 'bottom center',
         },

@@ -35,10 +35,26 @@ class PagesController extends BaseController
 
     public function test()
     {
-        Mail::send('emails.auth.validation', ['token' => 'test', 'id' => 'test'], function($message)
-        {
-            $message->to('robingjkuiper@gmail.com', 'Robin Kuiper (RobinKuiper)')->subject('Welcome to Pilection!');
-        });
+        return View::make('test.file_form');
+    }
+
+    public function testPost()
+    {
+        $input = Input::all();
+
+        return Input::all();
+
+       /* if (!empty($input['image'])) {
+            if (!$input['image'] = $this->item->saveImage($input['image'])) {
+                return Redirect::back()->withInput()->withErrors(['image' => 'Something went wrong with the image, try again or contact the administrator.']);
+            }
+
+            $save_path = 'upload/items/images';
+            $filename = $input['image']->getClientOriginalName();
+
+            if ($input['image']->move($save_path, $filename))
+                $input['image'] = $input['image'];
+        } */
     }
 
 }

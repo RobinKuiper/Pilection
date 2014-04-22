@@ -107,12 +107,6 @@
 
                 @foreach($items as $item)
 
-                @if ($item->image == null)
-                {? $path = 'images/' ?}
-                {? $item->image = 'system_default.png' ?}
-                @else {? $path = 'upload/items/images/' ?}
-                @endif
-
                 {? $tags = '' ?}
                 @foreach(Tag::getTagsByItem($item->id) as $tag)
                 {? $tags .= $tag->tag.' ' ?}
@@ -140,12 +134,10 @@
                 </div>
             </div>
 
-            <div class="row item-body" style="display: none;">
-                <div class="col-md-2">
-                    {{ HTML::image($path.$item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}
-                </div>
+            <div class="row item-body" style="display: none; padding: 10px;">
+                <div class="col-md-12">
+                    {{ HTML::image($item->image->url(), $item->title, ['width' => '100px', 'max-height' => '100px', 'style' => 'float:left; margin: 10px;']) }}
 
-                <div class="col-md-10">
                     {{ $item->body }}
                 </div>
             </div>

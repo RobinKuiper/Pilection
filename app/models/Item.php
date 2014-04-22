@@ -33,6 +33,11 @@ class Item extends Eloquent
         parent::__construct($attributes);
     }
 
+    public function user()
+    {
+       return $this->belongsTo('User', 'user_id', 'id');
+    }
+
     public function isValid()
     {
         $validation = Validator::make($this->attributes, static::$rules);

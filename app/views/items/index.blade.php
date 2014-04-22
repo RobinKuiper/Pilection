@@ -6,7 +6,7 @@
 
 @section('head')
 <style>
-    #filters, #changeLayout{ display: none; }
+    #filters{ display: none; }
 
     #MixIt .item{
         cursor: pointer;
@@ -50,6 +50,7 @@
                     <ul class="nav nav-pills nav-stacked">
                         <li style="font-weight: 900">Type</li>
                         <li><a href="#" class="filter" data-filter=".systems">Systems</a></li>
+                        <li><a href="#" class="filter" data-filter=".software">Software</a></li>
                         <li><a href="#" class="filter" data-filter=".scripts">Scripts</a></li>
                         <li><a href="#" class="filter" data-filter=".projects">Projects</a></li>
                     </ul>
@@ -60,7 +61,7 @@
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
                         <li style="font-weight: 900">Tag</li>
-                        @foreach(Tag::all() as $tag)
+                        @foreach($tags as $tag)
                         <li><a href="#" class="filter" data-filter=".{{ $tag->tag }}">{{ $tag->tag }}</a></li>
                         @endforeach
                     </ul>
@@ -71,7 +72,7 @@
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
                         <li style="font-weight: 900">Grade</li>
-                        @foreach(Grade::all() as $grade)
+                        @foreach($grades as $grade)
                         <li><a href="#" class="filter" data-filter=".{{ $grade->grade }}">{{ $grade->grade }}</a></li>
                         @endforeach
                     </ul>
@@ -104,45 +105,34 @@
 
         <div id="MixIt" class="row">
             @if(count($items) > 0)
-
                 @foreach($items as $item)
 
-                {? $tags = '' ?}
-                @foreach(Tag::getTagsByItem($item->id) as $tag)
-                {? $tags .= $tag->tag.' ' ?}
+                    <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type }} {{ $item_info[$item->id]['tags'] }} {{ $item_info[$item->id]['grade'] }}">
+                        <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</div>
+
+                        <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
+                        <div class="hidden-info col-md-2">{{ link_to(route('users.show', $item_info[$item->id]['user']), $item_info[$item->id]['user']) }}</div>
+
+                        <div class="info col-md-2">
+                            <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
+                                 data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
+                        </div>
+
+                        <div class="info col-md-2">
+                            <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ $item_info[$item->id]['views'] }}</span>
+                            <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="row item-body" style="display: none; padding: 10px;">
+                        <div class="col-md-12">
+                            {{ HTML::image($item->image->url(), $item->title, ['width' => '100px', 'max-height' => '100px', 'style' => 'float:left; margin: 10px;']) }}
+
+                            {{ $item->body }}
+                        </div>
+                    </div>
+
                 @endforeach
-
-                {? $grades = '' ?}
-                @foreach(Grade::getGradeByItem($item->id) as $grade)
-                {? $grades .= $grade->grade.' ' ?}
-                @endforeach
-
-            <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type }} {{ $tags }} {{ $grades }}">
-                <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</div>
-
-                <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
-                <div class="hidden-info col-md-2">{{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}</div>
-
-                <div class="info col-md-2">
-                    <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
-                         data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
-                </div>
-
-                <div class="info col-md-2">
-                    <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ Views::getViews($item->id, $item->type) }}</span>
-                    <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->id#disqus_thread", '0') }}</span>
-                </div>
-            </div>
-
-            <div class="row item-body" style="display: none; padding: 10px;">
-                <div class="col-md-12">
-                    {{ HTML::image($item->image->url(), $item->title, ['width' => '100px', 'max-height' => '100px', 'style' => 'float:left; margin: 10px;']) }}
-
-                    {{ $item->body }}
-                </div>
-            </div>
-
-            @endforeach
             @else
             <div class="row">
                 <div class="col-md-12">

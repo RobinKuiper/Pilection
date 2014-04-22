@@ -6,17 +6,21 @@ class ItemsController extends \BaseController
     protected $item;
     protected $views;
     protected $tag;
+    protected $grade;
     protected $rating;
+    protected $user;
 
-    public function __construct(Item $item, Views $views, Tag $tag, Rating $rating)
+    public function __construct(Item $item, Views $views, Tag $tag, Grade $grade, Rating $rating, User $user)
     {
         $this->beforeFilter('type');
         $this->beforeFilter('auth', ['only' => ['create', 'edit', 'update', 'store']]);
         $this->beforeFilter('user', ['only' => ['update', 'edit', 'destroy']]);
         $this->beforeFilter('csrf', ['only' => ['store', 'destroy', 'update']]);
+        $this->user = $user;
         $this->item = $item;
         $this->views = $views;
         $this->tag = $tag;
+        $this->grade = $grade;
         $this->rating = $rating;
     }
 
@@ -28,9 +32,34 @@ class ItemsController extends \BaseController
     public function index($type)
     {
         $items = $this->item->where('type', '=', $type)->get();
+        $tags = $this->tag->all();
+        $grades = $this->grade->all();
+
+        foreach($items as $item):
+            $item_info[$item->id]['tags'] = '';
+            foreach($this->tag->getTagsByItem($item->id) as $tag):
+                $item_info[$item->id]['tags'] .= $tag->tag . ' ';
+            endforeach;
+
+            $item_info[$item->id]['grade'] = $item->hasOne('Grade', 'id', 'grade')->first()->grade;
+            $item_info[$item->id]['views'] = $this->views->getViews($item->id, $item->type);
+
+            $user = $this->user->find($item->user_id);
+            $item_info[$item->id]['user'] = $user['attributes']['username'];
+        endforeach;
+
         $breadcrumb = 'items';
 
-        return View::make('items.index', ['breadcrumb' => $breadcrumb, 'title' => $type, 'items' => $items, 'type' => $type, 'active' => $type]);
+        return View::make('items.index', [
+                            'breadcrumb'    => $breadcrumb,
+                            'title'         => $type,
+                            'items'         => $items,
+                            'item_info'     => $item_info,
+                            'type'          => $type,
+                            'active'        => $type,
+                            'tags'          => $tags,
+                            'grades'        => $grades,
+        ]);
 
     }
 

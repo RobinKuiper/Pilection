@@ -53,8 +53,10 @@ Route::get('ajax/getTags', ['as' => 'ajax.gettags', 'uses' => 'AjaxController@ge
 //Route::get('tags/{tag}', ['as' => 'tags.index', 'uses' => 'TagsController@index']);
 //Route::get('grade/{tag}', ['as' => 'grades.index', 'uses' => 'GradesController@index']);
 
+Route::get('tag/{attr}', ['as' => 'tag.index', 'uses' => 'ItemsController@index']);
+Route::get('grade/{attr}', ['as' => 'grade.index', 'uses' => 'ItemsController@index']);
+
 Route::get('{type}', ['as' => 'items.index', 'uses' => 'ItemsController@index']);
-Route::get('{type}/{attr}', ['as' => 'items.index', 'uses' => 'ItemsController@index']);
 Route::get('{type}/create', ['as' => 'items.create', 'uses' => 'ItemsController@create']);
 Route::post('{type}/store', ['as' => 'items.store', 'uses' => 'ItemsController@store']);
 Route::get('{type}/{id}', ['as' => 'items.show', 'uses' => 'ItemsController@show']);

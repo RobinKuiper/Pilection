@@ -45,7 +45,7 @@ class UsersController extends \BaseController
 
         $user->views = $this->views->updateViews($user->id, 'user', 1);
         $settings = $this->settings->where('user_id', '=', $user->id)->first();
-        $settings->own = $this->settings->where('user_id', '=', Auth::user()->id)->first();
+        $settings->own = $this->settings->where('user_id', '=', (isset(Auth::user()->id)) ? Auth::user()->id : 1)->first();
 
         $items = $this->item->where('user_id', '=', $user->id)->orderBy('created_at', 'DESC')->get();
 

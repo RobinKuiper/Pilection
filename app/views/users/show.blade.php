@@ -38,14 +38,9 @@
     <div id="items" class="col-md-6">
         @if(count($items) > 0)
         @foreach($items as $item)
-        @if ($item->image == null)
-        {? $path = 'images/' ?}
-        {? $item->image = 'system_default.png' ?}
-        @else {? $path = 'upload/items/images/' ?}
-        @endif
         <a href='{{ $item->type }}/{{ $item->id }}' title='{{ $item->title }}'>
             <div class="image-border">
-                {{ HTML::image($path . $item->image, $item->title, ['width' => '100px', 'max-height' => '100px']) }}
+                {{ HTML::image($item->image->url(), $item->title, ['width' => '100px', 'max-height' => '100px']) }}
             </div>
         </a>
         @endforeach

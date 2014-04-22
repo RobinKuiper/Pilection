@@ -32,6 +32,10 @@
     </div>
 </div>
 
+<style>
+    #filters li a.active{ background-color: #eeeeee; }
+</style>
+
 <div class="row">
     <div class="col-md-2" id="filters">
         <div class="panel panel-default">
@@ -39,12 +43,6 @@
                 <div class="panel-title">Filters</div>
             </div>
             <div class="panel-body">
-                <nav>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#" class="filter" data-filter="all">Show All</a></li>
-                    </ul>
-                </nav>
-
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
                         <li style="font-weight: 900">Type</li>
@@ -180,52 +178,14 @@
                 enable: true,
             },
             controls: {
-                toggleLogic: 'or',
+                toggleFilterButtons: true
             },
             load: {
-                filter: '.{{ (isset($filter)) ? $filter : 'all' }}'
+                filter: '{{ (isset($filter)) ? '.'.$filter : 'all' }}'
             }
         });
+
     });
-
-    /*$('#grid').on('click', function(){
-        event.preventDefault();
-        $('#MixIt .item').removeClass('row');
-        $('#MixIt .item').addClass('col-md-2');
-        $('#MixIt .item').removeClass('margin-bottom-10');
-        $('#MixIt .item').addClass('margin-bottom-40');
-        $('#MixIt .item').removeClass('list');
-        $('#MixIt .item').addClass('grid');
-
-        $('#MixIt .item .title').removeClass('col-md-4');
-        $('#MixIt .item .title').addClass('row');
-
-        $('#MixIt .item .hidden-info').hide();
-        $('#MixIt .item .hidden-img').show();
-
-        $('#MixIt .item .info').removeClass('col-md-2');
-        $('#MixIt .item .info').addClass('row');
-    });
-
-    $('#list').on('click', function(){
-        event.preventDefault();
-        $('#MixIt .item').removeClass('col-md-2');
-        $('#MixIt .item').addClass('row');
-        $('#MixIt .item').removeClass('margin-bottom-40');
-        $('#MixIt .item').addClass('margin-bottom-10');
-        $('#MixIt .item').removeClass('grid');
-        $('#MixIt .item').addClass('list');
-
-        $('#MixIt .item .title').removeClass('row');
-        $('#MixIt .item .title').addClass('col-md-4');
-
-        $('#MixIt .item .hidden-info').show();
-        $('#MixIt .item .hidden-img').hide();
-
-        $('#MixIt .item .info').removeClass('row');
-        $('#MixIt .item .info').addClass('col-md-2');
-    });*/
-
 </script>
 
 <script>

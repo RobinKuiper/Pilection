@@ -3,29 +3,51 @@
 class TagsController extends \BaseController
 {
 
+    protected $grade; protected $user;
+    protected $views; protected $tag;
     protected $item;
-    protected $views;
-    protected $tag;
 
-    public function __construct(Item $item, Views $views, Tag $tag)
+    public function __construct(Grade $grade, Tag $tag, User $user, Views $views, Item $item)
     {
         $this->beforeFilter('auth', ['only' => ['create', 'edit']]);
 
-        $this->item = $item;
-        $this->views = $views;
-        $this->tag = $tag;
+        $this->grade    = $grade;
+        $this->tag      = $tag;
+        $this->user     = $user;
+        $this->views    = $views;
+        $this->item     = $item;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index($tag)
     {
-        $items = $this->tag->getItemsByTag($tag);
+        $items = $this->item->all();
+        $tags = $this->tag->all();
+        $grades = $this->grade->all();
+
+        foreach($items as $item):
+            $item_info[$item->id]['tags'] = '';
+            foreach($this->tag->getTagsByItem($item->id) as $tag_):
+                $item_info[$item->id]['tags'] .= $tag_->tag . ' ';
+            endforeach;
+
+            $item_info[$item->id]['grade'] = $item->hasOne('Grade', 'id', 'grade')->first()->grade;
+            $item_info[$item->id]['views'] = $this->views->getViews($item->id, $item->type);
+
+            $user = $this->user->find($item->user_id);
+            $item_info[$item->id]['user'] = $user['attributes']['username'];
+        endforeach;
+
         $breadcrumb = 'tags';
 
-        return View::make('items.index', ['breadcrumb' => $breadcrumb, 'title' => $tag, 'items' => $items, 'filter' => $tag]);
+        return View::make('items.index', [
+            'breadcrumb'    => $breadcrumb,
+            'title'         => $tag,
+            'items'         => $items,
+            'item_info'     => $item_info,
+            'tags'          => $tags,
+            'grades'        => $grades,
+            'filter'        => $tag
+        ]);
+
     }
 }

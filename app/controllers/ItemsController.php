@@ -129,6 +129,12 @@ class ItemsController extends \BaseController
             'type' => $input['type']
         ];
 
+        if($input['image'] != null)
+        {
+            $this->item->find($id)->image->clear();
+            $update_fields['image'] = $input['image'];
+        }
+
         $this->item->where('id', '=', $id)->update($update_fields);
 
         return Redirect::to($type . '/' . $id)

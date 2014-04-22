@@ -50,10 +50,11 @@ Route::get('ajax/getRating', ['as' => 'ajax.getrating', 'uses' => 'AjaxControlle
 Route::get('ajax/getTags', ['as' => 'ajax.gettags', 'uses' => 'AjaxController@getTags']);
 
 /* Items */
-Route::get('tags/{tag}', ['as' => 'tags.index', 'uses' => 'TagsController@index']);
-Route::get('grade/{tag}', ['as' => 'grades.index', 'uses' => 'GradesController@index']);
+//Route::get('tags/{tag}', ['as' => 'tags.index', 'uses' => 'TagsController@index']);
+//Route::get('grade/{tag}', ['as' => 'grades.index', 'uses' => 'GradesController@index']);
 
 Route::get('{type}', ['as' => 'items.index', 'uses' => 'ItemsController@index']);
+Route::get('{type}/{attr}', ['as' => 'items.index', 'uses' => 'ItemsController@index']);
 Route::get('{type}/create', ['as' => 'items.create', 'uses' => 'ItemsController@create']);
 Route::post('{type}/store', ['as' => 'items.store', 'uses' => 'ItemsController@store']);
 Route::get('{type}/{id}', ['as' => 'items.show', 'uses' => 'ItemsController@show']);

@@ -29,9 +29,8 @@ class ItemsController extends \BaseController
      *
      * @return Response
      */
-    public function index($type)
+    public function index($type, $attr=null)
     {
-        //$items = $this->item->where('type', '=', $type)->get();
         $items = $this->item->all();
         $tags = $this->tag->all();
         $grades = $this->grade->all();
@@ -49,20 +48,23 @@ class ItemsController extends \BaseController
             $item_info[$item->id]['user'] = $user['attributes']['username'];
         endforeach;
 
-        $breadcrumb = 'items';
+        $breadcrumb = ($type == 'grade') ? 'grades' : ($type == 'tag') ? 'tags' : 'items';
 
-        return View::make('items.index', [
-                            'breadcrumb'    => $breadcrumb,
-                            'title'         => $type,
-                            'items'         => $items,
-                            'item_info'     => $item_info,
-                            'type'          => $type,
-                            'active'        => $type,
-                            'tags'          => $tags,
-                            'grades'        => $grades,
-                            'filter'        => $type
-        ]);
+        $vars = [
+            'breadcrumb'    => $breadcrumb,
+            'title'         => ($type == 'grade') ? $attr : ($type == 'tag') ? $attr : $type,
+            'items'         => $items,
+            'item_info'     => $item_info,
+            'active'        => $type,
+            'tags'          => $tags,
+            'grades'        => $grades,
+            'filter'        => ($type == 'grade') ? $attr : ($type == 'tag') ? $attr : $type,
+        ];
 
+        if($type != 'grade' OR $type != 'tag')
+            $vars['type'] = $type;
+
+        return View::make('items.index', $vars);
     }
 
     /**

@@ -22,7 +22,7 @@
 
 <div class="row margin-bottom-20">
     <div class="col-md-4">
-        <h2>{{ Str::title($title) }}</h2>
+        <h2><!--{{ Str::title($title) }}-->Database</h2>
     </div>
 
     <div class="col-md-8 text-right">

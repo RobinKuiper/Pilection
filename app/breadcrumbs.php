@@ -32,12 +32,12 @@ Breadcrumbs::register('item', function ($breadcrumbs, $item, $type) {
 
 Breadcrumbs::register('tags', function ($breadcrumbs, $tag) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push($tag, route('tags.index'));
+    $breadcrumbs->push($tag, route('items.index'));
 });
 
 Breadcrumbs::register('grades', function ($breadcrumbs, $grade) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push($grade, route('grades.index'));
+    $breadcrumbs->push($grade, route('items.index'));
 });
 
 Breadcrumbs::register('users', function ($breadcrumbs) {

@@ -58,7 +58,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             @foreach(Tag::all() as $tag)
-                            <li>{{ link_to('tags/'.$tag->tag, $tag->tag) }}</li>
+                            <li>{{ link_to('tag/'.$tag->tag, $tag->tag) }}</li>
                             @endforeach
                         </ul>
                     </li>

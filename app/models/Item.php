@@ -53,7 +53,9 @@ class Item extends Eloquent
         if (Input::segment(1) != 'systems' &&
             Input::segment(1) != 'scripts' &&
             Input::segment(1) != 'projects' &&
-            Input::segment(1) != 'software') return false;
+            Input::segment(1) != 'software' &&
+            Input::segment(1) != 'tag' &&
+            Input::segment(1) != 'grade') return false;
 
         return true;
     }

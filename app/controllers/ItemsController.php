@@ -7,10 +7,11 @@ class ItemsController extends \BaseController
     protected $views;
     protected $tag;
     protected $grade;
+    protected $type;
     protected $rating;
     protected $user;
 
-    public function __construct(Item $item, Views $views, Tag $tag, Grade $grade, Rating $rating, User $user)
+    public function __construct(Item $item, Views $views, Tag $tag, Grade $grade, Rating $rating, User $user, Type $type)
     {
         $this->beforeFilter('type');
         $this->beforeFilter('auth', ['only' => ['create', 'edit', 'update', 'store']]);
@@ -22,6 +23,7 @@ class ItemsController extends \BaseController
         $this->tag = $tag;
         $this->grade = $grade;
         $this->rating = $rating;
+        $this->type = $type;
     }
 
     /**
@@ -34,6 +36,7 @@ class ItemsController extends \BaseController
         $items = $this->item->all();
         $tags = $this->tag->all();
         $grades = $this->grade->all();
+        $types = $this->type->all();
 
         foreach($items as $item):
             $itemTags[$item->id] = '';
@@ -52,6 +55,7 @@ class ItemsController extends \BaseController
             'itemTags'      => $itemTags,
             'tags'          => $tags,
             'grades'        => $grades,
+            'types'         => $types,
             'filter'        => ($type == 'grade') ? $attr : ($type == 'tag') ? $attr : $type,
         ];
 

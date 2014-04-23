@@ -59,10 +59,9 @@
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
                         <li class="margin-bottom-10 margin-top-10" style="font-weight: 900">Type</li>
-                        <li><a href="#" class="filter" data-filter=".systems">Systems</a></li>
-                        <li><a href="#" class="filter" data-filter=".software">Software</a></li>
-                        <li><a href="#" class="filter" data-filter=".scripts">Scripts</a></li>
-                        <li><a href="#" class="filter" data-filter=".projects">Projects</a></li>
+                        @foreach($types as $type)
+                        <li><a href="#" class="filter" data-filter=".{{ $type->type }}">{{ $type->type }}</a></li>
+                        @endforeach
                     </ul>
                 </nav>
 
@@ -123,8 +122,8 @@
         <div id="MixIt" class="row">
             @if(count($items) > 0)
                 @foreach($items as $item)
-                    <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type }} {{ $itemTags[$item->id] }} {{ $item->grade->grade }}">
-                        <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</div>
+                    <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type->type }} {{ $itemTags[$item->id] }} {{ $item->grade->grade }}">
+                        <div class="title col-md-4">{{ link_to(route('items.show', [$item->type->type, $item->slug]), $item->title) }}</div>
 
                         <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
                         <div class="hidden-info col-md-2">{{ link_to(route('users.show', $item->user->username), $item->user->username) }}</div>

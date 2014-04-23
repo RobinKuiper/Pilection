@@ -38,7 +38,7 @@
     <div id="items" class="col-md-6">
         @if(count($items) > 0)
         @foreach($items as $item)
-        <a href='/{{ $item->type }}/{{ $item->slug }}' title='{{ $item->title }}'>
+        <a href='/{{ $item->type->type }}/{{ $item->slug }}' title='{{ $item->title }}'>
             <div class="image-border">
                 {{ HTML::image($item->image->url(), $item->title, ['width' => '100px', 'max-height' => '100px']) }}
             </div>

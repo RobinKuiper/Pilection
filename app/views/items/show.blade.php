@@ -106,7 +106,7 @@
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
                         @foreach($item->tags as $tag)
-                        <li>{{ link_to('tags/'.$tag->tag, $tag->tag) }}</li>
+                        <li>{{ link_to('tag/'.$tag->tag, $tag->tag) }}</li>
                         @endforeach
                     </ul>
                 </nav>

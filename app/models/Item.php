@@ -48,6 +48,11 @@ class Item extends Eloquent
         return $this->hasMany('Views');
     }
 
+    public function type()
+    {
+        return $this->hasOne('Type', 'id', 'type_id');
+    }
+
     public function isValid()
     {
         $validation = Validator::make($this->attributes, static::$rules);
@@ -60,10 +65,10 @@ class Item extends Eloquent
 
     public static function checkType()
     {
-        if (Input::segment(1) != 'systems' &&
-            Input::segment(1) != 'scripts' &&
-            Input::segment(1) != 'projects' &&
-            Input::segment(1) != 'software' &&
+        if (Input::segment(1) != 'OS' &&
+            Input::segment(1) != 'Scripts' &&
+            Input::segment(1) != 'Projects' &&
+            Input::segment(1) != 'Software' &&
             Input::segment(1) != 'tag' &&
             Input::segment(1) != 'grade') return false;
 

@@ -25,6 +25,11 @@ class Rating extends \Eloquent
         }
     }
 
+    public static function countRatings($item_id)
+    {
+        return count(Rating::where('item_id', '=', $item_id)->get());
+    }
+
     private static function getRating($ratings)
     {
         $score = 0;

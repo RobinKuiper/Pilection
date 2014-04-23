@@ -38,6 +38,16 @@ class Item extends Eloquent
        return $this->belongsTo('User', 'user_id', 'id');
     }
 
+    public function grade()
+    {
+        return $this->hasOne('Grade', 'id', 'grade_id');
+    }
+
+    public function views()
+    {
+        return $this->hasMany('Views');
+    }
+
     public function isValid()
     {
         $validation = Validator::make($this->attributes, static::$rules);

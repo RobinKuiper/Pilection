@@ -20,6 +20,8 @@
                         <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ $item->viewcount }}</span>
                         <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("$item->type/$item->slug#disqus_thread", '0') }}</span>
                         <span class="icons" id="rating"></span>
+                        <span>{{ Rating::countRatings($item->id) }}</span>
+                        <span id="rating_callback" style="display: none"></span>
                     </div>
 
                     <div class="col-md-2">
@@ -112,7 +114,7 @@ $('#rating').raty({
         click: function(score, evt) {
     var id = {{ $item->id }}, type = '{{ $type }}';
     $.get( '/ajax/getRating', { id: id, score: score, type: type }, function( data ) {
-        alert(data);
+        $('#rating_callback').html('Thanks, your vote is saved!').fadeIn(1000);
     });
     }
     });

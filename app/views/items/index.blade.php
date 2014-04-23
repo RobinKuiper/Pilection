@@ -99,19 +99,19 @@
         <div id="MixIt" class="row">
             @if(count($items) > 0)
                 @foreach($items as $item)
-                    <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type }} {{ $item_info[$item->id]['tags'] }} {{ $item_info[$item->id]['grade'] }}">
+                    <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type }} {{ $itemTags[$item->id] }} {{ $item->grade->grade }}">
                         <div class="title col-md-4">{{ link_to(route('items.show', [$item->type, $item->slug]), $item->title) }}</div>
 
                         <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>
-                        <div class="hidden-info col-md-2">{{ link_to(route('users.show', $item_info[$item->id]['user']), $item_info[$item->id]['user']) }}</div>
+                        <div class="hidden-info col-md-2">{{ link_to(route('users.show', $item->user->username), $item->user->username) }}</div>
 
                         <div class="info col-md-2">
-                            <div id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
-                                 data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></div>
+                            <span id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
+                                 data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></span>
                         </div>
 
                         <div class="info col-md-2">
-                            <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ $item_info[$item->id]['views'] }}</span>
+                            <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ count($item->views) }}</span>
                             <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->slug#disqus_thread", '0') }}</span>
                         </div>
                     </div>
@@ -202,7 +202,9 @@
     click: function(score, evt) {
         var id = $(this).attr('id'), type = $(this).attr('data-type');
         $.get( '/ajax/getRating', { id: id, score: score, type: type }, function( data ) {
-            alert(data);
+            $('#' + id).fadeOut(500, function(){
+                $(this).html('Thanks!').fadeIn(1000);
+            });
         });
     }
     });

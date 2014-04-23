@@ -36,16 +36,10 @@ class ItemsController extends \BaseController
         $grades = $this->grade->all();
 
         foreach($items as $item):
-            $item_info[$item->id]['tags'] = '';
+            $itemTags[$item->id] = '';
             foreach($this->tag->getTagsByItem($item->id) as $tag):
-                $item_info[$item->id]['tags'] .= $tag->tag . ' ';
+                $itemTags[$item->id] .= $tag->tag . ' ';
             endforeach;
-
-            $item_info[$item->id]['grade'] = $item->hasOne('Grade', 'id', 'grade')->first()->grade;
-            $item_info[$item->id]['views'] = $this->views->getViews($item->id, $item->type);
-
-            $user = $this->user->find($item->user_id);
-            $item_info[$item->id]['user'] = $user['attributes']['username'];
         endforeach;
 
         $breadcrumb = ($type == 'grade') ? 'grades' : ($type == 'tag') ? 'tags' : 'items';
@@ -54,8 +48,8 @@ class ItemsController extends \BaseController
             'breadcrumb'    => $breadcrumb,
             'title'         => ($type == 'grade') ? $attr : ($type == 'tag') ? $attr : $type,
             'items'         => $items,
-            'item_info'     => $item_info,
             'active'        => $type,
+            'itemTags'      => $itemTags,
             'tags'          => $tags,
             'grades'        => $grades,
             'filter'        => ($type == 'grade') ? $attr : ($type == 'tag') ? $attr : $type,

@@ -28,14 +28,14 @@
     <div class="col-md-10 text-center">
         @if(Auth::check() && isset($type))
         {{ link_to($type.'/create', 'Post new', ['class' => 'btn btn-success']) }}
-        @else
+        @elseif(Config::get('app.advertising'))
         <div class="padding-top-10">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- Pilection_Items_top -->
+            <!-- Pilection_Items_top_2 -->
             <ins class="adsbygoogle"
-                 style="display:inline-block;width:900px;height:65px"
+                 style="display:inline-block;width:728px;height:90px"
                  data-ad-client="ca-pub-2044382203546332"
-                 data-ad-slot="3337245601"></ins>
+                 data-ad-slot="5503479607"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>

@@ -51,6 +51,7 @@
             <article>{{ $item->body }}</article>
         </div>
 
+        @if(Config::get('app.advertising'))
         <div class="row margin-top-40 text-center">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Pilection_itemShow_belowBody -->
@@ -62,6 +63,7 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
+        @endif
     </div>
 
     <div class="col-md-3">
@@ -84,6 +86,7 @@
             </div>
         </div>
 
+        @if(Config::get('app.advertising'))
         <div class="margin-bottom-20">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Pilection_itemShow_sidebar -->
@@ -95,6 +98,7 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
+        @endif
 
         <div class="panel panel-default">
             <div class="panel-heading">Tags</div>

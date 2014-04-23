@@ -181,4 +181,7 @@ return array(
 
     ),
 
+    // Show advertising?
+    'advertising' => 1
+
 );

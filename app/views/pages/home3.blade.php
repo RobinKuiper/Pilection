@@ -42,6 +42,7 @@
         </div>
     </div>
     <div class="col-md-4">
+        @if(Config::get('app.advertising'))
         <div class="margin-bottom-20">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Pilection_home -->
@@ -53,6 +54,7 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
+        @endif
 
         <div class="panel panel-default">
             <div class="panel-heading" style="font-weight: 900">

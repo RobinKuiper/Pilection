@@ -21,15 +21,15 @@
 @section('content')
 
 <div class="row margin-bottom-20">
-    <div class="col-md-4">
+    <div class="col-md-2">
         <h2><!--{{ Str::title($title) }}-->Database</h2>
     </div>
 
-    <div class="col-md-8 text-right">
+    <div class="col-md-10 text-center">
         @if(Auth::check() && isset($type))
         {{ link_to($type.'/create', 'Post new', ['class' => 'btn btn-success']) }}
         @else
-        <div>
+        <div class="padding-top-10">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Pilection_Items_top -->
             <ins class="adsbygoogle"

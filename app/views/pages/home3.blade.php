@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div>
+        <div class="margin-bottom-20">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Pilection_home -->
             <ins class="adsbygoogle"

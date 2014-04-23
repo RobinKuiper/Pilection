@@ -51,7 +51,7 @@
             <article>{{ $item->body }}</article>
         </div>
 
-        <div class="row">
+        <div class="row margin-top-40 text-center">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Pilection_itemShow_belowBody -->
             <ins class="adsbygoogle"
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div>
+        <div class="margin-bottom-20">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Pilection_itemShow_sidebar -->
             <ins class="adsbygoogle"

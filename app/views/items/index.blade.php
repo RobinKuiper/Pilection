@@ -28,6 +28,18 @@
     <div class="col-md-8 text-right">
         @if(Auth::check() && isset($type))
         {{ link_to($type.'/create', 'Post new', ['class' => 'btn btn-success']) }}
+        @else
+        <div>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Pilection_Items_top -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:900px;height:65px"
+                 data-ad-client="ca-pub-2044382203546332"
+                 data-ad-slot="3337245601"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
         @endif
     </div>
 </div>
@@ -111,8 +123,8 @@
                         </div>
 
                         <div class="info col-md-2">
-                            <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ count($item->views) }}</span>
                             <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->slug#disqus_thread", '0') }}</span>
+                            <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ count($item->views) }}</span>
                         </div>
                     </div>
 

@@ -17,8 +17,8 @@
                         <h2>{{ $item->title }}</h2>
                         <p>Posted by {{ link_to(route('users.show', User::find($item->user_id)->username), User::find($item->user_id)->username) }}
                         at {{ date("d-m-Y H:i", strtotime($item->created_at)) }}</p>
-                        <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ $item->viewcount }}</span>
                         <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("$item->type/$item->slug#disqus_thread", '0') }}</span>
+                        <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ $item->viewcount }}</span>
                         <span class="icons" id="rating"></span>
                         <span>{{ Rating::countRatings($item->id) }}</span>
                         <span id="rating_callback" style="display: none"></span>
@@ -50,6 +50,18 @@
         <div class="row">
             <article>{{ $item->body }}</article>
         </div>
+
+        <div class="row">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Pilection_itemShow_belowBody -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:850px;height:80px"
+                 data-ad-client="ca-pub-2044382203546332"
+                 data-ad-slot="9244178403"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
     </div>
 
     <div class="col-md-3">
@@ -71,6 +83,19 @@
                 </nav>
             </div>
         </div>
+
+        <div>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Pilection_itemShow_sidebar -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:260px;height:60px"
+                 data-ad-client="ca-pub-2044382203546332"
+                 data-ad-slot="7767445208"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
         <div class="panel panel-default">
             <div class="panel-heading">Tags</div>
             <div class="panel-bod">

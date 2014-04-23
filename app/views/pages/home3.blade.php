@@ -42,6 +42,18 @@
         </div>
     </div>
     <div class="col-md-4">
+        <div>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Pilection_home -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:360px;height:80px"
+                 data-ad-client="ca-pub-2044382203546332"
+                 data-ad-slot="7907046009"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
         <div class="panel panel-default">
             <div class="panel-heading" style="font-weight: 900">
                 <a href="http://www.reddit.com/r/raspberry_pi" target="_blank">

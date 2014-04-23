@@ -109,6 +109,15 @@
             .{{ $filter }} {
                 display: block;
             }
+
+            .glyphicon-chevron-down{
+                color: #cccccc;
+                margin-left: 40px;
+            }
+
+            .item:hover .glyphicon-chevron-down{
+                color: #222222 !important;
+            }
         </style>
 
         <div id="MixIt" class="row">
@@ -125,9 +134,10 @@
                                  data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></span>
                         </div>
 
-                        <div class="info col-md-2">
+                        <div class="info col-md-2 text-right">
                             <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("systems/$item->slug#disqus_thread", '0') }}</span>
                             <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ count($item->views) }}</span>
+                            <div class="glyphicon glyphicon-chevron-down" style="margin-left: 40px; color: #cccccc"></div>
                         </div>
                     </div>
 
@@ -185,9 +195,10 @@
 
 <script>
     $(function(){
-        $('#MixIt .item').click(function(e){
+        $('#MixIt .item').on('click', function(e){
             if(e.target.localName == 'div'){
-                $('.item-body').slideUp();
+                var __this = $(this).next('.item-body');
+                $('.item-body').not(__this).slideUp();
                 $(this).next('.item-body').slideToggle();
             }
         });

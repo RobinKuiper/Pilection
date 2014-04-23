@@ -46,6 +46,7 @@
 
 <style>
     #filters li a.active{ background-color: #eeeeee; }
+    #tags a.active{ background-color: #222222; color: #ffffff !important; }
 </style>
 
 <div class="row">
@@ -184,9 +185,11 @@
 
 <script>
     $(function(){
-        $('#MixIt .item').click(function(){
-            $('.item-body').slideUp();
-            $(this).next('.item-body').slideToggle();
+        $('#MixIt .item').click(function(e){
+            if(e.target.localName == 'div'){
+                $('.item-body').slideUp();
+                $(this).next('.item-body').slideToggle();
+            }
         });
     });
 

@@ -57,7 +57,7 @@
             <div class="panel-body">
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
-                        <li style="font-weight: 900">Type</li>
+                        <li class="margin-bottom-10 margin-top-10" style="font-weight: 900">Type</li>
                         <li><a href="#" class="filter" data-filter=".systems">Systems</a></li>
                         <li><a href="#" class="filter" data-filter=".software">Software</a></li>
                         <li><a href="#" class="filter" data-filter=".scripts">Scripts</a></li>
@@ -67,19 +67,21 @@
 
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
-                        <li style="font-weight: 900">Tag</li>
-                        @foreach($tags as $tag)
-                        <li><a href="#" class="filter" data-filter=".{{ $tag->tag }}">{{ $tag->tag }}</a></li>
+                        <li class="margin-bottom-10 margin-top-10" style="font-weight: 900">Grade</li>
+                        @foreach($grades as $grade)
+                        <li><a href="#" class="filter" data-filter=".{{ $grade->grade }}">{{ $grade->grade }}</a></li>
                         @endforeach
                     </ul>
                 </nav>
 
-                <nav>
+                <nav id="tags">
                     <ul class="nav nav-pills nav-stacked">
-                        <li style="font-weight: 900">Grade</li>
-                        @foreach($grades as $grade)
-                        <li><a href="#" class="filter" data-filter=".{{ $grade->grade }}">{{ $grade->grade }}</a></li>
+                        <li class="margin-bottom-10 margin-top-10" style="font-weight: 900">Tag</li>
+
+                        @foreach($tags as $tag)
+                        <a href="#" class="filter" data-filter=".{{ $tag->tag }}" rel="{{ $tag->itemcount($tag->id) }}">[{{ $tag->tag }}]</a>
                         @endforeach
+
                     </ul>
                 </nav>
             </div>
@@ -155,6 +157,18 @@
 @section('footer')
 {{ HTML::script('js/raty/jquery.raty.js') }}
 {{ HTML::script('js/mixitup/jquery.mixitup.min.js') }}
+{{ HTML::script('js/tagcloud/jquery.tagcloud.js') }}
+
+<script>
+    $.fn.tagcloud.defaults = {
+        size: {start: 12, end: 17, unit: 'px'},
+        color: {start: '#428bca', end: '#222222'}
+    };
+
+    $(function () {
+        $('#tags a').tagcloud();
+    });
+</script>
 
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

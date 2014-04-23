@@ -12,6 +12,11 @@ class Tag extends Eloquent
     protected $tags = array();
     protected $item_id;
 
+    public function itemcount($tag_id)
+    {
+        return count(DB::table('items-tags')->where('tag_id', '=', $tag_id)->get());
+    }
+
 
     public function set($tags, $item_id)
     {

@@ -143,6 +143,7 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-47889610-7', 'pilection.eu');
+    ga('require', 'displayfeatures');
     ga('send', 'pageview');
 
 </script>

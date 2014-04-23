@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="ijnSH0DOBKSP_f1Elc-QEGvn5-8TPWMgEu3C7HVUqrs" />
+    <meta name="google-site-verification" content="ijnSH0DOBKSP_f1Elc-QEGvn5-8TPWMgEu3C7HVUqrs">
+    <meta name="description" content="Pilection is a collection of Raspberry Pi resources!">
     <title>{{ (isset($title)) ? 'Pilection :: '.Str::title($title) : 'Pilection' }}</title>
 
     {{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}

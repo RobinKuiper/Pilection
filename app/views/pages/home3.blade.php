@@ -23,7 +23,7 @@
             <div class="col-md-12">
                 <h2>Pilection.eu launched</h2>
                 <p>Posted by {{ link_to(route('users.show', 'RobinKuiper'), 'RobinKuiper') }}
-                    at {{ date("d-m-Y H:i", '1398101939') }}</p>
+                    at Volgende week <!--{{ date("d-m-Y H:i", '1398101939') }}--></p>
             </div>
         </div>
 

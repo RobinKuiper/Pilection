@@ -40,7 +40,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     @foreach(Type::all() as $type)
-                    <li class='{{{ (isset($active) && $active == $type->type) ? 'active' : '' }}}'>{{ link_to($type->slug, $type->type) }}</li>
+                    <li class='{{{ (isset($active) && $active == $type->slug) ? 'active' : '' }}}'>
+                        <a href="{{ $type->slug }}" title="{{ $type->type }}" class="filter filter-master" data-filter=".{{ $type->slug }}">{{ $type->type }}</a>
+                    </li>
                     @endforeach
                 </ul>
                 {{ Form::open(['route' => 'search.store', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}
@@ -58,7 +60,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             @foreach(Tag::all() as $tag)
-                            <li>{{ link_to('tag/'.$tag->slug, $tag->tag) }}</li>
+                            <li>
+                                <a href="{{ $tag->slug }}" title="{{ $tag->tag }}" class="filter filter-master" data-filter=".{{ $tag->slug }}">{{ $tag->tag }}</a>
+                            </li>
                             @endforeach
                         </ul>
                     </li>
@@ -68,7 +72,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grades <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             @foreach(Grade::all() as $grade)
-                            <li>{{ link_to('grade/'.$grade->slug, $grade->grade) }}</li>
+                            <li>
+                                <a href="{{ $grade->slug }}" title="{{ $grade->grade }}" class="filter filter-master" data-filter=".{{ $grade->slug }}">{{ $grade->grade }}</a>
+                            </li>
                             @endforeach
                         </ul>
                     </li>

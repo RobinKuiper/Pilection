@@ -212,13 +212,22 @@
         $('#filters').show();
         $('#changeLayout').show();
 
+        $('.filter').click(function(){
+            var filter = $(this).attr('data-filter');
+
+            $('.filter[data-filter="' + filter + '"]').not(this).toggleClass('active');
+            $('.filter-master[data-filter="' + filter + '"]').parent().toggleClass('active');
+
+            return false;
+        });
+
         $('#MixIt').mixItUp({
             animation: {
                 enable: true,
             },
             controls: {
                 toggleFilterButtons: true,
-                toggleLogic: 'and'
+                toggleLogic: 'or'
             },
             load: {
                 filter: '{{ (isset($filter)) ? '.'.$filter : 'all' }}'

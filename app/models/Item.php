@@ -65,10 +65,10 @@ class Item extends Eloquent
 
     public static function checkType()
     {
-        if (Input::segment(1) != 'OS' &&
-            Input::segment(1) != 'Scripts' &&
-            Input::segment(1) != 'Projects' &&
-            Input::segment(1) != 'Software' &&
+        if (Input::segment(1) != 'os' &&
+            Input::segment(1) != 'scripts' &&
+            Input::segment(1) != 'projects' &&
+            Input::segment(1) != 'software' &&
             Input::segment(1) != 'tag' &&
             Input::segment(1) != 'grade') return false;
 

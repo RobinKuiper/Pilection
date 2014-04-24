@@ -60,7 +60,7 @@
                     <ul class="nav nav-pills nav-stacked">
                         <li class="margin-bottom-10 margin-top-10" style="font-weight: 900">Type</li>
                         @foreach($types as $type)
-                        <li><a href="#" class="filter" data-filter=".{{ $type->type }}">{{ $type->type }}</a></li>
+                        <li><a href="#" class="filter" data-filter=".{{ $type->slug }}">{{ $type->type }}</a></li>
                         @endforeach
                     </ul>
                 </nav>
@@ -69,7 +69,7 @@
                     <ul class="nav nav-pills nav-stacked">
                         <li class="margin-bottom-10 margin-top-10" style="font-weight: 900">Grade</li>
                         @foreach($grades as $grade)
-                        <li><a href="#" class="filter" data-filter=".{{ $grade->grade }}">{{ $grade->grade }}</a></li>
+                        <li><a href="#" class="filter" data-filter=".{{ $grade->slug }}">{{ $grade->grade }}</a></li>
                         @endforeach
                     </ul>
                 </nav>
@@ -79,7 +79,7 @@
                         <li class="margin-bottom-10 margin-top-10" style="font-weight: 900">Tag</li>
 
                         @foreach($tags as $tag)
-                        <a href="#" class="filter" data-filter=".{{ $tag->tag }}" rel="{{ $tag->itemcount($tag->id) }}">[{{ $tag->tag }}]</a>
+                        <a href="#" class="filter" data-filter=".{{ $tag->slug }}" rel="{{ $tag->itemcount($tag->id) }}">[{{ $tag->tag }}]</a>
                         @endforeach
 
                     </ul>
@@ -122,7 +122,7 @@
         <div id="MixIt" class="row">
             @if(count($items) > 0)
                 @foreach($items as $item)
-                    <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type->type }} {{ $itemTags[$item->id] }} {{ $item->grade->grade }}">
+                    <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type->slug }} {{ $itemTags[$item->id] }} {{ $item->grade->slug }}">
                         <div class="title col-md-4">{{ link_to(route('items.show', [$item->type->type, $item->slug]), $item->title) }}</div>
 
                         <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>

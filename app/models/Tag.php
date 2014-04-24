@@ -3,7 +3,7 @@
 class Tag extends Eloquent
 {
 
-    protected $fillable = ['tag'];
+    protected $fillable = ['tag, s;ug'];
     protected $table = 'tags';
 
     public $errors;
@@ -11,6 +11,11 @@ class Tag extends Eloquent
 
     protected $tags = array();
     protected $item_id;
+
+    public static $sluggable = array(
+        'build_from' => 'tag',
+        'save_to'    => 'slug',
+    );
 
     public function itemcount($tag_id)
     {
@@ -41,19 +46,6 @@ class Tag extends Eloquent
         endforeach;
     }
 
-    /* REWRITTEN BELOW
-    public function getTagsByItem($id)
-    {
-        $tag_ids = DB::table('items-tags')->select('tag_id')->where('item_id', '=', $id)->get();
-
-        foreach ($tag_ids as $tag_id):
-            $tags[] = $this->select('tag')->where('id', '=', $tag_id->tag_id)->first();
-        endforeach;
-
-        return $tags;
-    }
-    */
-
     public static function getTagsByItem($id)
     {
         $tags = DB::table('tags')
@@ -62,7 +54,7 @@ class Tag extends Eloquent
                 $join->on('items.id', '=', 'items-tags.item_id')
                     ->where('items.id', '=', $id);
             })
-            ->select('tags.tag')
+            ->select('tags.*')
             ->get();
 
         return $tags;

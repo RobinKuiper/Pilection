@@ -40,7 +40,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     @foreach(Type::all() as $type)
-                    <li class='{{{ (isset($active) && $active == $type->type) ? 'active' : '' }}}'>{{ link_to($type->type, $type->type) }}</li>
+                    <li class='{{{ (isset($active) && $active == $type->type) ? 'active' : '' }}}'>{{ link_to($type->slug, $type->type) }}</li>
                     @endforeach
                 </ul>
                 {{ Form::open(['route' => 'search.store', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}
@@ -58,7 +58,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             @foreach(Tag::all() as $tag)
-                            <li>{{ link_to('tag/'.$tag->tag, $tag->tag) }}</li>
+                            <li>{{ link_to('tag/'.$tag->slug, $tag->tag) }}</li>
                             @endforeach
                         </ul>
                     </li>
@@ -68,7 +68,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grades <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             @foreach(Grade::all() as $grade)
-                            <li>{{ link_to('grade/'.$grade->grade, $grade->grade) }}</li>
+                            <li>{{ link_to('grade/'.$grade->slug, $grade->grade) }}</li>
                             @endforeach
                         </ul>
                     </li>

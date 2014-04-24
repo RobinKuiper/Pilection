@@ -41,7 +41,7 @@ class ItemsController extends \BaseController
         foreach($items as $item):
             $itemTags[$item->id] = '';
             foreach($this->tag->getTagsByItem($item->id) as $tag):
-                $itemTags[$item->id] .= $tag->tag . ' ';
+                $itemTags[$item->id] .= $tag->slug . ' ';
             endforeach;
         endforeach;
 

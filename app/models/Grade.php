@@ -3,20 +3,16 @@
 class Grade extends Eloquent
 {
 
-    protected $fillable = ['grade'];
+    protected $fillable = ['grade, slug'];
     protected $table = 'grades';
 
     public $errors;
     public static $rules = [];
 
-    /* REWRITTEN BELOW
-    public function getItemsByGrade($grade)
-    {
-        $grade_id = $this->select('id')->where('grade', '=', $grade)->first();
-
-        return Item::where('grade', '=', $grade_id->id)->get();
-    }
-    */
+    public static $sluggable = array(
+        'build_from' => 'grade',
+        'save_to'    => 'slug',
+    );
 
     public static function getGradeByItem($id)
     {

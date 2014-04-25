@@ -10,7 +10,7 @@
     {{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}
     {{ HTML::style('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css') }}
     {{ HTML::style('css/main.css') }}
-    {{ HTML::style('css/master.css') }}
+    {{ HTML::style('css/layouts/master/main.css') }}
 
     @yield('head')
 </head>
@@ -41,7 +41,7 @@
                 <ul class="nav navbar-nav">
                     @foreach(Type::all() as $type)
                     <li class='{{{ (isset($active) && $active == $type->slug) ? 'active' : '' }}}'>
-                        <a href="/{{ $type->slug }}" title="{{ $type->type }}" class="filter filter-master" data-filter=".{{ $type->slug }}">{{ $type->type }}</a>
+                        <a href="/{{ $type->slug }}" title="{{ $type->type }}" <!--class="filter filter-master" data-filter=".{{ $type->slug }}"-->{{ $type->type }}</a>
                     </li>
                     @endforeach
                 </ul>
@@ -61,7 +61,7 @@
                         <ul class="dropdown-menu">
                             @foreach(Conner\Tagging\Tag::where('count', '>', 0)->get() as $tag)
                             <li>
-                                <a href="{{ $tag->slug }}" title="{{ $tag->name }}" class="filter filter-master" data-filter=".{{ $tag->slug }}">{{ $tag->name }}</a>
+                                <a href="{{ $tag->slug }}" title="{{ $tag->name }}">{{ $tag->name }}</a>
                             </li>
                             @endforeach
                         </ul>
@@ -73,7 +73,7 @@
                         <ul class="dropdown-menu">
                             @foreach(Grade::all() as $grade)
                             <li>
-                                <a href="{{ $grade->slug }}" title="{{ $grade->grade }}" class="filter filter-master" data-filter=".{{ $grade->slug }}">{{ $grade->grade }}</a>
+                                <a href="{{ $grade->slug }}" title="{{ $grade->grade }}">{{ $grade->grade }}</a>
                             </li>
                             @endforeach
                         </ul>
@@ -135,29 +135,8 @@
 {{ HTML::script('http://code.jquery.com/jquery-latest.min.js') }}
 {{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
 {{ HTML::script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js') }}
+{{ HTML::script('js/layouts/master/main.js') }}
 
-<script>
-    $( "#search" ).autocomplete({
-        source: '{{ route('ajax.gettags') }}',
-        minLength: 2,
-        select: function( event, ui ){
-        window.location.replace("/" + ui.item.type + "/" + ui.item.slug);
-        //console.log("/" + ui.item.type + "/" + ui.item.value);
-    }
-    });
-</script>
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-47889610-7', 'pilection.eu');
-    ga('require', 'displayfeatures');
-    ga('send', 'pageview');
-
-</script>
 @yield('footer')
 </body>
 </html>

@@ -19,13 +19,15 @@
                         at {{ date("d-m-Y H:i", strtotime($item->created_at)) }}</p>
                         <span class="icons"><span class="glyphicon glyphicon-comment"></span> {{ link_to("$item->type/$item->slug#disqus_thread", '0') }}</span>
                         <span class="icons"><span class="glyphicon glyphicon-eye-open"></span> {{ $item->viewcount }}</span>
-                        <span class="icons" id="rating"></span>
+                        <span class="icons" id="rating" data-score="{{ $item->rating }}"
+                              data-type="{{ $item->type_id }}" data-voted="{{ $item->voted }}"></span>
                         <span>{{ Rating::countRatings($item->id) }}</span>
                         <span id="rating_callback" style="display: none"></span>
                     </div>
 
                     <div class="col-md-2">
-                        <span class="share"></span>
+                        <span class="share" data-title="{{ $item->title }}" data-text="{{ Str::words($item->body, 10, $end = '...') }}"
+                              data-image="{{ $item->image->url() }}"></span>
                     </div>
 
                     <div class="col-md-4">
@@ -122,44 +124,6 @@
 @section('footer')
 {{ HTML::script('js/raty/jquery.raty.js') }}
 {{ HTML::script('js/carrot/share-button/share.min.js') }}
-
-<script>
-    new Share('.share', {
-        title: '{{ $item->title }}',
-        text: '{{ Str::words($item->body, 10, $end = '...') }}',
-        image: '{{ $item->image->url() }}',
-        ui: {
-            flyout: 'bottom center',
-        },
-    });
-</script>
-
-<script>
-$('#rating').raty({
-        half: true,
-        readOnly: {{ ($item->voted) ? 'true' : 'false' }},
-        path: '{{ url('js/raty') }}',
-        score: {{ $item->rating }},
-        click: function(score, evt) {
-    var id = {{ $item->id }}, type = '{{ $type }}';
-    $.get( '/ajax/getRating', { id: id, score: score, type: type }, function( data ) {
-        $('#rating_callback').html('Thanks, your vote is saved!').fadeIn(1000);
-    });
-    }
-    });
-</script>
-
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'pilection'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+{{ HTML::script('js/disqus.js') }}
+{{ HTML::script('js/items/show/main.js') }}
 @stop

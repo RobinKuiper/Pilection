@@ -1,0 +1,29 @@
+#filters{ display: none; }
+
+#filters li a.active{ background-color: #eeeeee; }
+#tags a.active{ background-color: #222222; color: #ffffff !important; }
+
+#MixIt .item{
+    cursor: pointer;
+}
+
+#MixIt .item:hover{
+    background-color: #eeeeee;
+}
+
+.item{
+    display: none;
+}
+
+.{{ $filter }} {
+    display: block;
+}
+
+.glyphicon-chevron-down{
+    color: #cccccc;
+    margin-left: 40px;
+}
+
+.item:hover .glyphicon-chevron-down{
+    color: #222222 !important;
+}

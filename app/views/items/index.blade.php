@@ -5,17 +5,7 @@
 @stop
 
 @section('head')
-<style>
-    #filters{ display: none; }
-
-    #MixIt .item{
-        cursor: pointer;
-    }
-
-    #MixIt .item:hover{
-        background-color: #eeeeee;
-    }
-</style>
+{{ HTML::style('css/items/index/main.css') }}
 @stop
 
 @section('content')
@@ -43,11 +33,6 @@
         @endif
     </div>
 </div>
-
-<style>
-    #filters li a.active{ background-color: #eeeeee; }
-    #tags a.active{ background-color: #222222; color: #ffffff !important; }
-</style>
 
 <div class="row">
     <div class="col-md-2" id="filters">
@@ -100,25 +85,6 @@
             <div class="info col-md-2"></div>
         </div>
 
-        <style>
-            .item{
-                display: none;
-            }
-
-            .{{ $filter }} {
-                display: block;
-            }
-
-            .glyphicon-chevron-down{
-                color: #cccccc;
-                margin-left: 40px;
-            }
-
-            .item:hover .glyphicon-chevron-down{
-                color: #222222 !important;
-            }
-        </style>
-
         <div id="MixIt" class="row">
             @if(count($items) > 0)
                 @foreach($items as $item)
@@ -130,7 +96,7 @@
 
                         <div class="info col-md-2">
                             <span id="{{ $item->id }}" class="rating" style="padding-bottom: 4px;" data-score="{{ Rating::getRatingForItem($item->id) }}"
-                                 data-type="{{ $item->type }}" data-voted="{{ Rating::voted($item->id) }}"></span>
+                                 data-type="{{ $item->type_id }}" data-voted="{{ Rating::voted($item->id) }}"></span>
                         </div>
 
                         <div class="info col-md-2 text-right">
@@ -168,106 +134,10 @@
 {{ HTML::script('js/raty/jquery.raty.js') }}
 {{ HTML::script('js/mixitup/jquery.mixitup.min.js') }}
 {{ HTML::script('js/tagcloud/jquery.tagcloud.js') }}
+{{ HTML::script('js/disqus.js') }}
+{{ HTML::script('js/items/index/main.js') }}
 
 <script>
-    $.fn.tagcloud.defaults = {
-        size: {start: 12, end: 17, unit: 'px'},
-        color: {start: '#428bca', end: '#222222'}
-    };
-
-    $(function () {
-        $('#tags a').tagcloud();
-    });
-</script>
-
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'pilection'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-
-<script>
-    $(function(){
-        $('#MixIt .item').on('click', function(e){
-            if(e.target.localName == 'div'){
-                var __this = $(this).next('.item-body');
-                $('.item-body').not(__this).slideUp();
-                $(this).next('.item-body').slideToggle();
-            }
-        });
-    });
-
-
-    $(function(){
-        $('#MixIt .item').addClass('mix');
-        $('#items').removeClass('col-md-12');
-        $('#items').addClass('col-md-10');
-
-        $('#filters').show();
-        $('#changeLayout').show();
-
-        $('.filter').click(function(){
-            var filter = $(this).attr('data-filter');
-
-            $('.filter[data-filter="' + filter + '"]').not(this).toggleClass('active');
-            $('.filter-master[data-filter="' + filter + '"]').parent().toggleClass('active');
-
-            return false;
-        });
-
-        $('#MixIt').mixItUp({
-            animation: {
-                enable: true,
-            },
-            controls: {
-                toggleFilterButtons: true,
-                toggleLogic: 'or'
-            },
-            load: {
-                filter: '{{ (isset($filter)) ? '.'.$filter : 'all' }}'
-            }
-        });
-
-    });
-</script>
-
-<script>
-    $('.rating').raty({
-        half: true,
-        path: '{{ url('js/raty') }}',
-        readOnly: function(){
-        return $(this).attr('data-voted');
-    },
-    score: function(){
-        return $(this).attr('data-score');
-    },
-    click: function(score, evt) {
-        var id = $(this).attr('id'), type = $(this).attr('data-type');
-        $.get( '/ajax/getRating', { id: id, score: score, type: type }, function( data ) {
-            $('#' + id).fadeOut(500, function(){
-                $(this).html('Thanks!').fadeIn(1000);
-            });
-        });
-    }
-    });
-</script>
-
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'pilection'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+var filter = '{{ (isset($filter)) ? '.'.$filter : 'all' }}';
 </script>
 @stop

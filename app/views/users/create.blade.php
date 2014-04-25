@@ -2,8 +2,6 @@
 
 @section('head')
 {{ HTML::style('css/zocial/zocial.css') }}
-
-
 @stop
 
 @section('breadcrumbs')

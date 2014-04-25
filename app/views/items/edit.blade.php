@@ -1,78 +1,7 @@
 @extends('layouts.master')
 
 @section('head')
-<style>
-    .itemForm{
-        background-color: #f9f9f9;
-        padding: 30px;
-    }
-
-    .file-upload {
-        overflow: hidden;
-        display: inline-block;
-        position: relative;
-        text-align: center;
-    }
-
-    .file-upload input, .file-upload select {
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 0;
-        font-size: 70px;
-
-        /* Loses tab index in webkit if width is set to 0 */
-        opacity: 0;
-        filter: alpha(opacity=0);
-    }
-
-    .itemForm input, .file-upload, .file-upload select{
-        padding: 9px;
-        border: solid 1px #E5E5E5;
-        outline: 0;
-        font: normal 13px/100% Verdana, Tahoma, sans-serif;
-        width: 200px;
-        background: #FFFFFF;
-    }
-
-    .itemForm textarea{
-        height: 350px;
-        line-height: 150%;
-    }
-
-    .itemForm input, .itemForm textarea, .file-upload, .file-upload select{
-        box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-        -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-        -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-
-        background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #eeeeee), to(#FFFFFF));
-        background: -moz-linear-gradient(top, #FFFFFF, #eeeeee 1px, #FFFFFF 25px);
-    }
-
-    .itemForm input:hover, .itemForm textarea:hover,
-    .itemForm input:focus, .itemForm textarea:focus,
-    .file-upload:hover, .file-upload select:hover {
-        border-color: #C9C9C9;
-    }
-
-    .itemForm .submit {
-        width: auto;
-        padding: 9px 15px;
-        background: #617798;
-        border: 0;
-        font-size: 14px;
-        color: #FFFFFF;
-    }
-
-    .itemForm .submit:hover {
-        border-color: #C9C9C9;
-        background-color: #222222;
-    }
-
-    label{
-
-    }
-</style>
+{{ HTML::style('css/items/edit/main.css') }}
 @stop
 
 @section('content')

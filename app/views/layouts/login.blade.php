@@ -8,7 +8,7 @@
     {{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}
     {{ HTML::style('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css') }}
     {{ HTML::style('css/main.css') }}
-    {{ HTML::style('css/login.css') }}
+    {{ HTML::style('css/layouts/login/main.css') }}
     {{ HTML::style('css/zocial/zocial.css') }}
     {{ HTML::style('css/bootstrap-switch/bootstrap-switch.min.css') }}
 </head>
@@ -140,19 +140,8 @@
 {{ HTML::script('http://code.jquery.com/jquery-latest.min.js') }}
 {{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
 {{ HTML::script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js') }}
-
 {{ HTML::script('js/bootstrap-switch/bootstrap-switch.min.js') }}
-
-<script>
-    $(function(){
-        $("[name='remember']").bootstrapSwitch({
-            size: 'small',
-            onColor: 'primary',
-            onText: 'Yes',
-            offText: 'No',
-        });
-    });
-</script>
+{{ HTML::script('js/layouts/login/main.js') }}
 
 </body>
 </html>

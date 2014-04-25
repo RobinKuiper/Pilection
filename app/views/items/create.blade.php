@@ -135,10 +135,19 @@
 
 
         <div class="form-group">
-            {{ Form::label('grade', 'Grade') }}
-            <select name="grade" class="btn btn-default">
+            {{ Form::label('grade_id', 'Grade') }}
+            <select name="grade_id" class="btn btn-default">
                 @foreach( Grade::all() as $grade )
                 <option value="{{ $grade->id }}">{{ $grade->grade }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('type_id', 'Type') }}
+            <select name="type_id" class="btn btn-default">
+                @foreach( Type::all() as $type )
+                <option value="{{ $type->id }}">{{ $type->type }}</option>
                 @endforeach
             </select>
         </div>

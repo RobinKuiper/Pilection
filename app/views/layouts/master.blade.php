@@ -41,7 +41,7 @@
                 <ul class="nav navbar-nav">
                     @foreach(Type::all() as $type)
                     <li class='{{{ (isset($active) && $active == $type->slug) ? 'active' : '' }}}'>
-                        <a href="{{ $type->slug }}" title="{{ $type->type }}" class="filter filter-master" data-filter=".{{ $type->slug }}">{{ $type->type }}</a>
+                        <a href="/{{ $type->slug }}" title="{{ $type->type }}" class="filter filter-master" data-filter=".{{ $type->slug }}">{{ $type->type }}</a>
                     </li>
                     @endforeach
                 </ul>
@@ -59,9 +59,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            @foreach(Tag::all() as $tag)
+                            @foreach(Conner\Tagging\Tag::where('count', '>', 0)->get() as $tag)
                             <li>
-                                <a href="{{ $tag->slug }}" title="{{ $tag->tag }}" class="filter filter-master" data-filter=".{{ $tag->slug }}">{{ $tag->tag }}</a>
+                                <a href="{{ $tag->slug }}" title="{{ $tag->name }}" class="filter filter-master" data-filter=".{{ $tag->slug }}">{{ $tag->name }}</a>
                             </li>
                             @endforeach
                         </ul>

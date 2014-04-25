@@ -5,11 +5,12 @@
     "license": "MIT",
     "require": {
         "laravel/framework": "4.1.*",
-        "twitter/bootstrap": "*",
+        "twitter/bootstrap": "*",//php artisan asset:publish --path="vendor/twitter/bootstrap/dist/" bootstrap
         "davejamesmiller/laravel-breadcrumbs": "~2.2.0",
         "cviebrock/eloquent-sluggable": "1.0.*",
         "hybridauth/hybridauth": "dev-master",
-        "codesleeve/stapler": "dev-master"
+        "codesleeve/stapler": "dev-master",
+        "rtconner/laravel-tagging": "dev-master"//php artisan migrate --package=rtconner/laravel-tagging
     },
     "require-dev": {
         "way/generators": "2.*"
@@ -44,4 +45,3 @@
 }
 
 
-//php artisan asset:publish --path="vendor/twitter/bootstrap/dist/" bootstrap

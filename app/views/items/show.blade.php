@@ -105,8 +105,8 @@
             <div class="panel-bod">
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
-                        @foreach($item->tags as $tag)
-                        <li>{{ link_to('tag/'.$tag->slug, $tag->tag) }}</li>
+                        @foreach($item->tagNames() as $tag)
+                        <li>{{ link_to('tag/'.$tag, $tag) }}</li>
                         @endforeach
                     </ul>
                 </nav>

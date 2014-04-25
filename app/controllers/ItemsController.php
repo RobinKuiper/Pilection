@@ -34,16 +34,9 @@ class ItemsController extends \BaseController
     public function index($type, $attr=null)
     {
         $items = $this->item->all();
-        $tags = $this->tag->all();
+        $tags = Conner\Tagging\Tag::where('count', '>', 0)->get();
         $grades = $this->grade->all();
         $types = $this->type->all();
-
-        foreach($items as $item):
-            $itemTags[$item->id] = '';
-            foreach($this->tag->getTagsByItem($item->id) as $tag):
-                $itemTags[$item->id] .= $tag->slug . ' ';
-            endforeach;
-        endforeach;
 
         $breadcrumb = ($type == 'grade') ? 'grades' : ($type == 'tag') ? 'tags' : 'items';
 
@@ -52,7 +45,6 @@ class ItemsController extends \BaseController
             'title'         => ($type == 'grade') ? $attr : ($type == 'tag') ? $attr : $type,
             'items'         => $items,
             'active'        => $type,
-            'itemTags'      => $itemTags,
             'tags'          => $tags,
             'grades'        => $grades,
             'types'         => $types,
@@ -83,7 +75,6 @@ class ItemsController extends \BaseController
     public function store($type)
     {
         $input = Input::all();
-        $input['type'] = $type;
         $input['user_id'] = Auth::user()->id;
 
         if (!$this->item->fill($input)->isValid()) {
@@ -92,8 +83,12 @@ class ItemsController extends \BaseController
 
         $item = $this->item->create($input);
 
-        $this->tag->set($input['tags'], $item->id);
-        $this->tag->saveTags();
+        $tags = explode(',', $input['tags']);
+
+        foreach($tags as $tag):
+            $tag = trim($tag);
+            $item->tag($tag);
+        endforeach;
 
         return Redirect::to($type . '/' . $item->slug)
             ->with('message', 'New system created!')
@@ -117,7 +112,6 @@ class ItemsController extends \BaseController
         // Update viewcount
         $item->viewcount = $this->views->updateViews($item->id, $type, 1);
 
-        $item->tags = $this->tag->getTagsByItem($item->id);
         $item->rating = $this->rating->getRatingForItem($item->id);
         $item->voted = $this->rating->voted($item->id);
 
@@ -157,14 +151,27 @@ class ItemsController extends \BaseController
         $item->body         = $input['body'];
         $item->website_url  = $input['website_url'];
         $item->download_url = $input['download_url'];
-        $item->grade        = $input['grade'];
-        $item->type         = $input['type'];
+        $item->grade_id     = $input['grade_id'];
+        $item->type_id      = $input['type_id'];
 
         if($input['image'] != null)
         {
             $item->image->clear();
             $item->image = $input['image'];
         }
+
+        $tags = explode(',', $input['tags']);
+        $old_tags = explode(',', $input['old_tags']);
+
+        foreach($old_tags as $tag):
+            $tag = trim($tag);
+            $item->untag($tag);
+        endforeach;
+
+        foreach($tags as $tag):
+            $tag = trim($tag);
+            $item->tag($tag);
+        endforeach;
 
         $item->save();
 
@@ -181,9 +188,13 @@ class ItemsController extends \BaseController
      */
     public function destroy($type, $id)
     {
+        $item = $this->item->find($id);
+
+        foreach($item->tagNames() as $tag):
+            $item->untag($tag);
+        endforeach;
+
         $this->item->find($id)->delete();
-        DB::table('items-tags')->where('item_id', '=', $id)->delete();
-        $this->tag->removeEmpty();
 
         return Redirect::to($type)
             ->with('message', 'System removed!')

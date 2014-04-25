@@ -6,9 +6,7 @@ Route::when('*', 'csrf', array('post', 'put', 'delete'));
 /* Pages */
 Route::get('/', 'PagesController@home');
 Route::get('about', 'PagesController@about');
-
-Route::get('test', ['as' => 'test.get', 'uses' => 'PagesController@test']);
-Route::post('test/post', ['as' => 'test.post', 'uses' => 'PagesController@testPost']);
+Route::get('request', ['as' => 'pages.request', 'uses' => 'PagesController@request']);
 
 /* oAuth/Social login */
 Route::get('social', ['as' => 'oauth.index', 'uses' => 'oAuthController@index']);

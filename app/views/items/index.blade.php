@@ -44,7 +44,7 @@
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
                         <li class="margin-bottom-10 margin-top-10" style="font-weight: 900">Type</li>
-                        @foreach($types as $type)
+                        @foreach(Type::all() as $type)
                         <li><a href="#" class="filter" data-filter=".{{ $type->slug }}">{{ $type->type }}</a></li>
                         @endforeach
                     </ul>
@@ -53,7 +53,7 @@
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
                         <li class="margin-bottom-10 margin-top-10" style="font-weight: 900">Grade</li>
-                        @foreach($grades as $grade)
+                        @foreach(Grade::all() as $grade)
                         <li><a href="#" class="filter" data-filter=".{{ $grade->slug }}">{{ $grade->grade }}</a></li>
                         @endforeach
                     </ul>
@@ -63,7 +63,7 @@
                     <ul class="nav nav-pills nav-stacked">
                         <li class="margin-bottom-10 margin-top-10" style="font-weight: 900">Tag</li>
 
-                        @foreach($tags as $tag)
+                        @foreach(Conner\Tagging\Tag::where('count', '>', 0)->get() as $tag)
                         <a href="#" class="filter" data-filter=".{{ $tag->slug }}" rel="{{ $tag->count }}">[{{ $tag->name }}]</a>
                         @endforeach
 
@@ -88,7 +88,8 @@
         <div id="MixIt" class="row">
             @if(count($items) > 0)
                 @foreach($items as $item)
-                    <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type->slug }} {{ implode(' ', $item->tagNames()) }} {{ $item->grade->slug }}">
+
+                    <div class="row list padding-top-10 padding-bottom-10 item border-top {{ $item->type->slug }} {{ $tags[$item->id] }} {{ $item->grade->slug }}">
                         <div class="title col-md-4">{{ link_to(route('items.show', [$item->type->slug, $item->slug]), $item->title) }}</div>
 
                         <div class="hidden-info col-md-2">{{ date("d-m-Y H:i", strtotime($item->created_at)) }}</div>

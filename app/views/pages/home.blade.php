@@ -20,13 +20,13 @@
             <div class="col-md-12">
                 <h2>Pilection.eu launched</h2>
                 <p>Posted by {{ link_to(route('users.show', 'RobinKuiper'), 'RobinKuiper') }}
-                    at Volgende week <!--{{ date("d-m-Y H:i", '1398101939') }}--></p>
+                    at {{ date("d-m-Y H:i", '1398433658') . time() }}</p>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <p>The first version of <a href="http://pilection.eu" title="Pilection">Pilection</a> is launched today!<br>
+                <p>The first beta version of <a href="http://pilection.eu" title="Pilection">Pilection</a> is launched today!<br>
                     We will try to keep track of <a href="http://raspberrypi.org" title="Raspberry Pi">Raspberry Pi</a> resources, but we need your help, please submit any OS, script, software, etc designed for the Pi, so we can keep a nice collection here.</p>
 
                 <p>Whenever you think something is interesting, you can login to your account and create a new item.<br>
@@ -34,7 +34,8 @@
 
                 <p>Like we said, this is the first version, so there will be more features in the future.</p>
 
-                <p>Found any bugs/issues? Please report them here: <a href="https://bitbucket.org/recodenl/pilection/issues" title="Pilection Issue Tracker">Pilection Issue Tracker</a></p>
+                <p>Found any bugs/issues? Please report them here: <a href="https://bitbucket.org/recodenl/pilection/issues" title="Pilection Issue Tracker">Pilection Issue Tracker</a>
+                    <br>Missing a feature? Request it {{ link_to(Route('pages.request'), 'here') }}!</p>
             </div>
         </div>
     </div>
@@ -56,10 +57,10 @@
         <div class="panel panel-default">
             <div class="panel-heading" style="font-weight: 900">
                 <a href="http://www.reddit.com/r/raspberry_pi" target="_blank">
-                    <img src="http://www.redditstatic.com/about/assets/reddit-logo.png" style="height: 40px;">
+                    <img src="/images/reddit-logo.png" style="height: 40px;">
                 </a>
                 <a href="http://www.raspberrypi.org" target="_blank">
-                    <img src="http://84.77.221.113/weather/raspberry_logo.png" style="height: 40px">
+                    <img src="/images/raspberry-pi.png" style="height: 40px; margin-top: 8px;">
                 </a>
             </div>
             <!-- Nav tabs -->
@@ -74,7 +75,7 @@
                 <div class="tab-pane active" id="new">
                     <ul class="list-group">
                         @foreach($reddit['new']->data->children as $item)
-                        <li class="list-group-item" style="padding: 15px;">{{ link_to($item->data->url, $item->data->title, ['target' => '_blank']) }} <small style="float: right">{{ link_to('http://reddit.com'.$item->data->permalink, $item->data->num_comments . ' comment(s)') }}</small></li>
+                        <li class="list-group-item" style="padding: 15px; border: 0px;">{{ link_to($item->data->url, $item->data->title, ['target' => '_blank']) }} <small style="float: right">{{ link_to('http://reddit.com'.$item->data->permalink, $item->data->num_comments . ' comment(s)') }}</small></li>
                         @endforeach
                     </ul>
                 </div>

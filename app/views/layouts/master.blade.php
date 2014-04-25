@@ -61,7 +61,7 @@
                         <ul class="dropdown-menu">
                             @foreach(Conner\Tagging\Tag::where('count', '>', 0)->get() as $tag)
                             <li>
-                                <a href="{{ $tag->slug }}" title="{{ $tag->name }}">{{ $tag->name }}</a>
+                                <a href="/tag/{{ $tag->slug }}" title="{{ $tag->name }}">{{ $tag->name }}</a>
                             </li>
                             @endforeach
                         </ul>
@@ -73,7 +73,7 @@
                         <ul class="dropdown-menu">
                             @foreach(Grade::all() as $grade)
                             <li>
-                                <a href="{{ $grade->slug }}" title="{{ $grade->grade }}">{{ $grade->grade }}</a>
+                                <a href="/grade/{{ $grade->slug }}" title="{{ $grade->grade }}">{{ $grade->grade }}</a>
                             </li>
                             @endforeach
                         </ul>
@@ -133,8 +133,8 @@
 @endif
 
 {{ HTML::script('http://code.jquery.com/jquery-latest.min.js') }}
-{{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
 {{ HTML::script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js') }}
+{{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
 {{ HTML::script('js/layouts/master/main.js') }}
 
 @yield('footer')

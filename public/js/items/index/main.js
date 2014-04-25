@@ -47,6 +47,10 @@ $(function () {
         }
     });
 
+    $('.filter').click(function(){
+        return false;
+    });
+
     /*
      * MixItUp on Master links
      */

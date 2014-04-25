@@ -34,9 +34,6 @@ class ItemsController extends \BaseController
     public function index($type, $attr=null)
     {
         $items = $this->item->all();
-        $tags = Conner\Tagging\Tag::where('count', '>', 0)->get();
-        $grades = $this->grade->all();
-        $types = $this->type->all();
 
         $breadcrumb = ($type == 'grade') ? 'grades' : ($type == 'tag') ? 'tags' : 'items';
 
@@ -45,14 +42,19 @@ class ItemsController extends \BaseController
             'title'         => ($type == 'grade') ? $attr : ($type == 'tag') ? $attr : $type,
             'items'         => $items,
             'active'        => $type,
-            'tags'          => $tags,
-            'grades'        => $grades,
-            'types'         => $types,
             'filter'        => ($type == 'grade') ? $attr : ($type == 'tag') ? $attr : $type,
         ];
 
         if($type != 'grade' OR $type != 'tag')
             $vars['type'] = $type;
+
+        foreach($items as $item):
+            $tags = $item->tagged()->select(['tag_slug'])->get();
+            $vars['tags'][$item->id] = '';
+            foreach($tags as $tag):
+                $vars['tags'][$item->id] .= $tag->tag_slug . ' ';
+            endforeach;
+        endforeach;
 
         return View::make('items.index', $vars);
     }
@@ -82,13 +84,7 @@ class ItemsController extends \BaseController
         }
 
         $item = $this->item->create($input);
-
-        $tags = explode(',', $input['tags']);
-
-        foreach($tags as $tag):
-            $tag = trim($tag);
-            $item->tag($tag);
-        endforeach;
+        $item->tag($input['tags']);
 
         return Redirect::to($type . '/' . $item->slug)
             ->with('message', 'New system created!')
@@ -160,18 +156,8 @@ class ItemsController extends \BaseController
             $item->image = $input['image'];
         }
 
-        $tags = explode(',', $input['tags']);
-        $old_tags = explode(',', $input['old_tags']);
-
-        foreach($old_tags as $tag):
-            $tag = trim($tag);
-            $item->untag($tag);
-        endforeach;
-
-        foreach($tags as $tag):
-            $tag = trim($tag);
-            $item->tag($tag);
-        endforeach;
+        $item->untag($input['old_tags']);
+        $item->tag($input['tags']);
 
         $item->save();
 

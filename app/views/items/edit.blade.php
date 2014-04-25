@@ -128,8 +128,14 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('grade', 'Grade') }}
-            <select name="grade" class="btn btn-default">
+            {{ Form::label('tags', 'Tags') }}
+            {{ Form::text('tags', implode(', ', $item->tagNames()), ['class' => 'form-control', 'placeholder' => 'Tags, comma seperated']) }}
+            {{ Form::hidden('old_tags', implode(', ', $item->tagNames())) }}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('grade_id', 'Grade') }}
+            <select name="grade_id" class="btn btn-default">
                 @foreach( Grade::all() as $grade )
                 <option value="{{ $grade->id }}" {{ ($item->grade == $grade->id) ? 'selected' : '' }}>{{ $grade->grade }}</option>
                 @endforeach
@@ -137,12 +143,11 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('type', 'Type') }}
-            <select name="type" class="btn btn-default">
-                <option value="systems" {{ ($item->type == 'systems') ? 'selected' : '' }}>System</option>
-                <option value="software" {{ ($item->type == 'software') ? 'selected' : '' }}>Software</option>
-                <option value="scripts" {{ ($item->type == 'scripts') ? 'selected' : '' }}>Script</option>
-                <option value="projects" {{ ($item->type == 'project') ? 'selected' : '' }}>Project</option>
+            {{ Form::label('type_id', 'Type') }}
+            <select name="type_id" class="btn btn-default">
+                @foreach( Type::all() as $type )
+                <option value="{{ $type->id }}" {{ ($item->type == $type->id) ? 'selected' : '' }}>{{ $type->type }}</option>
+                @endforeach
             </select>
         </div>
 

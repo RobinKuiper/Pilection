@@ -23,6 +23,18 @@ class CreateOauthTable extends Migration {
 			$table->string('lastname')->nullable();
 			$table->string('profile_url')->nullable();
 			$table->string('website_url')->nullable();
+            $table->string('photo_url')->nullable();
+            $table->text('description')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('language')->nullable();
+            $table->integer('age')->nullable();
+            $table->string('birthday')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('country')->nullable();
+            $table->string('region')->nullable();
+            $table->string('city')->nullable();
+            $table->string('zip')->nullable();
 			$table->timestamps();
 		});
 	}

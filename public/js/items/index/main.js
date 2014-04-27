@@ -52,20 +52,6 @@ $(function () {
     });
 
     /*
-     * MixItUp on Master links
-     */
-    /*
-    $('.filter').click(function(){
-     var filter = $(this).attr('data-filter');
-
-     $('.filter[data-filter="' + filter + '"]').not(this).toggleClass('active');
-     $('.filter-master[data-filter="' + filter + '"]').parent().toggleClass('active');
-
-     return false;
-     });
-     */
-
-    /*
      * Ratings
      */
     $('.rating').raty({

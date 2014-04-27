@@ -48,9 +48,6 @@ Route::get('ajax/getRating', ['as' => 'ajax.getrating', 'uses' => 'AjaxControlle
 Route::get('ajax/getTags', ['as' => 'ajax.gettags', 'uses' => 'AjaxController@getTags']);
 
 /* Items */
-//Route::get('tags/{tag}', ['as' => 'tags.index', 'uses' => 'TagsController@index']);
-//Route::get('grade/{tag}', ['as' => 'grades.index', 'uses' => 'GradesController@index']);
-
 Route::get('tag/{attr}', ['as' => 'tag.index', 'uses' => 'ItemsController@index']);
 Route::get('grade/{attr}', ['as' => 'grade.index', 'uses' => 'ItemsController@index']);
 

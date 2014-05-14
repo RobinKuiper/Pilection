@@ -5,7 +5,7 @@ class Item extends Eloquent
     use Codesleeve\Stapler\Stapler;
     use Conner\Tagging\Taggable;
 
-    protected $fillable = ['user_id', 'title', 'body', 'image', 'download', 'website', 'type', 'grade'];
+    protected $fillable = ['user_id', 'title', 'body', 'image', 'download_url', 'website_url', 'type_id', 'grade_id'];
     protected $table = 'items';
     protected $softDelete = true;
 
